@@ -1,0 +1,1781 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"sort",
+				"sortAngle"
+			],
+			[
+				"test",
+				"testPalindrome"
+			],
+			[
+				"rand",
+				"randclause"
+			],
+			[
+				"fom",
+				"formula"
+			],
+			[
+				"clause",
+				"clause_map"
+			],
+			[
+				"for",
+				"for	For Loop"
+			],
+			[
+				"check",
+				"check_clause"
+			],
+			[
+				"fomu",
+				"formula_sign"
+			],
+			[
+				"formula",
+				"formula_sign"
+			],
+			[
+				"my",
+				"myButLast"
+			],
+			[
+				"element",
+				"elementAt"
+			],
+			[
+				"int",
+				"int_change"
+			],
+			[
+				"cloc",
+				"clock_t"
+			],
+			[
+				"MST_",
+				"MST_table"
+			],
+			[
+				"edge",
+				"edge_list"
+			],
+			[
+				"max",
+				"maximum_edge"
+			],
+			[
+				"random_",
+				"random_2d_mst"
+			],
+			[
+				"num",
+				"numtrials"
+			],
+			[
+				"xo",
+				"xor128d"
+			],
+			[
+				"signup",
+				"signup_user"
+			],
+			[
+				"singup",
+				"signing_up"
+			],
+			[
+				"saving",
+				"saving_text"
+			],
+			[
+				"current",
+				"current_category"
+			],
+			[
+				"current_",
+				"current_category"
+			],
+			[
+				"cure",
+				"current_subcategory"
+			],
+			[
+				"hourly",
+				"hourly_rate"
+			],
+			[
+				"index",
+				"indexOf"
+			],
+			[
+				"sub",
+				"subcategory"
+			],
+			[
+				"stats",
+				"status_code"
+			],
+			[
+				"status",
+				"status_code"
+			],
+			[
+				"subcateg",
+				"subcategories"
+			],
+			[
+				"number",
+				"number_of_hops"
+			],
+			[
+				"_endcap",
+				"_endcap1_voltage"
+			],
+			[
+				"upload",
+				"upload_text"
+			],
+			[
+				"has",
+				"has_authenticated"
+			],
+			[
+				"ion_time_",
+				"ion_time_of_flight"
+			],
+			[
+				"cycl",
+				"cycle_tof"
+			],
+			[
+				"ro_",
+				"ro_endcap_frequency_hz"
+			],
+			[
+				"_ring",
+				"_ring_duty_high"
+			],
+			[
+				"cycle",
+				"cycle_length"
+			],
+			[
+				"E1",
+				"E1_voltage"
+			],
+			[
+				"trap",
+				"trap_period_us"
+			],
+			[
+				"frquen",
+				"frequency_hop_size"
+			],
+			[
+				"time",
+				"time_til_E2_switch"
+			],
+			[
+				"_",
+				"_phase_difference"
+			],
+			[
+				"sheet",
+				"sheet_no"
+			],
+			[
+				"to",
+				"to_write"
+			],
+			[
+				"DATA",
+				"DATABASE_PASSWORD"
+			],
+			[
+				"text",
+				"textdata"
+			],
+			[
+				"train",
+				"trainlength"
+			],
+			[
+				"category",
+				"category_name"
+			],
+			[
+				"question",
+				"question_answers"
+			],
+			[
+				"text-",
+				"text-decoration"
+			],
+			[
+				"vivek",
+				"vivek_price"
+			],
+			[
+				"rachit",
+				"rachit_price"
+			],
+			[
+				"$route",
+				"$routeParams	AngularJS"
+			],
+			[
+				"show",
+				"show_message"
+			],
+			[
+				"ctag",
+				"category_id"
+			],
+			[
+				"verification",
+				"verification_text"
+			],
+			[
+				"verif",
+				"verification_text"
+			],
+			[
+				"SQL",
+				"SQLALCHEMY_DATABASE_URI"
+			],
+			[
+				"sav",
+				"save_disabled"
+			],
+			[
+				"isa",
+				"is_authenticated"
+			],
+			[
+				"lawyer",
+				"lawyer_id"
+			],
+			[
+				"filter",
+				"filter_by"
+			],
+			[
+				"login",
+				"login_required"
+			],
+			[
+				"buckets",
+				"buckets_by_category"
+			],
+			[
+				"finihs",
+				"finished_setup"
+			],
+			[
+				"adj_elect",
+				"adj_elect04"
+			],
+			[
+				"_amp",
+				"_trap_amplitude"
+			],
+			[
+				"dashboad",
+				"dashboard_js"
+			],
+			[
+				"new_",
+				"new_password2"
+			],
+			[
+				"ng-",
+				"ng-checked	AngularJS"
+			],
+			[
+				"bucket",
+				"bucket_index"
+			],
+			[
+				"com",
+				"com"
+			],
+			[
+				"save",
+				"saving_text"
+			],
+			[
+				"erro",
+				"error_message"
+			],
+			[
+				"temp",
+				"tempphotoURL"
+			],
+			[
+				"AWS",
+				"AWS_ACCESS_KEY_ID"
+			],
+			[
+				"access",
+				"AWS_ACCESS_KEY_ID"
+			],
+			[
+				"selected",
+				"selected_categories"
+			],
+			[
+				"NEXT",
+				"next_bucket"
+			],
+			[
+				"finished",
+				"finished_setup"
+			],
+			[
+				"tickl",
+				"tickle_duty_high2"
+			],
+			[
+				"trap_duty",
+				"trap_duty_high2"
+			],
+			[
+				"ion_time",
+				"ion_time_of_flight"
+			],
+			[
+				"next",
+				"next_question"
+			],
+			[
+				"is_",
+				"is_question"
+			],
+			[
+				"is",
+				"is_endpoint"
+			],
+			[
+				"confirm",
+				"confirm_new_pw"
+			],
+			[
+				"Lawy",
+				"LawyerAdmin"
+			],
+			[
+				"Lawyer",
+				"LawyerModule"
+			],
+			[
+				"old",
+				"old_password"
+			],
+			[
+				"new",
+				"new_password"
+			],
+			[
+				"__",
+				"__tablename__"
+			],
+			[
+				"years",
+				"years_of_experience"
+			],
+			[
+				"update",
+				"update_dict"
+			],
+			[
+				"print",
+				"print_things"
+			],
+			[
+				"generate",
+				"generate_node"
+			],
+			[
+				"gen",
+				"gen_random_text"
+			],
+			[
+				"background",
+				"background-color"
+			],
+			[
+				"pixel",
+				"pixel_byte_width"
+			],
+			[
+				"B",
+				"B"
+			],
+			[
+				"R",
+				"R"
+			],
+			[
+				"mana",
+				"manabarcolor"
+			],
+			[
+				"shield",
+				"shieldon"
+			],
+			[
+				"bullet",
+				"bullettimer2"
+			],
+			[
+				"x",
+				"x_vel"
+			],
+			[
+				"last",
+				"last_frame"
+			],
+			[
+				"air",
+				"air_accel"
+			],
+			[
+				"wall",
+				"wall_pos"
+			],
+			[
+				"can",
+				"canglide"
+			],
+			[
+				"CAV",
+				"CANVAS_HEIGHT"
+			],
+			[
+				"CA",
+				"CANVAS_WIDTH"
+			],
+			[
+				"backgroun",
+				"background-origin"
+			],
+			[
+				"background-",
+				"background-repeat"
+			],
+			[
+				"template",
+				"templateUrl"
+			],
+			[
+				"HEA",
+				"HEALTH_RADIUS"
+			],
+			[
+				"players",
+				"players"
+			],
+			[
+				"CANVAS",
+				"CANVAS_HEIGHT"
+			],
+			[
+				"QuadTree",
+				"QuadTreeNode"
+			],
+			[
+				"upper",
+				"upperleft"
+			],
+			[
+				"inner",
+				"innerHTML"
+			],
+			[
+				"getE",
+				"getElementById"
+			],
+			[
+				"get",
+				"getEditDistance"
+			],
+			[
+				"string",
+				"stringarr"
+			],
+			[
+				"right",
+				"rightHeight"
+			],
+			[
+				"left",
+				"leftHeight"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 189.0,
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				":i",
+				"Tag: Insert as Tag"
+			],
+			[
+				"set C++",
+				"Set Syntax: C++"
+			],
+			[
+				"set python",
+				"Set Syntax: Python"
+			],
+			[
+				"install pa",
+				"Package Control: Install Package"
+			],
+			[
+				"glue",
+				"Glue - Launch"
+			],
+			[
+				"shell",
+				"Shell Command"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"set Syn Hsekl",
+				"Set Syntax: Haskell"
+			],
+			[
+				"Math55",
+				"Snippet: Math55"
+			],
+			[
+				"math 55",
+				"Snippet: Math55"
+			],
+			[
+				"Math 55",
+				"Snippet: Math55"
+			],
+			[
+				"Math ",
+				"Snippet: Math55"
+			],
+			[
+				"MAth 55",
+				"Snippet: Math55"
+			],
+			[
+				"math55",
+				"Snippet: Math55"
+			],
+			[
+				"instlal",
+				"Package Control: Install Package"
+			],
+			[
+				"tag",
+				"Tag: Auto-Format Tags on Document"
+			],
+			[
+				"format",
+				"Format CSS: Expanded"
+			],
+			[
+				"latex",
+				"LaTeXTools: Reconfigure and migrate settings"
+			],
+			[
+				"install pac",
+				"Package Control: Install Package"
+			],
+			[
+				"install page",
+				"Package Control: Install Package"
+			],
+			[
+				"tag auto",
+				"Tag: Auto-Format Tags on Document"
+			],
+			[
+				"set syntax javascript",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"python",
+				"Set Syntax: Python"
+			],
+			[
+				"CSS",
+				"Format CSS: Expanded (Break Selectors)"
+			],
+			[
+				"reindent",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"css",
+				"CSSLint: Run CSSLint"
+			],
+			[
+				"set syntax javas",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"set sytax python",
+				"Set Syntax: Python"
+			],
+			[
+				"set python ",
+				"Set Syntax: Regular Expressions (Python)"
+			],
+			[
+				"set syntax python",
+				"Set Syntax: Python"
+			],
+			[
+				"pyto",
+				"Snippet: Python Comment"
+			],
+			[
+				"open",
+				"View: Toggle Open Files in Side Bar"
+			],
+			[
+				"auto",
+				"Tag: Auto-Format Tags on Document"
+			],
+			[
+				"indent",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"set",
+				"Set Syntax: HTML"
+			],
+			[
+				"python con",
+				"Snippet: Python Comment"
+			],
+			[
+				"python comm",
+				"Snippet: Python Comment"
+			],
+			[
+				"HTML5",
+				"Snippet: HTML5 Boilerplate"
+			],
+			[
+				"package controll",
+				"Package Control: List Packages"
+			],
+			[
+				"html",
+				"Snippet: HTML5 Boilerplate"
+			],
+			[
+				"set html",
+				"Set Syntax: HTML"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"Bookmarks: Select Next"
+			],
+			[
+				"html5",
+				"Snippet: HTML5 Boilerplate"
+			]
+		],
+		"width": 480.0
+	},
+	"console":
+	{
+		"height": 732.0,
+		"history":
+		[
+			"a.map",
+			"a.__len__()",
+			"dir(a)",
+			"a = \"something\"",
+			"a = True ? 'a' : 'c'",
+			"print((5 if True else 6))",
+			"a",
+			"a = 5 if True else 6",
+			"~1",
+			"a = 1",
+			"~5",
+			"a = 5",
+			"math.sqrt(5)",
+			"import math",
+			"1 << 15",
+			"a",
+			"a = \"Dhruv 1.csv  dhruv4.csv  dhruv8.csv     haoqing2.csv  rachit0.csv  rachit3.csv\".split()",
+			"ord('z')",
+			"ord('A')",
+			"ord('a')",
+			"ord('c')",
+			"int('c')",
+			"list(range(1, 3))",
+			"range(1, 3)",
+			"a.index(2)",
+			"a.index(1)",
+			"dir(a)",
+			"a.find(1)",
+			"a = [1, 2, 1, 2]",
+			"prufer",
+			"prufer = \"\".join([str(random.choice(list(range(n)))) for _ in range(n - 2)])",
+			"prufer",
+			"prufer = \"\".join([str(random.choice(list(range(n)))) for _ in range(n - 2)])",
+			"prufer",
+			"prufer = \"\".join([str(random.choice(list(range(n)))) for _ in range(n - 2)])",
+			"prufer",
+			"prufer = \"\".join([str(random.choice(list(range(n)))) for _ in range(n - 2)])",
+			"prufer",
+			"prufer = \"\".join([str(random.choice(list(range(n)))) for _ in range(n - 2)])",
+			"prufer",
+			"prufer = \"\".join([str(random.choice(list(range(n)))) for _ in range(n - 2)])",
+			"prufer",
+			"prufer = \"\".join([str(random.choice(list(range(n)))) for _ in range(n - 2)])",
+			"prufer",
+			"prufer = \"\".join([str(random.choice(list(range(n)))) for _ in range(n - 2)])",
+			"prufer",
+			"prufer = \"\".join([str(random.choice(list(range(n)))) for _ in range(n - 2)])",
+			"prufer = \"\".join([random.choice(list(range(n))) for i in range(n - 2)])",
+			"n = 5",
+			"import random",
+			"prufer = \"\".join([random.choice(list(range(n))) for i in range(n - 2)])",
+			"list(range(0, 5))",
+			"list(range(1, 3))",
+			"a",
+			"a.remove(3)",
+			"a.remove",
+			"a = [1, 2, 3]",
+			"\"ab{0}\".format(0)",
+			"sum([1, 2], [3, 3])",
+			"join([1, 2], [3, 3])",
+			"[i for i in range(1, 5)]",
+			"random.randint(0, 1)",
+			"random.randint(1, 1)",
+			"random.randint(1, 25)",
+			"random.choice(range(5))",
+			"import random",
+			"[[]] * 25",
+			"[0] * 25",
+			"b",
+			"b = sorted(a, key=lambda x: x['b'])",
+			"b",
+			"b = sorted(a, key=lambda x: x['a'])",
+			"sort(a)",
+			"a.sorted()",
+			"a = [{'a': 4, 'b':6}, {'a':10, 'b':1}]",
+			"a = [{'a': 4, 'b':6}, {",
+			"a = [{'a': 4}, {",
+			"sum([1.000000000000000 for i in range(1000)])",
+			"sum([1.000000000000000 for i in range(1000000)])",
+			"sum([1.000000000000000 for i in range(10000)])",
+			"sum([1.000000000 for i in range(10000)])",
+			"sum([1.000 for i in range(10000)])",
+			"sum([1.000 for i in range(1000)])",
+			"1.0000 + 1.00000",
+			"while True:",
+			"a = []",
+			"time.sleep(1)",
+			"import time",
+			"str(datetime.datetime.now())",
+			"str(datetime.datetime.utcnow())",
+			"dir(datetime.datetime.utcnow().strftime())",
+			"dir(datetime.datetime.utcnow().strftime)",
+			"dir(datetime.datetime.utcnow())",
+			"dir(datetime.datetime.now())",
+			"datetime.datetime.now()",
+			"import datetime",
+			"[i for i in filter(lambda x: x > 1, a)]",
+			"filter(lambda x: x > 1, a)",
+			"filter(a, lambda x: x > 1)",
+			"filter(a)",
+			"a = [0, 1, 2, 3]",
+			"filter",
+			"random.randint()",
+			"import random",
+			"random.random()",
+			"random.random",
+			"import random",
+			"[i for i in range(1,10)]",
+			"[i for i in range(1,10)",
+			"range(1, 10)",
+			"range(0.5)",
+			"range(0.1, 0.5, 0.1)",
+			"'abcda'.count('a')",
+			"'abcda'.count)",
+			"a",
+			"a.remove(4)",
+			"a = [1, 2, 3, 4, 5]",
+			"24 * 60 * 60",
+			"1344473871 % (24 * 60 * 60)",
+			"type(True)",
+			"[i for i in enumerate(a)]",
+			"enumerate(a)",
+			"a = ['a', 'b']",
+			"a.replace('\\n', '')",
+			"a.replace",
+			"a",
+			"a = \"a\\n\\nb\"",
+			"import numpy "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/Rachit/Documents/GitHub/pixelfu"
+	],
+	"file_history":
+	[
+		"/C/Users/Rachit/Documents/haskell/test.hs",
+		"/C/Users/Rachit/Documents/GitHub/chatufu/src/index.html",
+		"/C/Users/Rachit/Documents/GitHub/chatufu/src/js/app.js",
+		"/C/Users/Rachit/Documents/GitHub/chatufu/package.json",
+		"/C/Users/Rachit/Documents/GitHub/chatufu/src/js/views/module.js",
+		"/C/Users/Rachit/Documents/GitHub/chatufu/src/js/views/index.js",
+		"/C/Users/Rachit/Documents/GitHub/chatufu/src/js/views/views.js",
+		"/C/Users/Rachit/AppData/Roaming/npm/node_modules/npm/npmrc",
+		"/C/Users/Rachit/Documents/classes/math/bonus problems/math55.tex",
+		"/C/Users/Rachit/Documents/classes/math/bonus problems/math55.aux",
+		"/C/Users/Rachit/Documents/classes/cs50/ps3/src4m/bounce.c",
+		"/C/Users/Rachit/Downloads/tufte-style-book/tufte-style-book/main.tex",
+		"/C/Users/Rachit/Documents/classes/math/bonus problems/math55.synctex.gz",
+		"/C/Users/Rachit/Documents/classes/math/bonus problems/math55.fdb_latexmk",
+		"/C/Users/Rachit/Documents/classes/math/bonus problems/math55.out",
+		"/C/Users/Rachit/Downloads/tufte-style-book/tufte-style-book/chapters/cities.tex",
+		"/C/Users/Rachit/Documents/Classes/expos/finaldraft.md",
+		"/C/Users/Rachit/Documents/classes/expos/research/paradise.md",
+		"/C/Users/Rachit/Downloads/tufte-style-book/tufte-style-book/chapters/fatalpinch.tex",
+		"/C/Users/Rachit/Documents/classes/math/assignment 12/math55.tex",
+		"/C/Users/Rachit/Documents/GitHub/pg/tufte.tex",
+		"/C/Users/Rachit/Documents/classes/math/assignment 12/math55.aux",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_10/data/c2.5-50k.txt",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_10/Random3SAT/Random3SAT/25.out",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_10/Random3SAT/Random3SAT/1.out",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_10/Random3SAT/Random3SAT/55.out",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_10/Random3SAT/Random3SAT/5.out",
+		"/C/Users/Rachit/AppData/Roaming/Sublime Text 3/Packages/LaTeXTools/LaTeX.sublime-completions",
+		"/C/Users/Rachit/Documents/classes/math/final/math55.tex",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_2/TestApplication/RandomMSTFinal/RandomMSTFinal.vcxproj.filters",
+		"/C/Users/Rachit/Documents/classes/expos/Unit 2 Final Draft.docx",
+		"/C/Users/Rachit/Documents/classes/expos/Unit 2 Final Final.docx",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_2/final/main.cpp",
+		"/C/Users/Rachit/Documents/classes/physics/assignment_1/fig1.svg",
+		"/C/Users/Rachit/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/Rachit/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Rachit/Documents/classes/math/assignment 11/math55.tex",
+		"/C/Users/Rachit/AppData/Roaming/Sublime Text 3/Packages/LaTeXTools/LaTeX math.sublime-completions",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_10/real.cpp",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_2/RandomMST/RandomMST.vcxproj.user",
+		"/C/Users/Rachit/Documents/classes/older/CPT_S 223/assignments/Homework 2/Homework 2/details.csv",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_10/Random3SAT/Random3SAT/Release/random3sat.nativecodeanalysis.xml",
+		"/C/Users/Rachit/Documents/classes/older/CPT_S 223/notes/Lecture - 2014-02-19 BST/notes/EmptyBstNode.h",
+		"/C/Users/Rachit/Documents/classes/older/Econ 198/Week_1_Monday.pptx",
+		"/C/Users/Rachit/Documents/classes/cs50/ps1/mario.c",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_2/minimum edge weight distribution.xlsx",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_2/RandomMST/Debug/RandomMST.tlog/link.command.1.tlog",
+		"/C/Users/Rachit/Documents/classes/older/Econ 198/Writing Assignment 1.docx",
+		"/C/Users/Rachit/Documents/classes/cs50/ps3/src4m/label.c",
+		"/C/Users/Rachit/Documents/classes/cs/lp.nb",
+		"/C/Users/Rachit/Documents/classes/older/Econ 198/12C.xlsx",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_10/main.cpp",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_10/pset.tex",
+		"/C/Users/Rachit/Documents/classes/older/CPT_S 223/notes/1-15-14.cpp",
+		"/C/Users/Rachit/Documents/classes/math/assignment 1/math55.tex",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_10/Random3SAT/Random3SAT/Random3SAT.cpp",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_10/Random3SAT/Random3SAT.sln",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_2/final/random.h",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_2/RandomMST/RandomMST.cpp",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_2/final/rachit_singh_victor_domene.tar",
+		"/C/Users/Rachit/Documents/classes/physics/assignment_1/assignment_1.tex",
+		"/C/Users/Rachit/Documents/classes/older/CPT_S 223/test/Stack/Stack/ArrayStack.cpp",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_2/final/report.tex",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_10/test125.py",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_7/pset.log",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_1/pset1.tex",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_10/Random3SAT/Random3SAT/stdafx.cpp",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_2/main.cpp",
+		"/C/Users/Rachit/Documents/classes/main.cpp",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_10/Random3SAT/Random3SAT/10.out",
+		"/C/Users/Rachit/Documents/classes/older/CPT_S 223/assignments/Gradebook/Gradebook/Debug/Gradebook.Build.CppClean.log",
+		"/C/Users/Rachit/Documents/GitHub/platformer/js/player.js",
+		"/C/Users/Rachit/Documents/GitHub/platformer/js/main.js",
+		"/C/Users/Rachit/Documents/GitHub/platformer/js/level.js",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_10/Random3SAT/Random3SAT/6.out",
+		"/C/Users/Rachit/Documents/classes/older/CPT_S 223/notes/Lecture - 2014-02-19 BST/notes/BstNode.h",
+		"/C/Users/Rachit/Documents/classes/classes.sublime-project",
+		"/C/Users/Rachit/Documents/classes/.gitignore",
+		"/C/Users/Rachit/Documents/classes/.gitattributes",
+		"/C/Users/Rachit/AppData/Roaming/Sublime Text 3/Packages/LaTeXTools/LaTeX.sublime-commands",
+		"/C/Users/Rachit/Documents/classes/physics/assignment_1/assignment_1.fdb_latexmk",
+		"/C/Users/Rachit/Documents/classes/cs50/ps3/sort.c",
+		"/C/Users/Rachit/Documents/classes/cs50/.vagrant/machines/default/virtualbox/action_set_name",
+		"/C/Users/Rachit/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
+		"/C/Users/Rachit/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/Rachit/Documents/classes/math/assignment 11/math55.aux",
+		"/C/Users/Rachit/Documents/classes/physics/assignment_2/assignment_1.aux",
+		"/C/Users/Rachit/Documents/classes/physics/assignment_1/assignment_1.aux",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_8/pset.tex",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_9/pset.tex",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_7/pset.tex",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_6/pset.tex",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_5/pset.tex",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_4/pset.tex",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_4/pset.aux",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_2/CS125_PSET2/CS125_PSET2.cpp",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_2/CS125_PSET2/CS125_PSET2.vcxproj.user",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_3/pset3.tex",
+		"/C/Users/Rachit/Documents/classes/cs/cs50.c",
+		"/C/Users/Rachit/Documents/classes/cs50/ps3/src4m/Makefile",
+		"/C/Users/Rachit/Documents/classes/math/assignment 8/math55.tex",
+		"/C/Users/Rachit/Downloads/myanimation.txt",
+		"/C/Users/Rachit/Downloads/animations.txt",
+		"/C/Users/Rachit/Documents/classes/math/assignment 9/math55.tex",
+		"/C/Users/Rachit/Documents/classes/math/assignment 10/math55.tex",
+		"/C/Users/Rachit/Documents/classes/math/bonus pset 1/math55.tex",
+		"/C/Users/Rachit/Documents/classes/math/assignment 7/math55.tex",
+		"/C/Users/Rachit/Documents/classes/math/assignment 6/math55.tex",
+		"/C/Users/Rachit/Documents/classes/math/assignment 5/math55.tex",
+		"/C/Users/Rachit/Documents/classes/math/assignment 4/math55.tex",
+		"/C/Users/Rachit/Documents/classes/math/assignment 3/math55.tex",
+		"/C/Users/Rachit/Documents/classes/math/assignment 2/math55.tex",
+		"/C/Users/Rachit/Documents/classes/math/assignment 2/math55.aux",
+		"/C/Users/Rachit/Documents/classes/math/assignment 10/math55.out",
+		"/C/Users/Rachit/Documents/classes/math/assignment 10/math55.log",
+		"/C/Users/Rachit/Documents/classes/math/assignment 10/math55.aux",
+		"/C/Users/Rachit/Documents/classes/math/assignment 1/math55.out",
+		"/C/Users/Rachit/Documents/classes/math/assignment 1/math55.lyx",
+		"/C/Users/Rachit/Documents/classes/math/assignment 1/math55.log",
+		"/C/Users/Rachit/Documents/classes/math/assignment 1/math55.aux",
+		"/C/Users/Rachit/Downloads/first_degree.js",
+		"/C/Users/Rachit/Documents/classes/cs50/ps3/src4m/window.c",
+		"/C/Users/Rachit/Downloads/hw8topost.tex",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_6/pset.fdb_latexmk",
+		"/C/Users/Rachit/Documents/classes/cs/assignment_7/pset.fdb_latexmk",
+		"/C/Users/Rachit/Documents/classes/older/CPT_S 223/assignments/Homework 6/Homework 6/targetver.h",
+		"/C/Users/Rachit/Documents/usaco/geometry.cpp",
+		"/C/Users/Rachit/AppData/Roaming/Sublime Text 3/Packages/SublimeAStyleFormatter/Default (Windows).sublime-keymap"
+	],
+	"find":
+	{
+		"height": 27.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"Inter",
+			"comdiagram",
+			"\\end{center}",
+			"{250}",
+			"footnote",
+			"_______",
+			"footnotetext",
+			"\n\n",
+			"hline",
+			"\\hline",
+			"_____",
+			"\n\n",
+			"\n\n\n",
+			"\n\n",
+			"\n",
+			"minipage",
+			"xcolor",
+			"geometry",
+			"\\ve",
+			"\\be ",
+			"\\be",
+			"be ",
+			" \\",
+			"\\ve ",
+			"\\ei",
+			"\\vdqi",
+			"\\BE",
+			"\\VE",
+			"\\EI",
+			"\\VDQI",
+			"epigraph",
+			"frontmatter",
+			"includegraphics",
+			"##",
+			"###",
+			"small",
+			"mathfrac",
+			"otimes",
+			"e_i",
+			"\\overline{",
+			"_{\\overline",
+			"overline",
+			" \n",
+			"c",
+			"otimes",
+			" \n",
+			"1",
+			" 1",
+			"1",
+			"sum",
+			"underline",
+			"problem",
+			"\\rho_2",
+			"\\rho_1",
+			"u_1",
+			"2",
+			"1",
+			"alpha",
+			"C ",
+			"G",
+			"\\on{Id}_{\\rho_1}",
+			"d",
+			"2\\ln 2n",
+			"\\ln(2)",
+			"\\ln{2}",
+			"\\sqrt{2\\ln{2}}",
+			"lemma",
+			" \\to",
+			"\\noindent{\\bf",
+			"VARIABLES",
+			"CLAUSES",
+			"clause_sign",
+			"xorint() % 2",
+			"xorint(CLAUSES)",
+			"100",
+			"1000",
+			"printf",
+			"i",
+			"xorint",
+			"\\noindent{\\bf",
+			"e_k",
+			"commu",
+			"_^",
+			"_",
+			"arrow",
+			"\\noindent{\\bf",
+			"#",
+			"\\noindent{\\bf",
+			"\\\\Ind",
+			"\\Ind",
+			"\\noindent{\\bf",
+			"\\\"",
+			" \\\"",
+			"\\\"",
+			"\\not",
+			"lambda",
+			"perp",
+			"filter",
+			"includegraphi",
+			"includegraphics",
+			"problem",
+			"\\noindent{\\bf",
+			"i",
+			"move",
+			"scroll_lines",
+			"\\",
+			";",
+			"$O",
+			"operatorname",
+			"\\on",
+			"\\lt",
+			"latex",
+			"\\noindent{\\bf",
+			" 1.} Recall the anti-symmetrization map, defined in class\n",
+			"w",
+			"bf",
+			"Problem",
+			"\\\\bf",
+			"#",
+			"Problem 10",
+			"bulletjitter",
+			"bullet",
+			"bulletjitter",
+			" \n",
+			"Rho",
+			"\\\\begin",
+			"\\\\begin\\{",
+			"\"ctrl\\+a"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"[])\n"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.csslint_result_view":
+	{
+		"height": 661.0
+	},
+	"output.exec":
+	{
+		"height": 226.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "pixelfu.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"bonusproblems55.tex",
+				"math\\bonus problems\\math55.tex"
+			],
+			[
+				"bonusproblemstex",
+				"math\\bonus problems\\math55.tex"
+			],
+			[
+				"1255.tex",
+				"math\\assignment 12\\math55.tex"
+			],
+			[
+				"final.tex",
+				"math\\final\\math55.tex"
+			],
+			[
+				"bonusmath.tex",
+				"math\\bonus problems\\math55.tex"
+			],
+			[
+				"",
+				"math\\assignment 12\\math55.tex"
+			],
+			[
+				"12math55.tex",
+				"math\\assignment 12\\math55.tex"
+			],
+			[
+				"11math55.tex",
+				"math\\assignment 11\\math55.tex"
+			],
+			[
+				"random3sat.cpp",
+				"cs\\assignment_10\\Random3SAT\\Random3SAT\\Random3SAT.cpp"
+			],
+			[
+				"real.",
+				"cs\\assignment_10\\real.cpp"
+			],
+			[
+				"real.cpp",
+				"cs\\assignment_10\\real.cpp"
+			],
+			[
+				"10pset.tex",
+				"cs\\assignment_10\\pset.tex"
+			],
+			[
+				"bonusmath55.tex",
+				"math\\bonus problems\\math55.tex"
+			],
+			[
+				"10.cpp",
+				"cs\\assignment_10\\real.cpp"
+			],
+			[
+				"main.cpp",
+				"cs\\assignment_10\\main.cpp"
+			],
+			[
+				"10.py",
+				"cs\\assignment_10\\test125.py"
+			],
+			[
+				"assignment_10.tex",
+				"cs\\assignment_10\\pset.tex"
+			],
+			[
+				"assignment12math",
+				"math\\assignment 12\\math55.tex"
+			],
+			[
+				"cspset.tex",
+				"cs\\assignment_8\\pset.tex"
+			],
+			[
+				"math55.tex",
+				"math\\assignment 8\\math55.tex"
+			],
+			[
+				"assignment10matth",
+				"math\\assignment 10\\math55.tex"
+			],
+			[
+				"math",
+				"math\\assignment 9\\math55.tex"
+			],
+			[
+				"assignment7pset.tex",
+				"cs\\assignment_7\\pset.tex"
+			],
+			[
+				".gitgi",
+				".gitignore"
+			],
+			[
+				"assignment9",
+				"math\\assignment 9\\math55.tex"
+			],
+			[
+				"pset.log",
+				"cs\\assignment_7\\pset.log"
+			],
+			[
+				"assignment_7",
+				"cs\\assignment_7\\pset.tex"
+			],
+			[
+				"csassignment_6",
+				"cs\\assignment_6\\pset.tex"
+			],
+			[
+				"assignment8math",
+				"math\\assignment 8\\math55.tex"
+			],
+			[
+				"assignment_5pset",
+				"cs\\assignment_5\\pset.tex"
+			],
+			[
+				"assignment7math55",
+				"math\\assignment 7\\math55.tex"
+			],
+			[
+				"cs50",
+				"cs\\cs50.c"
+			],
+			[
+				"cs50.c",
+				"cs\\cs50.c"
+			],
+			[
+				"haskell",
+				"cs\\haskell\\99.hs"
+			],
+			[
+				"6math",
+				"math\\assignment 6\\math55.tex"
+			],
+			[
+				"assignment4",
+				"cs\\assignment_4\\pset.tex"
+			],
+			[
+				"assignment2math55.tex",
+				"math\\assignment 2\\math55.tex"
+			],
+			[
+				"assignment6math",
+				"math\\assignment 6\\math55.tex"
+			],
+			[
+				"sort",
+				"cs50\\ps3\\sort.c"
+			],
+			[
+				"vigener",
+				"cs50\\ps2\\vigenere.c"
+			],
+			[
+				"initials",
+				"cs50\\ps2\\initials.c"
+			],
+			[
+				"caesar.c",
+				"cs50\\ps2\\caesar.c"
+			],
+			[
+				"mario.",
+				"cs50\\ps1\\mario.c"
+			],
+			[
+				"greedy.c",
+				"cs50\\ps1\\greedy.c"
+			],
+			[
+				"hello.c",
+				"cs50\\ps1\\hello.c"
+			],
+			[
+				"noswa",
+				"cs50\\ps3\\src4m\\noswap.c"
+			],
+			[
+				"poi",
+				"cs50\\ps3\\src4m\\pointers.c"
+			],
+			[
+				"boun",
+				"cs50\\ps3\\src4m\\bounce.c"
+			],
+			[
+				"win",
+				"cs50\\ps3\\src4m\\window.c"
+			],
+			[
+				"click.c",
+				"cs50\\ps3\\src4m\\click.c"
+			],
+			[
+				"vigene.c",
+				"cs50\\ps2\\vigenere.c"
+			],
+			[
+				"assignment3math55",
+				"math\\assignment 3\\math55.tex"
+			],
+			[
+				"assignment4/math",
+				"math\\assignment 4\\math55.tex"
+			],
+			[
+				"cspset3.tex",
+				"cs\\assignment_3\\pset3.tex"
+			],
+			[
+				"csassignment_3pset",
+				"cs\\assignment_3\\pset3.tex"
+			],
+			[
+				"csassignment_3.tex",
+				"physics\\assignment_3\\assignment_3.tex"
+			],
+			[
+				"midtermmath55.te",
+				"math\\midterm 1\\math55.tex"
+			],
+			[
+				"midtermmath.tex",
+				"math\\midterm 1\\math55.tex"
+			],
+			[
+				"midtermmath55.tex",
+				"math\\midterm 1\\math55.tex"
+			],
+			[
+				"midtermte",
+				"math\\midterm 1\\math55.tex"
+			],
+			[
+				"midterm",
+				"math\\midterm 1\\math55.tex"
+			],
+			[
+				"csassignment3pset",
+				"cs\\assignment_3\\pset3.tex"
+			],
+			[
+				"mathassignment3math",
+				"math\\assignment 3\\math55.tex"
+			],
+			[
+				"mathassignment3",
+				"math\\assignment 3\\ps3.tex"
+			],
+			[
+				"makefile",
+				"cs\\assignment_2\\final\\Makefile"
+			],
+			[
+				"random",
+				"cs\\assignment_2\\final\\random.h"
+			],
+			[
+				".gitignore",
+				".gitignore"
+			],
+			[
+				"tandom",
+				"cs\\assignment_2\\TestApplication\\RandomMSTFinal\\random.h"
+			],
+			[
+				"thre",
+				"cs\\assignment_2\\final\\threshold.h"
+			],
+			[
+				"finalmain.cpp",
+				"cs\\assignment_2\\final\\main.cpp"
+			],
+			[
+				"assignment_2main.cpp",
+				"cs\\assignment_2\\main.cpp"
+			],
+			[
+				"math.tex",
+				"math\\assignment 1\\math55.tex"
+			],
+			[
+				"report",
+				"cs\\assignment_2\\final\\report.tex"
+			],
+			[
+				"assignment_2pset.tex",
+				"cs\\assignment_2\\pset2.tex"
+			],
+			[
+				"final",
+				"cs\\assignment_2\\final\\main (2).cpp"
+			],
+			[
+				"random.",
+				"cs\\assignment_2\\final\\random.h"
+			],
+			[
+				"out2",
+				"cs\\assignment_2\\out2.csv"
+			],
+			[
+				"thres",
+				"cs\\assignment_2\\final\\threshold.h"
+			],
+			[
+				"kruskal",
+				"cs\\assignment_2\\final\\kruskal.h"
+			],
+			[
+				"out",
+				"cs\\assignment_2\\out.csv"
+			],
+			[
+				"assignment_2/pset2.tex",
+				"cs\\assignment_2\\pset2.tex"
+			],
+			[
+				"out.csv",
+				"cs\\assignment_2\\out.csv"
+			],
+			[
+				"assignment_1.tx",
+				"physics\\assignment_1\\assignment_1.tex"
+			],
+			[
+				"assignment_2.tex",
+				"physics\\assignment_2\\assignment_1.tex"
+			],
+			[
+				".",
+				".gitignore"
+			],
+			[
+				"heap",
+				"cs\\assignment_2\\heap.cpp"
+			],
+			[
+				"ps2.tex",
+				"math\\assignment 2\\ps2.tex"
+			],
+			[
+				"assign",
+				"physics\\assignment_1\\assignment_1.tex"
+			],
+			[
+				"pset1",
+				"cs\\assignment_1\\pset1.tex"
+			],
+			[
+				"math55",
+				"math\\assignment 1\\math55.tex"
+			],
+			[
+				"assignment_1.tex",
+				"physics\\assignment_1\\assignment_1.tex"
+			],
+			[
+				"hwto",
+				"cs\\assignment_1\\hw1topost.tex"
+			],
+			[
+				"pset.tex",
+				"cs\\assignment_1\\pset1.tex"
+			],
+			[
+				"pset1.tex",
+				"cs\\assignment_1\\pset1.tex"
+			],
+			[
+				"index",
+				"www\\index.html"
+			],
+			[
+				"getting",
+				"www\\js\\getting_started.js"
+			],
+			[
+				"templates",
+				"www\\templates\\signup\\index.html"
+			],
+			[
+				"controller",
+				"www\\js\\controllers.js"
+			],
+			[
+				"pages",
+				"pages.md"
+			],
+			[
+				"app.js",
+				"www\\js\\app.js"
+			],
+			[
+				"create_lawyers",
+				"app\\database\\create_lawyers.py"
+			],
+			[
+				"setup",
+				"app\\database\\setup_user.py"
+			],
+			[
+				"secret",
+				"secret.py"
+			],
+			[
+				"config.py",
+				"config.py"
+			],
+			[
+				"usercontrollers",
+				"app\\users\\controllers.py"
+			],
+			[
+				"getting_started",
+				"app\\static\\js\\dashboard\\getting_started.js"
+			],
+			[
+				"getting_startedcategory.html",
+				"app\\static\\partials\\dashboard\\getting_started\\category.html"
+			],
+			[
+				"add_service",
+				"app\\static\\partials\\dashboard\\profile\\add_service.html"
+			],
+			[
+				"profileservices.html",
+				"app\\static\\partials\\dashboard\\profile\\services.html"
+			],
+			[
+				"service.html",
+				"app\\static\\partials\\dashboard\\getting_started\\services.html"
+			],
+			[
+				"profileadd",
+				"app\\static\\partials\\dashboard\\profile\\add_service.html"
+			],
+			[
+				"profile.js",
+				"app\\static\\js\\dashboard\\profile.js"
+			],
+			[
+				"getting_started.js",
+				"app\\static\\js\\dashboard\\getting_started.js"
+			],
+			[
+				"gettingstartedcategory",
+				"app\\static\\partials\\dashboard\\getting_started\\category.html"
+			],
+			[
+				"controlers",
+				"app\\users\\controllers.py"
+			],
+			[
+				"dashboardapp.js",
+				"app\\static\\js\\dashboard\\app.js"
+			],
+			[
+				"services.html",
+				"app\\static\\partials\\dashboard\\getting_started\\services.html"
+			],
+			[
+				"controllers",
+				"app\\users\\controllers.py"
+			],
+			[
+				"profile.html",
+				"app\\static\\partials\\dashboard\\profile.html"
+			],
+			[
+				"category.html",
+				"app\\static\\partials\\dashboard\\getting_started\\category.html"
+			],
+			[
+				"base.css",
+				"app\\static\\css\\dashboard\\base.css"
+			],
+			[
+				"controllers.",
+				"app\\users\\controllers.py"
+			],
+			[
+				"profileservices",
+				"app\\static\\partials\\dashboard\\profile\\services.html"
+			],
+			[
+				"services",
+				"app\\static\\js\\dashboard\\services.js"
+			],
+			[
+				"detail.tlm",
+				"app\\static\\partials\\dashboard\\profile\\detail.html"
+			],
+			[
+				"procfile",
+				"Procfile"
+			],
+			[
+				"runp.py",
+				"runp.py"
+			],
+			[
+				"run.py",
+				"run.py"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\Users\\Rachit\\Documents\\GitHub\\justiserv\\justiserv.sublime-project"
+			],
+			[
+				"justiser",
+				"C:\\Users\\Rachit\\Documents\\GitHub\\justiserv\\justiserv.sublime-project"
+			],
+			[
+				"justi",
+				"C:\\Users\\Rachit\\Documents\\GitHub\\justiserv\\justiserv.sublime-project"
+			],
+			[
+				"down",
+				"C:\\Users\\Rachit\\Documents\\GitHub\\down\\ionic-box\\down.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 142.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
