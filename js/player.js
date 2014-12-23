@@ -1,3 +1,7 @@
+// delineate the constants for closure compiler
+DRAW_MIN = 8;
+DRAW_MAX = 57;
+
 Player = function(game) {
 	this.game = game;
 	this.sprite = {};
@@ -50,14 +54,11 @@ Player.prototype = {
 	    // this.sprite.animations.add('jump', [9, 10, 11], 10, true);
 
 	    this.cursors = {};
-	    // this.sprite.health = 100;
-	    // this.sprite.type = "player";
-	},
-
-	createCursors: function(){
 		this.cursors = this.game.input.keyboard.createCursorKeys();
 		this.space = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 		this.shift = game.input.keyboard.addKey(Phaser.Keyboard.SHIFT);
+	    // this.sprite.health = 100;
+	    // this.sprite.type = "player";
 	},
 
 	update: function() {
@@ -98,13 +99,13 @@ Player.prototype = {
 
 	    if (this.space.isDown){
 	    	this.nocked = true;
-	    	this.draw++;
+	    	this.draw = (this.draw + 1).clamp(DRAW_MIN, DRAW_MAX);
 	    }
 
 	    if (!this.space.isDown){
 		    if (this.arrowtimer > this.arrow_gen_time && this.nocked) {
 		    	// fire the arrow
-		    	this.fireArrow((this.draw * 15).clamp(125, 850));
+		    	this.fireArrow(this.draw * 15);
 		    	this.arrowtimer = 0;
 		    }
 		    else {

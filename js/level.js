@@ -49,6 +49,8 @@ Level.prototype = {
 		this.baddie = game.add.sprite(TILE_WIDTH*3, TILE_WIDTH*3, 'baddie');
 		game.physics.arcade.enable(this.baddie);
 
+		this.baddie.body.mass = 100;
+
 		// this.map.setTileIndexCallback(4, bounce, this);
 
 		this.layer.dirty = true;

@@ -65,23 +65,19 @@ function create() {
 	game.level = level;
 
     player1.create();
-    player1.createCursors("arrow");
     game.player = player1;
 
-    text1 = game.add.text(15, 30, "100", {
-        font: "18px Arial",
-        fill: "#ffffff",
-        align: "center"
-    });
-
-    text1.tweening = false;
-    text1.fixedToCamera = true;
-
-    // players.add(player1.sprite);
-
-    player1.manabar = new Phaser.Rectangle(0, 0, 250, 15);
-
     game.camera.follow(player1.sprite, Phaser.Camera.FOLLOW_TOPDOWN);
+
+    // if you need to debug the FPS
+    // game.time.advancedTiming = true;
+
+    // this.stage = new PIXI.Stage(0x000000);
+
+	this.arrow_str = game.add.graphics(0, 0);
+	this.arrow_str.fixedToCamera = true;
+	this.arrow_str.beginFill(0xFFFFFF);
+	this.arrow_str.drawRect(0, 0, 25, 25);
 }
 
 
@@ -117,27 +113,22 @@ function update() {
     level.update();
     player1.update();
 
-    //  Collide the player1 and the stars with the platforms
+    //  Collide objects
     game.physics.arcade.collide(level.layer, player1.sprite);
     game.physics.arcade.collide(level.layer, level.baddie);
     game.physics.arcade.collide(level.layer, level.arrows, stuck_arrow);
     game.physics.arcade.collide(level.baddie, level.arrows);
-    // game.physics.arcade.collide(players, level.boxes);
-    // game.physics.arcade.collide(level.boxes, level.arrows, stuck_arrow);
-    // game.physics.arcade.overlap(players, level.arrows, playerHit, null, this);
 
-
-    // player1.manabar.width = player1.manatimer * 10;
-
-    // this is pretty annoying, but we have to manually move 
-    // the rectangle w.r.t the camera
-    // this is jittery as hell we'll have to figure something out
-
-    // player1.manabar.setTo(game.camera.x, game.camera.y, player1.manabar.width, player1.manabar.height);
+    // update the indicator
+    this.arrow_str.alpha = (player1.draw - DRAW_MIN) / (DRAW_MAX - DRAW_MIN);
 }
 
 function render(){
-	// this is a hack
-	// game.debug.geom(player1.manabar, player1.manabarcolor);
+	// debug the last fired arrow
 	// game.debug.body(level.main_arrow);
+
+	// debug the frames per second
+	// game.debug.text(game.time.fps || '--', 2, 14, "#00ff00");   
+
+	// not sure if this goes here
 }
