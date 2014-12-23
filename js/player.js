@@ -29,20 +29,20 @@ Player = function(game) {
 Player.prototype = {
 
 	preload: function () {
-		this.game.load.spritesheet('dude', 'assets/cube.png', 32, 32);
+		// this.game.load.spritesheet('dude', 'assets/cube.png', 32, 32);
 		this.game.load.image('box', 'assets/box.png');
 	},
 
 	create: function () {
-		this.sprite = game.add.sprite(game.world.width/2, game.world.height/2, 'box');
+		this.sprite = game.add.sprite(0, 0, 'box');
 		
-		// game.physics.arcade.enable(this.sprite);
+		game.physics.arcade.enable(this.sprite);
 	    
-	    this.sprite.body.bounce.y = 0.0;
-	    this.sprite.body.bounce.x = 0.0;
-	    this.sprite.body.gravity.y = 0;
+	    // this.sprite.body.bounce.y = 0.0;
+	    // this.sprite.body.bounce.x = 0.0;
+	    // this.sprite.body.gravity.y = 0;
 
-	    this.sprite.body.collideWorldBounds = true;
+	    // this.sprite.body.collideWorldBounds = true;
 
 	    //  Our two animations, walking left and right.
 	    // this.sprite.animations.add('left', [0, 1, 2, 3], 10, true);
@@ -50,8 +50,8 @@ Player.prototype = {
 	    // this.sprite.animations.add('jump', [9, 10, 11], 10, true);
 
 	    this.cursors = {};
-	    this.sprite.health = 100;
-	    this.sprite.type = "player";
+	    // this.sprite.health = 100;
+	    // this.sprite.type = "player";
 	},
 
 	createCursors: function(){
@@ -61,6 +61,7 @@ Player.prototype = {
 	},
 
 	update: function() {
+
         if (this.cursors.left.isDown) {
             this.acceptInput = false;
             this.moveTimer = this.game.time.time;
@@ -103,7 +104,7 @@ Player.prototype = {
 	    if (!this.space.isDown){
 		    if (this.arrowtimer > this.arrow_gen_time && this.nocked) {
 		    	// fire the arrow
-		    	this.fireArrow((this.draw * 15).clamp(100, 650));
+		    	this.fireArrow((this.draw * 15).clamp(125, 850));
 		    	this.arrowtimer = 0;
 		    }
 		    else {

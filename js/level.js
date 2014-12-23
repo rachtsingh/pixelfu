@@ -22,20 +22,19 @@ Level = function(game) {
 Level.prototype = {
 
 	preload: function() {
-		// this.game.load.tilemap('map', 'levels/Level 1 Updated.csv', null, Phaser.Tilemap.CSV);
 		this.game.load.image('bullet', 'assets/bullet.png');
 		this.game.load.image('specialbullet', 'assets/specialbullet.png');
 		this.game.load.image('arrow', 'assets/arrow.png')
 		this.game.load.image('tiles', 'assets/tiles.png');
+		this.game.load.image('baddie', 'assets/space-baddie.png');
 	},
 
 	create: function() {
 
 		// do magic!
-		var randgen = generate_dungeon();
 		// debug(randgen);
 
-		this.map = game.add.tilemap();
+		this.map = game.add.tilemap(null, 16, 16, GAME_WIDTH, GAME_HEIGHT);
 		this.map.addTilesetImage('tiles');
 
 		this.layer = this.map.create('base_layer', GAME_WIDTH, GAME_HEIGHT, TILE_WIDTH, TILE_WIDTH);
@@ -43,15 +42,12 @@ Level.prototype = {
 		// this.layer.resizeWorld(); // this is an override, not necessary
 
 		// this.map.fill(1, 0, 0, 5, 5, this.layer);
+		generate_dungeon(this.map, this.layer);
 
 		this.map.setCollisionBetween(1, 108, true, this.layer. true);
-		for (var x = 0; x < GAME_WIDTH; x++) {
-			for (var y = 0; y < GAME_HEIGHT; y++) {
-				if (randgen[x][y]){
-					this.map.putTile(randgen[x][y], x, y, this.layer);
-				} 
-			}
-		}
+
+		this.baddie = game.add.sprite(TILE_WIDTH*3, TILE_WIDTH*3, 'baddie');
+		game.physics.arcade.enable(this.baddie);
 
 		// this.map.setTileIndexCallback(4, bounce, this);
 
@@ -164,7 +160,7 @@ odd_range = function(a, b) {
 	return (Math.floor((b - a) * Math.random() + a) / 2) * 2 + 1;
 }
 
-generate_dungeon = function() {
+generate_dungeon = function(map, layer) {
 	// to visualize this correctly:
 
 	/* randgen[i][j] is the ith column, jth down
@@ -175,12 +171,13 @@ generate_dungeon = function() {
 
 	var randgen = new Array(GAME_WIDTH);
 
-	for (var i = 0; i < GAME_WIDTH; i++) {
-		randgen[i] = new Array(GAME_HEIGHT);
-		for (var j = 0; j < GAME_HEIGHT; j++) {
-			randgen[i][j] = 1; // so we have to carve out of it
-		}
-	}
+	// for (var i = 0; i < GAME_WIDTH; i++) {
+	// 	randgen[i] = new Array(GAME_HEIGHT);
+	// 	for (var j = 0; j < GAME_HEIGHT; j++) {
+	// 		randgen[i][j] = 1; // so we have to carve out of it
+	// 	}
+	// }
+	map.fill(1, 0, 0, GAME_WIDTH, GAME_HEIGHT, layer);
 
 	/*
 	0 - default = space
@@ -190,7 +187,13 @@ generate_dungeon = function() {
 
 
 	// first, create some rooms
-	randgen = add_rooms(randgen);
+	rooms = add_rooms(randgen);
+
+	// seems to be a bottleneck
+	for (var i = 0; i < rooms.length; i++) {
+		var room = rooms[i];
+		map.fill(0, room.x, room.y, room.width, room.height, layer);
+	}
 
 	// then, use a maze growing algorithm to fill in the rest of the spaces
 	// for (var x = 1; x < GAME_WIDTH; x += 2) {
@@ -204,7 +207,13 @@ generate_dungeon = function() {
 
 	// remove_dead_ends(randgen);
 
-	return randgen;
+	// postprocessing to make this reasonable
+	map.fill(4, 0, 0, GAME_WIDTH, 1, layer);
+	map.fill(4, 0, 0, 1, GAME_HEIGHT, layer);
+	map.fill(4, 0, GAME_HEIGHT-1, GAME_WIDTH, 1, layer);
+	map.fill(4, GAME_WIDTH - 1, 0, 1, GAME_HEIGHT, layer);
+
+	map.fill(0, 0, 0, 10, 10, layer);
 }
 
 intersect_rooms = function(a, b) {
@@ -255,18 +264,9 @@ add_rooms = function(randgen) {
 		continue;
 	}
 
-	for (var i = 0; i < rooms.length; i++) {
-		var room = rooms[i];
-		for (var x = room.x; x < room.x + room.width; x++) {
-			for (var y = room.y; y < room.y + room.height; y++) {
-				randgen[x][y] = 0;
-			}
-		}
-	}
-
 	// debug(randgen);
 
-	return randgen;
+	return rooms;
 }
 
 debug = function(randgen) {

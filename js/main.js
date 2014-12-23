@@ -114,17 +114,20 @@ function update() {
 		console.log(sprite, obstacle);
 	}
 
+    level.update();
+    player1.update();
+
     //  Collide the player1 and the stars with the platforms
-    game.physics.arcade.collide(level.layer, players, hit_wall);
+    game.physics.arcade.collide(level.layer, player1.sprite);
+    game.physics.arcade.collide(level.layer, level.baddie);
     game.physics.arcade.collide(level.layer, level.arrows, stuck_arrow);
+    game.physics.arcade.collide(level.baddie, level.arrows);
     // game.physics.arcade.collide(players, level.boxes);
     // game.physics.arcade.collide(level.boxes, level.arrows, stuck_arrow);
     // game.physics.arcade.overlap(players, level.arrows, playerHit, null, this);
 
-    level.update();
-    player1.update();	
 
-    player1.manabar.width = player1.manatimer * 10;
+    // player1.manabar.width = player1.manatimer * 10;
 
     // this is pretty annoying, but we have to manually move 
     // the rectangle w.r.t the camera
@@ -135,6 +138,6 @@ function update() {
 
 function render(){
 	// this is a hack
-	game.debug.geom(player1.manabar, player1.manabarcolor);
+	// game.debug.geom(player1.manabar, player1.manabarcolor);
 	// game.debug.body(level.main_arrow);
 }
