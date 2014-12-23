@@ -13,12 +13,17 @@ Player = function(game) {
 
 	this.acceptInput = true;
 	this.moveTimer = this.game.time.time;
+	this.nocked = false; 
+	this.draw = 0; // the amount of draw the arrow has right now
+
 
 	// random constants
 	this.manabarcolor = "#ffffff";
 	this.manacost = 15;
 	
 	this.arrow_gen_time = 25;
+
+	this.speed = TILE_WIDTH / 10;
 };
 
 Player.prototype = {
@@ -31,7 +36,7 @@ Player.prototype = {
 	create: function () {
 		this.sprite = game.add.sprite(game.world.width/2, game.world.height/2, 'box');
 		
-		game.physics.arcade.enable(this.sprite);
+		// game.physics.arcade.enable(this.sprite);
 	    
 	    this.sprite.body.bounce.y = 0.0;
 	    this.sprite.body.bounce.x = 0.0;
@@ -56,35 +61,27 @@ Player.prototype = {
 	},
 
 	update: function() {
-		if (this.acceptInput) {
-	        if (this.cursors.left.isDown) {
-	            this.acceptInput = false;
-	            this.moveTimer = this.game.time.time;
-	            this.sprite.body.position.x -= TILE_WIDTH;
-	            this.direction = 2;
-	        } else if (this.cursors.right.isDown) {
-	            this.acceptInput = false;
-	            this.moveTimer = this.game.time.time;
-	            this.sprite.body.position.x += TILE_WIDTH;
-	            this.direction = 0;
-	        } else if (this.cursors.up.isDown) {
-	            this.acceptInput = false;
-	            this.moveTimer = this.game.time.time;
-	            this.sprite.body.position.y -= TILE_WIDTH;
-	            this.direction = 1;
-	        } else if (this.cursors.down.isDown) {
-	            this.moveTimer = this.game.time.time;
-	            this.acceptInput = false;
-	            this.sprite.body.position.y += TILE_WIDTH;
-	            this.direction = 3;
-	        }
-	    }
-	    else 
-	    {
-	        if (this.game.time.time > this.moveTimer + MOVEDURATION) { 
-	        	this.acceptInput = true; 
-	        }
-	    }
+        if (this.cursors.left.isDown) {
+            this.acceptInput = false;
+            this.moveTimer = this.game.time.time;
+            this.sprite.body.position.x -= this.speed;
+            this.direction = 2;
+        } else if (this.cursors.right.isDown) {
+            this.acceptInput = false;
+            this.moveTimer = this.game.time.time;
+            this.sprite.body.position.x += this.speed;
+            this.direction = 0;
+        } else if (this.cursors.up.isDown) {
+            this.acceptInput = false;
+            this.moveTimer = this.game.time.time;
+            this.sprite.body.position.y -= this.speed;
+            this.direction = 1;
+        } else if (this.cursors.down.isDown) {
+            this.moveTimer = this.game.time.time;
+            this.acceptInput = false;
+            this.sprite.body.position.y += this.speed;
+            this.direction = 3;
+        }
 
 	    // make this editable constants
 	    if (this.shift.isDown && this.manatimer > 15){
@@ -98,22 +95,32 @@ Player.prototype = {
 	    if (this.manatimer.in(0, this.manacost-0.1)) this.manabarcolor = "FF0000";
 	    else this.manabarcolor = "FFFFFF";
 
-	    if (this.space.isDown && this.arrowtimer > this.arrow_gen_time) {
-	    	this.fireArrow();
-	    	this.arrowtimer = 0;
+	    if (this.space.isDown){
+	    	this.nocked = true;
+	    	this.draw++;
 	    }
-	    else {
-	    	this.arrowtimer++;
-	    }
+
+	    if (!this.space.isDown){
+		    if (this.arrowtimer > this.arrow_gen_time && this.nocked) {
+		    	// fire the arrow
+		    	this.fireArrow((this.draw * 15).clamp(100, 650));
+		    	this.arrowtimer = 0;
+		    }
+		    else {
+		    	this.arrowtimer++;
+		    }
+	    	this.nocked = false;
+	    	this.draw = 0;
+	    } 
 	},
 
 	doMagic: function(){
 		console.log("did magic");	// figure out something here
 	},
 
-	fireArrow: function(){
+	fireArrow: function(strength){
 		var position = this.sprite.body.position;
-		var velocity = 250; // work with this constant
+		var velocity = strength; // work with this
 		var type = "arrow"; // arrow variants coming later
 		var direction = this.direction;
 		

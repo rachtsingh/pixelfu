@@ -13,6 +13,9 @@ Level = function(game) {
 	this.game = game;
 	this.monsters = [];
 
+	// for debug purposes
+	this.main_arrow = {};
+
 	/* constants */
 };
 
@@ -20,27 +23,37 @@ Level.prototype = {
 
 	preload: function() {
 		// this.game.load.tilemap('map', 'levels/Level 1 Updated.csv', null, Phaser.Tilemap.CSV);
-		this.game.load.image('tiles', 'assets/tiles_new2.png');
 		this.game.load.image('bullet', 'assets/bullet.png');
 		this.game.load.image('specialbullet', 'assets/specialbullet.png');
 		this.game.load.image('arrow', 'assets/arrow.png')
+		this.game.load.image('tiles', 'assets/tiles.png');
 	},
 
 	create: function() {
 
 		// do magic!
-		// var randgen = generate_dungeon();
+		var randgen = generate_dungeon();
+		// debug(randgen);
 
-		// this.map = this.game.add.tilemap('map', 16, 16);
-		this.map = new Phaser.Tilemap(this.game, null, 40, 40, 16, 16);
+		this.map = game.add.tilemap();
 		this.map.addTilesetImage('tiles');
-		this.map.setCollisionBetween(1, 108);
 
-		// keeping around for example
-		// this.map.setTileIndexCallback(4, bounce, this);
+		this.layer = this.map.create('base_layer', GAME_WIDTH, GAME_HEIGHT, TILE_WIDTH, TILE_WIDTH);
 
-		this.layer = this.map.createLayer(0);
 		// this.layer.resizeWorld(); // this is an override, not necessary
+
+		// this.map.fill(1, 0, 0, 5, 5, this.layer);
+
+		this.map.setCollisionBetween(1, 108, true, this.layer. true);
+		for (var x = 0; x < GAME_WIDTH; x++) {
+			for (var y = 0; y < GAME_HEIGHT; y++) {
+				if (randgen[x][y]){
+					this.map.putTile(randgen[x][y], x, y, this.layer);
+				} 
+			}
+		}
+
+		// this.map.setTileIndexCallback(4, bounce, this);
 
 		this.layer.dirty = true;
 
@@ -58,16 +71,15 @@ Level.prototype = {
 
 	update: function() {
 		// override updates - note that things in the physics scheme automaticall update
-
-		// slow down the arrow's speed exponentially until it hits steady state
-		for (var i = 0; i < this.arrows.length; i++) {
-			var arrow = this.arrows[i];
-		}
 	},
 
 	fireArrow: function(position, direction, velocity, type) {
 		arrow = this.arrows.create(position.x, position.y, type);
+		arrow.anchor.set(0.5, 0.5);
+
 		arrow.type = "arrow";
+
+		this.main_arrow = arrow;
 
 		// sensible default
 		arrow.direction = {
@@ -84,6 +96,7 @@ Level.prototype = {
 				};
 				arrow.angle = 0;
 				arrow.body.position.x += TILE_WIDTH;
+				arrow.body.position.y += TILE_WIDTH/2;
 				break;
 			case 1:
 				arrow.direction = {
@@ -91,6 +104,7 @@ Level.prototype = {
 					y: -1
 				};
 				arrow.angle = 270;
+				arrow.body.position.x += TILE_WIDTH/2;
 				break;
 			case 2:
 				arrow.direction = {
@@ -98,7 +112,7 @@ Level.prototype = {
 					y: 0
 				};
 				arrow.angle = 180;
-				arrow.body.position.y += TILE_WIDTH;
+				arrow.body.position.y += TILE_WIDTH/2;
 				break;
 			case 3:
 				arrow.direction = {
@@ -106,7 +120,7 @@ Level.prototype = {
 					y: 1
 				};
 				arrow.angle = 90;
-				arrow.body.position.x += TILE_WIDTH;
+				arrow.body.position.x += TILE_WIDTH/2;
 				arrow.body.position.y += TILE_WIDTH;
 				break;
 		}
@@ -122,39 +136,35 @@ Level.prototype = {
 		arrow.body.collideWorldBounds = true;
 
 		arrow.direction = direction; // so that it remembers its true direction
-		arrow.metadata = {};
-		arrow.metadata.speed = velocity; // again
+		arrow.metadata = {
+			speed: velocity
+		};
 
 		// return a reference so that the player object can keep track of its arrows;
 		return arrow;
 	}
-
-	// again code left here for reference
-	// fireBullet: function(position, velocity, type){
-	// 	bullet = this.bullets.create(position.x, position.y, type);
-	// 	bullet.type = "bullet";
-	// 	bullet.body.bounce.x = 0.7;
-	// 	bullet.body.bounce.y = 0.2;
-	//     bullet.body.gravity.y = (1-Math.random())*20;
-	//     bullet.body.mass = 10;
-	//     bullet.body.collideWorldBounds = true;
-	//     bullet.lifespan = 4 * Phaser.Timer.SECOND;
-	//     bullet.body.velocity = velocity;
-	//     return bullet;
-	// }
-
 };
+
+/*
+	The following is code for randomly generating the map
+	the goal is to use it to randomly generate new squares of the map as the player explores, 
+	but currently we're using a fixed size world 
+
+	the code is based on this, but modified:
+	https://github.com/munificent/hauberk/blob/db360d9efa714efb6d937c31953ef849c7394a39/lib/src/content/dungeon.dart
+*/
 
 // utility function for random generator
 range = function(a, b) {
 	return Math.floor((b - a) * Math.random() + a);
 }
 
-generate_dungeon = function() {
-	// this is a standalone function that I'll experiment with
-	// a good deal of this is from here:
-	// https://github.com/munificent/hauberk/blob/db360d9efa714efb6d937c31953ef849c7394a39/lib/src/content/dungeon.dart
+// since we need odd numbers so often, an *odd* number between a and b
+odd_range = function(a, b) {
+	return (Math.floor((b - a) * Math.random() + a) / 2) * 2 + 1;
+}
 
+generate_dungeon = function() {
 	// to visualize this correctly:
 
 	/* randgen[i][j] is the ith column, jth down
@@ -168,32 +178,31 @@ generate_dungeon = function() {
 	for (var i = 0; i < GAME_WIDTH; i++) {
 		randgen[i] = new Array(GAME_HEIGHT);
 		for (var j = 0; j < GAME_HEIGHT; j++) {
-			randgen[i][j] = 0;
+			randgen[i][j] = 1; // so we have to carve out of it
 		}
 	}
 
 	/*
-	0 - default = wall
-	1 - room space
-	2 - wall space
-	3 - door
+	0 - default = space
+	1 - wall
+	2 - door? 
 	*/
 
 
 	// first, create some rooms
-	add_rooms(randgen);
+	randgen = add_rooms(randgen);
 
 	// then, use a maze growing algorithm to fill in the rest of the spaces
-	for (var x = 1; x < GAME_WIDTH; x += 2) {
-		for (var y = 1; y < GAME_HEIGHT; y += 2) {
-			if (randgen[x][y] != 0) continue;
-			grow_maze(x, y);
-		}
-	}
+	// for (var x = 1; x < GAME_WIDTH; x += 2) {
+	// 	for (var y = 1; y < GAME_HEIGHT; y += 2) {
+	// 		if (randgen[x][y] != 0) continue;
+	// 		grow_maze(x, y);
+	// 	}
+	// }
 
-	connect_regions(randgen);
+	// connect_regions(randgen);
 
-	remove_dead_ends(randgen);
+	// remove_dead_ends(randgen);
 
 	return randgen;
 }
@@ -201,7 +210,7 @@ generate_dungeon = function() {
 intersect_rooms = function(a, b) {
 	// there's something wrong with this
 	// returns whether the two rooms intersect
-	return (a.x < b.x + b.width && a.x + a.width > b.x && a.y < b.y + b.height && a.y + a.height > b.y);
+	return ((a.x <= b.x + b.width) && (a.x + a.width >= b.x) && (a.y <= b.y + b.height) && (a.y + a.height >= b.y));
 }
 
 add_rooms = function(randgen) {
@@ -222,12 +231,12 @@ add_rooms = function(randgen) {
 		it++;
 
 		// try to add a room - upperleft corner, width and height
-		var width = range(MIN_SIZE, MAX_SIZE);
-		var height = range(MIN_SIZE, MAX_SIZE);
+		var width = odd_range(MIN_SIZE, MAX_SIZE);
+		var height = odd_range(MIN_SIZE, MAX_SIZE);
 
 		var room = {
-			x: range(0, GAME_WIDTH - width),
-			y: range(0, GAME_HEIGHT - height),
+			x: odd_range(0, GAME_WIDTH - width),
+			y: odd_range(0, GAME_HEIGHT - height),
 			width: width,
 			height: height
 		};
@@ -235,7 +244,6 @@ add_rooms = function(randgen) {
 		for (var i = 0; i < rooms.length; i++) {
 			if (intersect_rooms(rooms[i], room)) {
 				frustation++;
-				console.log("COULDN'T FIND A ROOM");
 				continue;
 			}
 		}
@@ -243,25 +251,22 @@ add_rooms = function(randgen) {
 		// we succeeded in finding a room
 
 		rooms.push(room);
-		console.log("FOUND A ROOM");
 		frustation = 0;
 		continue;
 	}
-
-	console.log(rooms);
 
 	for (var i = 0; i < rooms.length; i++) {
 		var room = rooms[i];
 		for (var x = room.x; x < room.x + room.width; x++) {
 			for (var y = room.y; y < room.y + room.height; y++) {
-				randgen[x][y] = 1;
+				randgen[x][y] = 0;
 			}
 		}
 	}
 
-	debug(randgen);
+	// debug(randgen);
 
-	return;
+	return randgen;
 }
 
 debug = function(randgen) {

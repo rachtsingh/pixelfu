@@ -19,8 +19,8 @@ Number.prototype.in = function(min, max){
 
 // the overall size of the game will be 40x40 tiles, or 640x640
 TILE_WIDTH = 16; // in pixels
-GAME_WIDTH = 100; 
-GAME_HEIGHT = 100;
+GAME_WIDTH = 101; // MUST BE ODD!
+GAME_HEIGHT = 101; // MUST BE ODD!
 CAMERA_WIDTH = 25;
 CAMERA_HEIGHT = 25;
 
@@ -101,19 +101,24 @@ function update() {
 	        fill: "#ffffff",
 	        align: "center"
 	    });
-	}
+	};
 
-	stuck_arrow = function(obstacle, arrow) {
+	stuck_arrow = function(arrow, obstacle) {
 		console.log("arrow hit an obstacle");
 		arrow.body.velocity = {x: 0, y: 0};
-		arrow.lifetime = 4 * Phaser.Timer.SECOND;
+		// console.log(arrow);
+		arrow.lifespan = 4 * Phaser.Timer.SECOND;
+	};
+
+	hit_wall = function(sprite, obstacle) {
+		console.log(sprite, obstacle);
 	}
 
     //  Collide the player1 and the stars with the platforms
-    game.physics.arcade.collide(players, level.layer);
-    game.physics.arcade.collide(players, level.boxes);
-    game.physics.arcade.collide(level.boxes, level.arrows, stuck_arrow);
+    game.physics.arcade.collide(level.layer, players, hit_wall);
     game.physics.arcade.collide(level.layer, level.arrows, stuck_arrow);
+    // game.physics.arcade.collide(players, level.boxes);
+    // game.physics.arcade.collide(level.boxes, level.arrows, stuck_arrow);
     // game.physics.arcade.overlap(players, level.arrows, playerHit, null, this);
 
     level.update();
@@ -129,5 +134,7 @@ function update() {
 }
 
 function render(){
+	// this is a hack
 	game.debug.geom(player1.manabar, player1.manabarcolor);
+	// game.debug.body(level.main_arrow);
 }
