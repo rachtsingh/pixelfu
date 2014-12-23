@@ -29,26 +29,7 @@ Level.prototype = {
 	create: function() {
 
 		// do magic!
-		var randgen = generate_dungeon();
-
-		// commented code left here for posterity
-		// blow = function(sprite, tile) {
-		// 	if (sprite.type != "bullet"){
-		// 		return;
-		// 	}
-		// 	if (this.redtimer < 30){
-		// 		return;
-		// 	}
-		// 	for(var i = 0; i < this.redbullets; i++){
-		// 		var angle = 2*Math.PI*i/this.redbullets;
-		// 		var ghostbullet = this.fireBullet({x: sprite.position.x + 0 /*+ 5*Math.cos(angle)*/, y: sprite.position.y + 0 /*+ 5*Math.sin(angle)*/}, {x: 200*Math.cos(angle), y:200*Math.sin(angle)}, 'specialbullet');
-		// 		ghostbullet.type = "ghostbullet";
-		// 	}
-		// 	if (sprite.type == "bullet"){
-		// 		sprite.kill();
-		// 	}
-		// 	this.redtimer = 0;
-		// }
+		// var randgen = generate_dungeon();
 
 		// this.map = this.game.add.tilemap('map', 16, 16);
 		this.map = new Phaser.Tilemap(this.game, null, 40, 40, 16, 16);
