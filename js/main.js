@@ -43,16 +43,18 @@ var game = new Phaser.Game(WIDTH, HEIGHT, Phaser.AUTO, '', { preload: preload, c
 //                             ^------
 
 function preload() {
-	// create a group for the players
-	players = game.add.group();
+    im = new IndicatorManager(game);
+    game.im = im;
 
 	// linked in level.js
 	level = new Level(game);
     level.preload();
+	game.level = level;
 
     // linked in player.js
-    player1 = new Player(game);
-    player1.preload();
+    player = new Player(game);
+    player.preload();
+    game.player = player;
 }
 
 function create() {
@@ -61,23 +63,12 @@ function create() {
 	game.physics.startSystem(Phaser.Physics.ARCADE);
 
 	level.create();
-	// need access to these references so that players can access the level
-	game.level = level;
-
-    player1.create();
-    game.player = player1;
-
-    game.camera.follow(player1.sprite, Phaser.Camera.FOLLOW_TOPDOWN);
+	player.create();
+	
+    game.camera.follow(player.sprite, Phaser.Camera.FOLLOW_TOPDOWN);
 
     // if you need to debug the FPS
-    // game.time.advancedTiming = true;
-
-    // this.stage = new PIXI.Stage(0x000000);
-
-	this.arrow_str = game.add.graphics(0, 0);
-	this.arrow_str.fixedToCamera = true;
-	this.arrow_str.beginFill(0xFFFFFF);
-	this.arrow_str.drawRect(0, 0, 25, 25);
+    // game.time.advancedTiming = true;	
 }
 
 
@@ -91,7 +82,7 @@ function update() {
 	}
 
 	gameOver = function(winner){
-		// #! refine this
+		// #! refine this, this is garbage
 		gameover = game.add.text(WIDTH/2, HEIGHT/2, "GAME OVER: " + winner + " Wins!", {
 	        font: "45px Arial",
 	        fill: "#ffffff",
@@ -111,16 +102,15 @@ function update() {
 	}
 
     level.update();
-    player1.update();
+    player.update();
+    im.update();
 
     //  Collide objects
-    game.physics.arcade.collide(level.layer, player1.sprite);
+    game.physics.arcade.collide(level.layer, player.sprite);
     game.physics.arcade.collide(level.layer, level.baddie);
     game.physics.arcade.collide(level.layer, level.arrows, stuck_arrow);
     game.physics.arcade.collide(level.baddie, level.arrows);
 
-    // update the indicator
-    this.arrow_str.alpha = (player1.draw - DRAW_MIN) / (DRAW_MAX - DRAW_MIN);
 }
 
 function render(){
