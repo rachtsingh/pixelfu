@@ -123,8 +123,9 @@ Player.prototype = {
 	fireArrow: function(strength){
 		var position = this.sprite.body.position;
 		var velocity = strength; // work with this
-		var type = "arrow"; // arrow variants coming later
 		var direction = this.direction;
+		var type = "lrarrow";
+		if (direction % 2) type = "udarrow";
 		
 		this.arrows.push(this.game.level.fireArrow(position, direction, velocity, type));
 	}

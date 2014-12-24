@@ -24,7 +24,8 @@ Level.prototype = {
 	preload: function() {
 		this.game.load.image('bullet', 'assets/bullet.png');
 		this.game.load.image('specialbullet', 'assets/specialbullet.png');
-		this.game.load.image('arrow', 'assets/arrow.png')
+		this.game.load.image('lrarrow', 'assets/lrarrow.png'); // a left-right arrow
+		this.game.load.image('udarrow', 'assets/udarrow.png'); // an up-down arrow
 		this.game.load.image('tiles', 'assets/tiles.png');
 		this.game.load.image('baddie', 'assets/space-baddie.png');
 	},
@@ -42,7 +43,12 @@ Level.prototype = {
 		// this.layer.resizeWorld(); // this is an override, not necessary
 
 		// this.map.fill(1, 0, 0, 5, 5, this.layer);
-		generate_dungeon(this.map, this.layer);
+		var randgen = generate_dungeon(this.map, this.layer);
+		for (var x = 0; x < GAME_WIDTH; x++) {
+			for (var y = 0; y < GAME_HEIGHT; y++) {
+				this.map.layers[0].data[x][y].index = randgen[x][y];
+			}
+		}
 
 		this.map.setCollisionBetween(1, 108, true, this.layer. true);
 
@@ -58,9 +64,6 @@ Level.prototype = {
 		this.arrows = game.add.group();
 		this.arrows.enableBody = true;
 
-		this.boxes = game.add.group();
-		this.boxes.enableBody = true;
-
 		// just to access the space button
 		this.space = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 		this.ctrl = game.input.keyboard.addKey(Phaser.Keyboard.SHIFT);
@@ -72,10 +75,12 @@ Level.prototype = {
 	},
 
 	fireArrow: function(position, direction, velocity, type) {
+		// 
+
 		arrow = this.arrows.create(position.x, position.y, type);
 		arrow.anchor.set(0.5, 0.5);
 
-		arrow.type = "arrow";
+		// arrow.type = "arrow";
 
 		this.main_arrow = arrow;
 
@@ -101,7 +106,7 @@ Level.prototype = {
 					x: 0,
 					y: -1
 				};
-				arrow.angle = 270;
+				arrow.angle = 180;
 				arrow.body.position.x += TILE_WIDTH/2;
 				break;
 			case 2:
@@ -117,7 +122,7 @@ Level.prototype = {
 					x: 0,
 					y: 1
 				};
-				arrow.angle = 90;
+				arrow.angle = 0;
 				arrow.body.position.x += TILE_WIDTH/2;
 				arrow.body.position.y += TILE_WIDTH;
 				break;
@@ -159,9 +164,16 @@ range = function(a, b) {
 
 // since we need odd numbers so often, an *odd* number between a and b
 odd_range = function(a, b) {
-	return (Math.floor((b - a) * Math.random() + a) / 2) * 2 + 1;
+	return ((Math.floor((b - a) * Math.random() + a) / 2) >> 0) * 2 + 1;
 }
 
+/*
+	As with all games, speed is vital. That's why when we're generating the dungeon,
+	we can't have any extraneous calls to calculateFaces(). If we look at the source,
+	it looks like the underlying call in many of these is just to create a new tile
+	or to change the tile index. So it'll be least expensive to just initialize,
+	create the dungeon in a 2D array, and then change the index property on each tile
+*/
 generate_dungeon = function(map, layer) {
 	// to visualize this correctly:
 
@@ -173,18 +185,21 @@ generate_dungeon = function(map, layer) {
 
 	var randgen = new Array(GAME_WIDTH);
 
-	// for (var i = 0; i < GAME_WIDTH; i++) {
-	// 	randgen[i] = new Array(GAME_HEIGHT);
-	// 	for (var j = 0; j < GAME_HEIGHT; j++) {
-	// 		randgen[i][j] = 1; // so we have to carve out of it
-	// 	}
-	// }
-	map.fill(1, 0, 0, GAME_WIDTH, GAME_HEIGHT, layer);
+	for (var i = 0; i < GAME_WIDTH; i++) {
+		randgen[i] = new Array(GAME_HEIGHT);
+		for (var j = 0; j < GAME_HEIGHT; j++) {
+			randgen[i][j] = 1; // so we have to carve out of it
+		}
+	}
 
-	/*
-	0 - default = space
-	1 - wall
-	2 - door? 
+	// map.fill has an implicit call to calculateFaces
+	// map.fill(1, 0, 0, GAME_WIDTH, GAME_HEIGHT, layer);
+
+	/*  this is very much up to debate
+		0 - default = space
+		1 - wall
+		2 - door? 
+		4 - outer wall
 	*/
 
 
@@ -194,7 +209,11 @@ generate_dungeon = function(map, layer) {
 	// seems to be a bottleneck
 	for (var i = 0; i < rooms.length; i++) {
 		var room = rooms[i];
-		map.fill(0, room.x, room.y, room.width, room.height, layer);
+		for (var x = room.x, xmax = room.x + room.width; x < xmax; x++) {
+			for (var y = room.y, ymax = room.y + room.height; y < ymax; y++) {
+				randgen[x][y] = -1;
+			}
+		}
 	}
 
 	// then, use a maze growing algorithm to fill in the rest of the spaces
@@ -210,18 +229,29 @@ generate_dungeon = function(map, layer) {
 	// remove_dead_ends(randgen);
 
 	// postprocessing to make this reasonable
-	map.fill(4, 0, 0, GAME_WIDTH, 1, layer);
-	map.fill(4, 0, 0, 1, GAME_HEIGHT, layer);
-	map.fill(4, 0, GAME_HEIGHT-1, GAME_WIDTH, 1, layer);
-	map.fill(4, GAME_WIDTH - 1, 0, 1, GAME_HEIGHT, layer);
 
-	map.fill(0, 0, 0, 10, 10, layer);
+	// again, don't use map.fill - it's expensive
+	// map.fill(4, 0, 0, GAME_WIDTH, 1, layer);
+	// map.fill(4, 0, 0, 1, GAME_HEIGHT, layer);
+	// map.fill(4, 0, GAME_HEIGHT-1, GAME_WIDTH, 1, layer);
+	// map.fill(4, GAME_WIDTH - 1, 0, 1, GAME_HEIGHT, layer);
+
+	// map.fill(0, 0, 0, 10, 10, layer);
+
+	for (var i = 0; i < GAME_WIDTH; i++) {
+		for (var j = 0; j < GAME_HEIGHT; j++) {
+			if (j == 0 || i == 0 || j == GAME_HEIGHT - 1 || i == GAME_WIDTH - 1) randgen[i][j] = 4;
+			if (j < 10 && i < 10) randgen[i][j] = -1;
+		}
+	}
+
+	return randgen;
 }
 
 intersect_rooms = function(a, b) {
 	// there's something wrong with this
 	// returns whether the two rooms intersect
-	return ((a.x <= b.x + b.width) && (a.x + a.width >= b.x) && (a.y <= b.y + b.height) && (a.y + a.height >= b.y));
+	return ((a.x < b.x + b.width + 1) && (a.x + a.width + 1 > b.x) && (a.y < b.y + b.height - 1) && (a.y + a.height - 1 > b.y));
 }
 
 add_rooms = function(randgen) {
@@ -230,7 +260,7 @@ add_rooms = function(randgen) {
 	// constants
 	var MIN_SIZE = 3;
 	var MAX_SIZE = 10;
-	var FRUSTRATION_MAX = 15;
+	var FRUSTRATION_MAX = 25;
 
 	var rooms = [];
 
@@ -252,12 +282,17 @@ add_rooms = function(randgen) {
 			height: height
 		};
 
+		var flag = false;
+
 		for (var i = 0; i < rooms.length; i++) {
 			if (intersect_rooms(rooms[i], room)) {
 				frustation++;
-				continue;
+				flag = true;
+				break;
 			}
 		}
+
+		if (flag) continue;
 
 		// we succeeded in finding a room
 

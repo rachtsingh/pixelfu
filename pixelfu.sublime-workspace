@@ -4,6 +4,46 @@
 		"selected_items":
 		[
 			[
+				"DRAW",
+				"DRAW_MIN"
+			],
+			[
+				"GAME",
+				"GAME_HEIGHT"
+			],
+			[
+				"G",
+				"GAME_HEIGHT"
+			],
+			[
+				"GAM",
+				"GAME_WIDTH"
+			],
+			[
+				"GAME_",
+				"GAME_WIDTH"
+			],
+			[
+				"Til",
+				"TILE_WIDTH"
+			],
+			[
+				"rang",
+				"randgen"
+			],
+			[
+				"ran",
+				"randgen"
+			],
+			[
+				"CAM",
+				"CAMERA_HEIGHT"
+			],
+			[
+				"CAMER",
+				"CAMERA_WIDTH"
+			],
+			[
 				"sort",
 				"sortAngle"
 			],
@@ -474,58 +514,57 @@
 			[
 				"HEA",
 				"HEALTH_RADIUS"
-			],
-			[
-				"players",
-				"players"
-			],
-			[
-				"CANVAS",
-				"CANVAS_HEIGHT"
-			],
-			[
-				"QuadTree",
-				"QuadTreeNode"
-			],
-			[
-				"upper",
-				"upperleft"
-			],
-			[
-				"inner",
-				"innerHTML"
-			],
-			[
-				"getE",
-				"getElementById"
-			],
-			[
-				"get",
-				"getEditDistance"
-			],
-			[
-				"string",
-				"stringarr"
-			],
-			[
-				"right",
-				"rightHeight"
-			],
-			[
-				"left",
-				"leftHeight"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "js/player.js",
+			"settings":
+			{
+				"buffer_size": 3753,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/main.js",
+			"settings":
+			{
+				"buffer_size": 3496,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "Level = function(game) {\n	/*\n	The level contains almost all of the objects that aren't under \n	the direct control of the player. This includes thngs like\n	- obstacles\n	- arrows\n	- monsters\n	- traps\n	- items\n	- magic (though the mana is under the player object)\n	*/\n\n	this.game = game;\n	this.monsters = [];\n\n	// for debug purposes\n	this.main_arrow = {};\n\n	/* constants */\n};\n\nLevel.prototype = {\n\n	preload: function() {\n		this.game.load.image('bullet', 'assets/bullet.png');\n		this.game.load.image('specialbullet', 'assets/specialbullet.png');\n		this.game.load.image('lrarrow', 'assets/arrow.png'); // a left-right arrow\n		this.game.load.image('udarrow', 'assets/arrow.png'); // an up-down arrow\n		this.game.load.image('tiles', 'assets/tiles.png');\n		this.game.load.image('baddie', 'assets/space-baddie.png');\n	},\n\n	create: function() {\n\n		// do magic!\n		// debug(randgen);\n\n		this.map = game.add.tilemap(null, 16, 16, GAME_WIDTH, GAME_HEIGHT);\n		this.map.addTilesetImage('tiles');\n\n		this.layer = this.map.create('base_layer', GAME_WIDTH, GAME_HEIGHT, TILE_WIDTH, TILE_WIDTH);\n\n		// this.layer.resizeWorld(); // this is an override, not necessary\n\n		// this.map.fill(1, 0, 0, 5, 5, this.layer);\n		generate_dungeon(this.map, this.layer);\n\n		this.map.setCollisionBetween(1, 108, true, this.layer. true);\n\n		this.baddie = game.add.sprite(TILE_WIDTH*3, TILE_WIDTH*3, 'baddie');\n		game.physics.arcade.enable(this.baddie);\n\n		this.baddie.body.mass = 100;\n\n		// this.map.setTileIndexCallback(4, bounce, this);\n\n		this.layer.dirty = true;\n\n		this.arrows = game.add.group();\n		this.arrows.enableBody = true;\n\n		this.boxes = game.add.group();\n		this.boxes.enableBody = true;\n\n		// just to access the space button\n		this.space = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);\n		this.ctrl = game.input.keyboard.addKey(Phaser.Keyboard.SHIFT);\n\n	},\n\n	update: function() {\n		// override updates - note that things in the physics scheme automaticall update\n	},\n\n	fireArrow: function(position, direction, velocity, type) {\n		// \n\n		arrow = this.arrows.create(position.x, position.y, type);\n		arrow.anchor.set(0.5, 0.5);\n\n		arrow.type = \"arrow\";\n\n		this.main_arrow = arrow;\n\n		// sensible default\n		arrow.direction = {\n			x: 1,\n			y: 0\n		};\n\n		// don't forget about switch y axis\n		switch (direction) {\n			case 0:\n				arrow.direction = {\n					x: 1,\n					y: 0\n				};\n				arrow.angle = 0;\n				arrow.body.position.x += TILE_WIDTH;\n				arrow.body.position.y += TILE_WIDTH/2;\n				break;\n			case 1:\n				arrow.direction = {\n					x: 0,\n					y: -1\n				};\n				arrow.angle = 270;\n				arrow.body.position.x += TILE_WIDTH/2;\n				break;\n			case 2:\n				arrow.direction = {\n					x: -1,\n					y: 0\n				};\n				arrow.angle = 180;\n				arrow.body.position.y += TILE_WIDTH/2;\n				break;\n			case 3:\n				arrow.direction = {\n					x: 0,\n					y: 1\n				};\n				arrow.angle = 90;\n				arrow.body.position.x += TILE_WIDTH/2;\n				arrow.body.position.y += TILE_WIDTH;\n				break;\n		}\n		// let's give this a try\n		// arrow.body.bounce.x = direction.x * 0.5;\n		// arrow.body.bounce.y = direction.y * 0.5;\n\n		arrow.body.mass = 10;\n		arrow.body.velocity = {\n			x: arrow.direction.x * velocity,\n			y: arrow.direction.y * velocity\n		};\n		arrow.body.collideWorldBounds = true;\n\n		arrow.direction = direction; // so that it remembers its true direction\n		arrow.metadata = {\n			speed: velocity\n		};\n\n		// return a reference so that the player object can keep track of its arrows;\n		return arrow;\n	}\n};\n\n/*\n	The following is code for randomly generating the map\n	the goal is to use it to randomly generate new squares of the map as the player explores, \n	but currently we're using a fixed size world \n\n	the code is based on this, but modified:\n	https://github.com/munificent/hauberk/blob/db360d9efa714efb6d937c31953ef849c7394a39/lib/src/content/dungeon.dart\n*/\n\n// utility function for random generator\nrange = function(a, b) {\n	return Math.floor((b - a) * Math.random() + a);\n}\n\n// since we need odd numbers so often, an *odd* number between a and b\nodd_range = function(a, b) {\n	return (Math.floor((b - a) * Math.random() + a) / 2) * 2 + 1;\n}\n\ngenerate_dungeon = function(map, layer) {\n	// to visualize this correctly:\n\n	/* randgen[i][j] is the ith column, jth down\n	|[ a ]|[ a ]|[ a ]|[ a ]|\n	|[ b ]|[ b ]|[ b ]|[ b ]|\n	|[ c ]|[ c ]|[ c ]|[ c ]|\n	*/\n\n	var randgen = new Array(GAME_WIDTH);\n\n	// for (var i = 0; i < GAME_WIDTH; i++) {\n	// 	randgen[i] = new Array(GAME_HEIGHT);\n	// 	for (var j = 0; j < GAME_HEIGHT; j++) {\n	// 		randgen[i][j] = 1; // so we have to carve out of it\n	// 	}\n	// }\n	map.fill(1, 0, 0, GAME_WIDTH, GAME_HEIGHT, layer);\n\n	/*\n	0 - default = space\n	1 - wall\n	2 - door? \n	*/\n\n\n	// first, create some rooms\n	rooms = add_rooms(randgen);\n\n	// seems to be a bottleneck\n	for (var i = 0; i < rooms.length; i++) {\n		var room = rooms[i];\n		map.fill(0, room.x, room.y, room.width, room.height, layer);\n	}\n\n	// then, use a maze growing algorithm to fill in the rest of the spaces\n	// for (var x = 1; x < GAME_WIDTH; x += 2) {\n	// 	for (var y = 1; y < GAME_HEIGHT; y += 2) {\n	// 		if (randgen[x][y] != 0) continue;\n	// 		grow_maze(x, y);\n	// 	}\n	// }\n\n	// connect_regions(randgen);\n\n	// remove_dead_ends(randgen);\n\n	// postprocessing to make this reasonable\n	map.fill(4, 0, 0, GAME_WIDTH, 1, layer);\n	map.fill(4, 0, 0, 1, GAME_HEIGHT, layer);\n	map.fill(4, 0, GAME_HEIGHT-1, GAME_WIDTH, 1, layer);\n	map.fill(4, GAME_WIDTH - 1, 0, 1, GAME_HEIGHT, layer);\n\n	map.fill(0, 0, 0, 10, 10, layer);\n}\n\nintersect_rooms = function(a, b) {\n	// there's something wrong with this\n	// returns whether the two rooms intersect\n	return ((a.x <= b.x + b.width + 1) && (a.x + a.width + 1 >= b.x) && (a.y <= b.y + b.height - 1) && (a.y + a.height - 1 >= b.y));\n}\n\nadd_rooms = function(randgen) {\n	// this is different from the one linked above, I think (I haven't read that)\n\n	// constants\n	var MIN_SIZE = 3;\n	var MAX_SIZE = 10;\n	var FRUSTRATION_MAX = 15;\n\n	var rooms = [];\n\n	// number of times we've tried to add a new room and failed\n	frustration = 0;\n	it = 0;\n\n	while (frustration < FRUSTRATION_MAX && it < 100) {\n		it++;\n\n		// try to add a room - upperleft corner, width and height\n		var width = odd_range(MIN_SIZE, MAX_SIZE);\n		var height = odd_range(MIN_SIZE, MAX_SIZE);\n\n		var room = {\n			x: odd_range(0, GAME_WIDTH - width),\n			y: odd_range(0, GAME_HEIGHT - height),\n			width: width,\n			height: height\n		};\n\n		for (var i = 0; i < rooms.length; i++) {\n			if (intersect_rooms(rooms[i], room)) {\n				frustation++;\n				continue;\n			}\n		}\n\n		// we succeeded in finding a room\n\n		rooms.push(room);\n		frustation = 0;\n		continue;\n	}\n\n	// debug(randgen);\n\n	return rooms;\n}\n\ndebug = function(randgen) {\n	// print out the generated maze into the debug console\n\n	// here's the issue - I need to build it line by line\n	for (var y = 0; y < GAME_HEIGHT; y++) {\n		buffer = \"\";\n		for (var x = 0; x < GAME_WIDTH; x++) {\n			buffer += (randgen[x][y])\n				.toString();\n		}\n		console.log(buffer);\n	}\n\n	return;\n}\n\ngrow_maze = function(x, y) {\n\n}",
+			"file": "js/level.js",
+			"file_size": 6956,
+			"file_write_time": 130638459748477178,
+			"settings":
+			{
+				"buffer_size": 6963,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 189.0,
+		"height": 263.0,
 		"selected_items":
 		[
+			[
+				"form",
+				"Format: Javascript"
+			],
+			[
+				"javscript",
+				"Format: Javascript"
+			],
+			[
+				"javascript",
+				"Format: Javascript"
+			],
 			[
 				"install",
 				"Package Control: Install Package"
@@ -722,6 +761,8 @@
 		"height": 732.0,
 		"history":
 		[
+			"850/15",
+			"125/15",
 			"a.map",
 			"a.__len__()",
 			"dir(a)",
@@ -847,9 +888,7 @@
 			"a = ['a', 'b']",
 			"a.replace('\\n', '')",
 			"a.replace",
-			"a",
-			"a = \"a\\n\\nb\"",
-			"import numpy "
+			"a"
 		]
 	},
 	"distraction_free":
@@ -867,6 +906,21 @@
 	],
 	"file_history":
 	[
+		"/C/Users/Rachit/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
+		"/C/Users/Rachit/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/README.md",
+		"/C/Users/Rachit/Documents/GitHub/platformer/js/level.js",
+		"/C/Users/Rachit/Documents/GitHub/passgen.py",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/index.html",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/js/phaser.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/.gitignore",
+		"/C/Users/Rachit/Documents/GitHub/justiserv/.gitignore",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/lextab.py",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/levels/temp.csv",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/yacctab.py",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/js/bullet.js",
+		"/C/Users/Rachit/Documents/GitHub/platformer/js/player.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/pixelfu.sublime-project",
 		"/C/Users/Rachit/Documents/haskell/test.hs",
 		"/C/Users/Rachit/Documents/GitHub/chatufu/src/index.html",
 		"/C/Users/Rachit/Documents/GitHub/chatufu/src/js/app.js",
@@ -901,7 +955,6 @@
 		"/C/Users/Rachit/Documents/classes/expos/Unit 2 Final Final.docx",
 		"/C/Users/Rachit/Documents/classes/cs/assignment_2/final/main.cpp",
 		"/C/Users/Rachit/Documents/classes/physics/assignment_1/fig1.svg",
-		"/C/Users/Rachit/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
 		"/C/Users/Rachit/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/C/Users/Rachit/Documents/classes/math/assignment 11/math55.tex",
 		"/C/Users/Rachit/AppData/Roaming/Sublime Text 3/Packages/LaTeXTools/LaTeX math.sublime-completions",
@@ -938,9 +991,7 @@
 		"/C/Users/Rachit/Documents/classes/main.cpp",
 		"/C/Users/Rachit/Documents/classes/cs/assignment_10/Random3SAT/Random3SAT/10.out",
 		"/C/Users/Rachit/Documents/classes/older/CPT_S 223/assignments/Gradebook/Gradebook/Debug/Gradebook.Build.CppClean.log",
-		"/C/Users/Rachit/Documents/GitHub/platformer/js/player.js",
 		"/C/Users/Rachit/Documents/GitHub/platformer/js/main.js",
-		"/C/Users/Rachit/Documents/GitHub/platformer/js/level.js",
 		"/C/Users/Rachit/Documents/classes/cs/assignment_10/Random3SAT/Random3SAT/6.out",
 		"/C/Users/Rachit/Documents/classes/older/CPT_S 223/notes/Lecture - 2014-02-19 BST/notes/BstNode.h",
 		"/C/Users/Rachit/Documents/classes/classes.sublime-project",
@@ -950,7 +1001,6 @@
 		"/C/Users/Rachit/Documents/classes/physics/assignment_1/assignment_1.fdb_latexmk",
 		"/C/Users/Rachit/Documents/classes/cs50/ps3/sort.c",
 		"/C/Users/Rachit/Documents/classes/cs50/.vagrant/machines/default/virtualbox/action_set_name",
-		"/C/Users/Rachit/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
 		"/C/Users/Rachit/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
 		"/C/Users/Rachit/Documents/classes/math/assignment 11/math55.aux",
 		"/C/Users/Rachit/Documents/classes/physics/assignment_2/assignment_1.aux",
@@ -983,22 +1033,11 @@
 		"/C/Users/Rachit/Documents/classes/math/assignment 10/math55.out",
 		"/C/Users/Rachit/Documents/classes/math/assignment 10/math55.log",
 		"/C/Users/Rachit/Documents/classes/math/assignment 10/math55.aux",
-		"/C/Users/Rachit/Documents/classes/math/assignment 1/math55.out",
-		"/C/Users/Rachit/Documents/classes/math/assignment 1/math55.lyx",
-		"/C/Users/Rachit/Documents/classes/math/assignment 1/math55.log",
-		"/C/Users/Rachit/Documents/classes/math/assignment 1/math55.aux",
-		"/C/Users/Rachit/Downloads/first_degree.js",
-		"/C/Users/Rachit/Documents/classes/cs50/ps3/src4m/window.c",
-		"/C/Users/Rachit/Downloads/hw8topost.tex",
-		"/C/Users/Rachit/Documents/classes/cs/assignment_6/pset.fdb_latexmk",
-		"/C/Users/Rachit/Documents/classes/cs/assignment_7/pset.fdb_latexmk",
-		"/C/Users/Rachit/Documents/classes/older/CPT_S 223/assignments/Homework 6/Homework 6/targetver.h",
-		"/C/Users/Rachit/Documents/usaco/geometry.cpp",
-		"/C/Users/Rachit/AppData/Roaming/Sublime Text 3/Packages/SublimeAStyleFormatter/Default (Windows).sublime-keymap"
+		"/C/Users/Rachit/Documents/classes/math/assignment 1/math55.out"
 	],
 	"find":
 	{
-		"height": 27.0
+		"height": 39.0
 	},
 	"find_in_files":
 	{
@@ -1013,6 +1052,38 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"arrow",
+			"num",
+			"baddie",
+			"Pixi",
+			"manabar",
+			"this.sprite",
+			"render",
+			"putTile",
+			");\n",
+			"TILE_WIDTH",
+			"FRUSTRATED_MAX",
+			"frustrat",
+			" ]",
+			"GAME_WIDTH",
+			"GAME_HEIGHT",
+			"frustrated",
+			";\n",
+			"console",
+			"GAME_WIDTH",
+			"		        console.log(\"MOVED\");\n",
+			"game.time.time",
+			"sprite.body.y",
+			"sprite.body.x",
+			"Phaser.Keyboard",
+			"cursurs",
+			"game.input.keyboard",
+			"cursors",
+			"space",
+			"acceptInput",
+			"moveTimer",
+			"this.game.input.keyboard.createCursorKeys",
+			"bullet",
 			"Inter",
 			"comdiagram",
 			"\\end{center}",
@@ -1108,39 +1179,7 @@
 			" \\\"",
 			"\\\"",
 			"\\not",
-			"lambda",
-			"perp",
-			"filter",
-			"includegraphi",
-			"includegraphics",
-			"problem",
-			"\\noindent{\\bf",
-			"i",
-			"move",
-			"scroll_lines",
-			"\\",
-			";",
-			"$O",
-			"operatorname",
-			"\\on",
-			"\\lt",
-			"latex",
-			"\\noindent{\\bf",
-			" 1.} Recall the anti-symmetrization map, defined in class\n",
-			"w",
-			"bf",
-			"Problem",
-			"\\\\bf",
-			"#",
-			"Problem 10",
-			"bulletjitter",
-			"bullet",
-			"bulletjitter",
-			" \n",
-			"Rho",
-			"\\\\begin",
-			"\\\\begin\\{",
-			"\"ctrl\\+a"
+			"lambda"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1159,8 +1198,95 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "js/player.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3753,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								61,
+								61
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "js/main.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3496,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3338,
+								3338
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 2121.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "js/level.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6963,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2534,
+								2698
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2895.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -1219,6 +1345,46 @@
 		"selected_items":
 		[
 			[
+				"phaser.",
+				"js\\phaser.js"
+			],
+			[
+				"index.html",
+				"index.html"
+			],
+			[
+				"rad",
+				"README.md"
+			],
+			[
+				"lextab",
+				"lextab.py"
+			],
+			[
+				"yacc",
+				"yacctab.py"
+			],
+			[
+				"bullet.",
+				"js\\bullet.js"
+			],
+			[
+				"",
+				"lextab.py"
+			],
+			[
+				"level.js",
+				"js\\level.js"
+			],
+			[
+				"main.",
+				"js\\main.js"
+			],
+			[
+				"palyer",
+				"js\\player.js"
+			],
+			[
 				"bonusproblems55.tex",
 				"math\\bonus problems\\math55.tex"
 			],
@@ -1237,10 +1403,6 @@
 			[
 				"bonusmath.tex",
 				"math\\bonus problems\\math55.tex"
-			],
-			[
-				"",
-				"math\\assignment 12\\math55.tex"
 			],
 			[
 				"12math55.tex",
@@ -1693,42 +1855,6 @@
 			[
 				"profile.html",
 				"app\\static\\partials\\dashboard\\profile.html"
-			],
-			[
-				"category.html",
-				"app\\static\\partials\\dashboard\\getting_started\\category.html"
-			],
-			[
-				"base.css",
-				"app\\static\\css\\dashboard\\base.css"
-			],
-			[
-				"controllers.",
-				"app\\users\\controllers.py"
-			],
-			[
-				"profileservices",
-				"app\\static\\partials\\dashboard\\profile\\services.html"
-			],
-			[
-				"services",
-				"app\\static\\js\\dashboard\\services.js"
-			],
-			[
-				"detail.tlm",
-				"app\\static\\partials\\dashboard\\profile\\detail.html"
-			],
-			[
-				"procfile",
-				"Procfile"
-			],
-			[
-				"runp.py",
-				"runp.py"
-			],
-			[
-				"run.py",
-				"run.py"
 			]
 		],
 		"width": 0.0
