@@ -3,6 +3,8 @@ pixelfu
 
 A small 2D roguelike with dynamically generated dungeons - an experiment in procedurally generated games
 
+### Demo
+Go to [https://simplydragons.github.io/pixelfu](https://simplydragons.github.io/pixelfu)
 
 ### How to install
 - Git clone the repository `git clone git@github.com:simplydragons/pixelfu.git`
