@@ -50,7 +50,7 @@ Level.prototype = {
 			}
 		}
 
-		this.map.setCollisionBetween(1, 108, true, this.layer. true);
+		this.map.setCollisionBetween(1, 15, true, this.layer. true);
 
 		this.baddie = game.add.sprite(TILE_WIDTH*3, TILE_WIDTH*3, 'baddie');
 		game.physics.arcade.enable(this.baddie);

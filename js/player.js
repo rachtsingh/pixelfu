@@ -3,7 +3,7 @@ DRAW_MIN = 8;
 DRAW_MAX = 57;
 
 MANA_MIN = 0;
-MANA_MAX = 25;
+MANA_MAX = 10;
 
 Player = function(game) {
 	this.game = game;
@@ -60,7 +60,7 @@ Player.prototype = {
 			variable_name: "health",
 			minimum: 0,
 			maximum: 100,
-			color: 0xC54135 , // green
+			color: 0x41C535 , // green
 			name: "Health Points"
 		});
 		// access via this.game.im.values["health"] (kludgy I know)
@@ -75,11 +75,13 @@ Player.prototype = {
 
 		this.game.im.add_indicator({
 			variable_name: "mana",
-			minimum: 0,
-			maximum: 25,
+			minimum: MANA_MIN,
+			maximum: MANA_MAX,
 			color: 0x3571C5, // for lack of a better color
 			name: "Mana"
 		});
+
+		this.game.im.values["health"] = 100;
 
 	},
 
@@ -100,26 +102,26 @@ Player.prototype = {
         }
 
 	    // make this editable constants
-	    if (this.shift.isDown && this.manatimer > 15){
-	    	this.manatimer = (this.manatimer - this.manacost).clamp(0, 25);
-	    	this.doMagic();
-	    }
-	    else {
-	    	this.manatimer = (this.manatimer + 0.05).clamp(0, 25);
-	    }
+	    // if (this.shift.isDown && this.manatimer > 15){
+	    // 	this.manatimer = (this.manatimer - this.manacost).clamp(0, 25);
+	    // 	this.doMagic();
+	    // }
+	    // else {
+	    // 	this.manatimer = (this.manatimer + 0.05).clamp(0, 25);
+	    // }
 
-	    if (this.manatimer.in(0, this.manacost-0.1)) this.manabarcolor = "FF0000";
-	    else this.manabarcolor = "FFFFFF";
+	    // if (this.manatimer.in(0, this.manacost-0.1)) this.manabarcolor = "FF0000";
+	    // else this.manabarcolor = "FFFFFF";
 
 	    // handle mana charging and firing
 	    if (this.shift.isDown){
 	    	this.charging = true;
-	    	this.im.values["mana"] = (this.im.values["mana"] + 1).clamp(MANA_MIN, MANA_MAX);
+	    	this.game.im.values["mana"] = (this.game.im.values["mana"] + 1).clamp(MANA_MIN, MANA_MAX);
 	    }
 	    else {
 		    if (this.manatimer > this.mana_gen_time && this.charging) {
 		    	// fire the arrow
-		    	this.castMagic(this.im.values["mana"]);
+		    	this.castMagic(this.game.im.values["mana"]);
 		    	this.manatimer = 0;
 		    }
 		    else {
@@ -127,18 +129,18 @@ Player.prototype = {
 		    }
 		    // this feels expensive
 	    	this.charging = false;
-	    	this.im.values["mana"] = 0;
+	    	this.game.im.values["mana"] = 0;
 	    } 
 
 	    // handle the arrow nocking and firing
 	    if (this.space.isDown){
 	    	this.nocked = true;
-	    	this.im.values["draw"] = (this.im.values["draw"] + 1).clamp(DRAW_MIN, DRAW_MAX);
+	    	this.game.im.values["draw"] = (this.game.im.values["draw"] + 1).clamp(DRAW_MIN, DRAW_MAX);
 	    }
 	    else {
 		    if (this.arrowtimer > this.arrow_gen_time && this.nocked) {
 		    	// fire the arrow
-		    	this.fireArrow(this.im.values["draw"] * 15);
+		    	this.fireArrow(this.game.im.values["draw"] * 15);
 		    	this.arrowtimer = 0;
 		    }
 		    else {
@@ -146,12 +148,31 @@ Player.prototype = {
 		    }
 		    // this feels expensive
 	    	this.nocked = false;
-	    	this.im.values["draw"] = 0; 
+	    	this.game.im.values["draw"] = 0; 
 	    } 
 	},
 
 	castMagic: function(strength){
-		console.log("did magic: ", strength);	// figure out something here
+		// make strength even
+		strength = strength - strength % 2;
+		console.log("did magic: ", strength); // for debugging
+		var tilemapref = this.game.level.map.layers[0].data;
+
+		// what this will do is destroy the blocks around the player
+		var tilex = Math.floor(this.sprite.body.position.x / TILE_WIDTH);
+		var tiley = Math.floor(this.sprite.body.position.y / TILE_WIDTH);
+
+		for (var i = Math.floor((tilex - (strength/2)).clamp(0, GAME_WIDTH)), fi = Math.floor((tilex + (strength/2)).clamp(0, GAME_WIDTH)); i < fi; i++) {
+			for (var j = Math.floor((tiley - (strength/2)).clamp(0, GAME_HEIGHT)), fj = Math.floor((tiley + (strength/2)).clamp(0, GAME_HEIGHT)); j < fj; j++) {
+				console.log(i, j)
+				tilemapref[j][i].index = -1;
+			}
+		}
+
+		// trigger a call to calculate faces
+		this.game.level.map.removeTile(tilex, tiley, 0);
+
+		this.game.level.map.layers[0].dirty = true;
 	},
 
 	fireArrow: function(strength){

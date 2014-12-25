@@ -1,6 +1,6 @@
 // crazy javascript global stuff
 Number.prototype.clamp = function(min, max){
-	return Math.max(Math.min(max, this), min)
+	return Math.max(Math.min(max - 1, this), min)
 }
 /*
  Usage: number = (number + 5).clamp(0, 20);

@@ -8,17 +8,17 @@ IndicatorManager = function(game) {
 
 IndicatorManager.prototype = {
 	// not sure if I'll ever use this setter
-	this.set(variable_name, value) = function() {
+	set: function(variable_name, value) {
 		this.values[variable_name] = value;
 	},
 
-	this.update = function() {
-		for (var i = 0, var l = this.indicators.length; i < l; i++) {
+	update: function() {
+		for (var i = 0, l = this.indicators.length; i < l; i++) {
 			this.indicators[i].update();
 		}
 	},
 
-	this.add_indicator(binding) {
+	add_indicator: function(binding) {
 		// this feels clunky but not sure how to architect
 		var indicator = new Indicator(this, binding.variable_name, this.indicators.length, binding.minimum, binding.maximum, binding.color, binding.name);
 		this.indicators.push(indicator);
