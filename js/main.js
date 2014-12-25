@@ -55,6 +55,8 @@ function preload() {
     player = new Player(game);
     player.preload();
     game.player = player;
+
+    players = game.add.group();
 }
 
 function create() {
@@ -64,6 +66,7 @@ function create() {
 
 	level.create();
 	player.create();
+    players.add(player.sprite);
 	
     game.camera.follow(player.sprite, Phaser.Camera.FOLLOW_TOPDOWN);
 
@@ -91,10 +94,13 @@ function update() {
 	};
 
 	stuck_arrow = function(arrow, obstacle) {
-		console.log("arrow hit an obstacle");
+		console.log(obstacle);
+		// console.log("arrow hit an obstacle");
 		arrow.body.velocity = {x: 0, y: 0};
 		// console.log(arrow);
 		arrow.lifespan = 4 * Phaser.Timer.SECOND;
+		level.map.recalculateTile(obstacle.x, obstacle.y, 0);
+		console.log(obstacle);
 	};
 
 	hit_wall = function(sprite, obstacle) {
@@ -111,6 +117,7 @@ function update() {
     game.physics.arcade.collide(level.baddie, level.arrows);
 
     game.physics.arcade.collide(level.layer, player.sprite, hit_wall);
+    game.physics.arcade.collide(level.layer, players); // ok weird, this works but the above line is useless
 }
 
 function render(){

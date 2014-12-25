@@ -1,9 +1,11 @@
 // delineate the constants for closure compiler (for later)
 DRAW_MIN = 8;
+DRAW_THRESHOLD = 15;
 DRAW_MAX = 57;
 
 MANA_MIN = 0;
-MANA_MAX = 10;
+MANA_THRESHOLD = 15;
+MANA_MAX = 25;
 
 Player = function(game) {
 	this.game = game;
@@ -24,8 +26,9 @@ Player = function(game) {
 	// this.draw = 0; // the amount of draw the arrow has right now
 
 	// constants (probably need to get rid of 'em)
+	// this a weird system because the player doesn't know how quickly they can fire
 	this.arrow_gen_time = 25;
-	this.mana_gen_time = 50;
+	this.mana_gen_time = 25; // this is a broken amount of magic
 	this.speed = TILE_WIDTH / 10;
 };
 
@@ -119,9 +122,9 @@ Player.prototype = {
 	    	this.game.im.values["mana"] = (this.game.im.values["mana"] + 1).clamp(MANA_MIN, MANA_MAX);
 	    }
 	    else {
-		    if (this.manatimer > this.mana_gen_time && this.charging) {
+		    if (this.manatimer > this.mana_gen_time && this.charging && this.game.im.values["mana"] > MANA_THRESHOLD) {
 		    	// fire the arrow
-		    	this.castMagic(this.game.im.values["mana"]);
+		    	this.castMagic((this.game.im.values["mana"]/ 2) | 0);
 		    	this.manatimer = 0;
 		    }
 		    else {
@@ -138,10 +141,10 @@ Player.prototype = {
 	    	this.game.im.values["draw"] = (this.game.im.values["draw"] + 1).clamp(DRAW_MIN, DRAW_MAX);
 	    }
 	    else {
-		    if (this.arrowtimer > this.arrow_gen_time && this.nocked) {
-		    	// fire the arrow
+		    if (this.arrowtimer > this.arrow_gen_time && this.nocked && this.game.im.values["draw"] > DRAW_THRESHOLD) {
+		    	// fire the arrow, only if there's a sufficient draw
 		    	this.fireArrow(this.game.im.values["draw"] * 15);
-		    	this.arrowtimer = 0;
+		    	this.arrowtimer = 0;		    		
 		    }
 		    else {
 		    	this.arrowtimer++;
@@ -162,16 +165,48 @@ Player.prototype = {
 		var tilex = Math.floor(this.sprite.body.position.x / TILE_WIDTH);
 		var tiley = Math.floor(this.sprite.body.position.y / TILE_WIDTH);
 
-		for (var i = Math.floor((tilex - (strength/2)).clamp(0, GAME_WIDTH)), fi = Math.floor((tilex + (strength/2)).clamp(0, GAME_WIDTH)); i < fi; i++) {
-			for (var j = Math.floor((tiley - (strength/2)).clamp(0, GAME_HEIGHT)), fj = Math.floor((tiley + (strength/2)).clamp(0, GAME_HEIGHT)); j < fj; j++) {
-				console.log(i, j)
-				tilemapref[j][i].index = -1;
-			}
-		}
+		var startx = Math.floor((tilex - (strength/2)).clamp(0, GAME_WIDTH));
+		var starty = Math.floor((tiley - (strength/2)).clamp(0, GAME_HEIGHT))
 
-		// trigger a call to calculate faces
-		this.game.level.map.removeTile(tilex, tiley, 0);
+		/*
+				startx      2           | startx + strength
+		starty	|___|___|___|___|___|___| 
+				|___|___|___|___|___|___|
+				|___|___|___|___|___|___|
+			1	|___|___|___P___|___|___|  3
+				|___|___|___|___|___|___|
+				|___|___|___|___|___|___|
+				|___|___|___|___|___|___|
+		starty  |___|___|___|___|___|___|
+		+ strength - 1		4
+		*/
 
+		this.game.level.map.fill(0, startx, starty, strength, strength, 0);
+
+		// unnecessary, new api
+		// // manually recalculate the faces - saves on the expensive operation
+		// // side 1
+		// for (var x = (startx - 1).clamp(0, GAME_WIDTH), y = starty, fy = Math.min(starty + strength, GAME_HEIGHT); y < fy; y++) {
+		// 	if (tilemapref[x][y].collides) tilemapref[x][y].faceRight = true;
+		// }
+
+		// // side 2
+		// for (var x = startx, y = (starty - 1).clamp(0, GAME_HEIGHT), fx = Math.min(startx + strength, GAME_WIDTH); x < fx; x++) {
+		// 	if (tilemapref[x][y].collides) tilemapref[x][y].faceBottom = true;
+		// }
+
+		// // side 3
+		// for (var x = (startx + strength).clamp(0, GAME_WIDTH), y = starty, fy = Math.min(starty + strength, GAME_HEIGHT); y < fy; y++) {
+		// 	if (tilemapref[x][y].collides) tilemapref[x][y].faceLeft = true;
+		// }
+
+		// // side 4
+		// for (var x = startx, y = (starty + strength).clamp(0, GAME_HEIGHT), fx = Math.min(startx + strength, GAME_WIDTH); y < fy; y++) {
+		// 	if (tilemapref[x][y].collides) tilemapref[x][y].faceRight = true;
+		// }
+
+		// some good tolerance on what to recalculate
+		this.game.level.map.recalculateArea((startx - 2).clamp(0, GAME_WIDTH), (starty - 2).clamp(0, GAME_HEIGHT), strength + 4, strength + 4, 0);
 		this.game.level.map.layers[0].dirty = true;
 	},
 
