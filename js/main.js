@@ -106,11 +106,11 @@ function update() {
     im.update();
 
     //  Collide objects
-    game.physics.arcade.collide(level.layer, player.sprite);
     game.physics.arcade.collide(level.layer, level.baddie);
     game.physics.arcade.collide(level.layer, level.arrows, stuck_arrow);
     game.physics.arcade.collide(level.baddie, level.arrows);
 
+    game.physics.arcade.collide(level.layer, player.sprite, hit_wall);
 }
 
 function render(){
