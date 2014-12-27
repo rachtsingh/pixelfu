@@ -19,7 +19,7 @@
 * @param {bool} actor - whether the entity is an actor (for AI calculations)
 */
 
-function Entity(game, image, x, y, type, physics, physicsConfig, importance, actor) {
+function Entity(game, image, x, y, type, description, physics, physicsConfig, importance, actor) {
 	this.game = game;
 
 	this.sprite = game.add.sprite(TILE_WIDTH * x, TILE_WIDHT * y, image); 
