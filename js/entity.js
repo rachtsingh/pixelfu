@@ -22,8 +22,9 @@
 function Entity(game, image, x, y, type, description, physics, physicsConfig, importance, actor) {
 	this.game = game;
 
-	this.sprite = game.add.sprite(TILE_WIDTH * x, TILE_WIDHT * y, image); 
+	this.sprite = game.add.sprite(TILE_WIDTH * x, TILE_WIDTH * y, image); 
 	this.type = type;
+	this.description = description; // could be overwritten
 
 	if (physics) {
 		game.physics.arcade.enable(this.sprite);
@@ -112,6 +113,12 @@ function Actor(game, image, x, y, type, physicsConfig, sentience, greediness, sl
 	this.direction = 0; // same system, 0 - 3 based on standard rotation
 
 	this.update = function() {
+		/*
+			Though this is entirely up to debate, I'm currently implementing
+			actor movement as a sort of turn based discrete movement
+			- while the player is moving in realtime
+		*/
+
 		this.stepcountdown++;
 		this.calculatetimer++;
 
@@ -123,16 +130,42 @@ function Actor(game, image, x, y, type, physicsConfig, sentience, greediness, sl
 		if (this.stepcountdown >= this.slowdown) {
 			this.stepcountdown = 0;
 			
+			// I'm not worry about accidently walking through walls because
+			// our wonderful physics libraries handles that even at this 
+			// resolution (at least in my tests)
 			switch(this.direction) {
 				case 0: 
-					this.sprite.body.position.x += 
+					this.sprite.body.position.x += TILE_WIDTH;
+					break;
+				case 1:
+					this.sprite.body.position.y -= TILE_WIDTH;
+					break;
+				case 2:
+					this.sprite.body.position.x -= TILE_WIDTH;
+					break;
+				case 3:
+					this.sprite.body.position.y += TILE_WIDTH;
+					break;
 			}
+		}
+
+		// depending on what we need, could move this outside 'if'
+		if (this.meets_action_condition()) {
+			this.act();
 		}
 	};
 
 	this.think = function (argument) {
 		// fill in via children
 	};
+
+	this.meets_action_condition = function(){
+		return false; // obviously override
+	};
+
+	this.act = function() {
+		// fill in
+	}
 }
 
 Actor.prototype = new Entity;
