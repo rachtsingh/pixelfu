@@ -100,14 +100,9 @@ Phaser.Tilemap.prototype.recalculateArea = function(x, y, width, height, layer) 
 	}
 }
 
-/**
-* Recalculate the faces on tiles in a specified area - useful if changing a lot of tiles in a specific area
-*
-* @method Phaser.Tilemap#calculateFaces
-* @param {number} x - X position to get the tile from (given in tile units, not pixels)
-* @param {number} y - Y position to get the tile from (given in tile units, not pixels)
-* @param {number} [width] - The rendered width of the layer, should never be wider than Game.width. If not given it will be set to Game.width.
-* @param {number} [height] - The rendered height of the layer, should never be wider than Game.height. If not given it will be set to Game.height.
-* @param {number} layer - The index of the TilemapLayer to operate on.
+/*
+	This class is an extension on the Tilemap allowing for animated adding and clearing of tiles
+
 */
-Phaser.Tile.animate = function(start, stop, )
+
+Phaser.Tilemap.prototype.queue = [];

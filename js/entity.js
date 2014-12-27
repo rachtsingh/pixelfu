@@ -106,10 +106,6 @@ function Actor(game, image, x, y, type, physicsConfig, sentience, greediness, sl
 	this.greediness = greediness;
 	this.slowdown = slowdown;
 
-	// variable used to calculate whether to step
-	this.stepcountdown = 0;
-	this.calculatetimer = 0;
-
 	this.direction = 0; // same system, 0 - 3 based on standard rotation
 
 	this.update = function() {
@@ -119,15 +115,13 @@ function Actor(game, image, x, y, type, physicsConfig, sentience, greediness, sl
 			- while the player is moving in realtime
 		*/
 
-		this.stepcountdown++;
-		this.calculatetimer++;
-
 		// make decisions before moving
-		if (this.calculatetimer >= this.sentience) {
+		// #! this line of code is wrong
+		if (!(this.game.frames % this.sentience)) {
 			this.think();
 		}
 
-		if (this.stepcountdown >= this.slowdown) {
+		if (!(this.game.frames % this.slowdown)) {
 			this.stepcountdown = 0;
 			
 			// I'm not worry about accidently walking through walls because

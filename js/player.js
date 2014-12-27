@@ -7,6 +7,8 @@ MANA_MIN = 0;
 MANA_THRESHOLD = 15;
 MANA_MAX = 25;
 
+NUM_BREADCRUMBS = 5;
+
 Player = function(game) {
 	this.game = game;
 	this.sprite = {};
@@ -30,6 +32,9 @@ Player = function(game) {
 	this.arrow_gen_time = 25;
 	this.mana_gen_time = 25; // this is a broken amount of magic
 	this.speed = TILE_WIDTH / 10;
+
+	// breadcrumbs are an AI technique adapted from TinyKeep
+	this.breadcrumbs = [];
 };
 
 Player.prototype = {
@@ -86,6 +91,9 @@ Player.prototype = {
 
 		this.game.im.values["health"] = 100;
 
+		for (var i = 0; i < NUM_BREADCRUMBS; i++) {
+			this.breadcrumbs.push(this.sprite.body.position);
+		}
 	},
 
 	update: function() {
@@ -141,6 +149,9 @@ Player.prototype = {
 	    	this.nocked = false;
 	    	this.game.im.values["draw"] = 0; 
 	    } 
+
+	    // now handle updating the breadcrumb positions
+	    
 	},
 
 	castMagic: function(strength){

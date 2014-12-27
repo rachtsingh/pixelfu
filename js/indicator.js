@@ -9,8 +9,10 @@
 	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
 
 	-Rachit
-*/
 
+	I'm hoping to grow this into the fully developed HUD system for the game, though
+	it's a long way off from getting there
+*/
 
 INDICATOR_SIZE = 25; // in pixels
 

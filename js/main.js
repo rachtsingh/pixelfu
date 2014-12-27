@@ -1,39 +1,3 @@
-// crazy javascript global stuff
-Number.prototype.clamp = function(min, max){
-	return Math.max(Math.min(max - 1, this), min)
-}
-/*
- Usage: number = (number + 5).clamp(0, 20);
- number increments by 5 but isn't allowed to go outside the bounds of [0, 20);
- (note that this a half-open interval)
-*/
-
-Number.prototype.in = function(min, max){
-	return (this >= min && this <= max);
-}
-/*
- Usage: if (number.in(0, 20))
- returns true if the number is in the range [min, max], otherwise false
-*/
-
-// First, checks if it isn't implemented yet.
-if (!String.prototype.format) {
-	String.prototype.format = function() {
-		var args = arguments;
-		return this.replace(/{(\d+)}/g, function(match, number) { 
-			return typeof args[number] != 'undefined'
-			? args[number]
-			: match
-			;
-		});
-	};
-}
-/*
- Usage: "{0} is a goober, but {1} is a diamond in the {2}".format("Steven", "Jerry")
- will output "Steven is a goober, but Jerry is a diamond in the {2}"
- Note: arguments can be non strings, as long as they can be coerced via a .toString()
-*/
-
 // the overall size of the game will be 40x40 tiles, or 640x640
 TILE_WIDTH = 16; // in pixels
 GAME_WIDTH = 101; // MUST BE ODD!
@@ -60,6 +24,10 @@ var game = new Phaser.Game(WIDTH, HEIGHT, Phaser.AUTO, '', { preload: preload, c
 //                             ^------
 
 function preload() {
+	// this is a global timing tool - there is probably a better thing somewhere in Phaser
+	game.frames = 0;
+
+	// linked in indicator.js
     im = new IndicatorManager(game);
     game.im = im;
 
@@ -100,6 +68,8 @@ function create() {
 
 
 function update() {
+	// update the number of frames
+	game.frames++;
 
 	var resetText = function(){
 		var tween = game.add.tween(this.scale).to({x:1, y:1}, 100, Phaser.Easing.Linear.In);
