@@ -80,7 +80,7 @@ Player.prototype = {
 			variable_name: "mana",
 			minimum: MANA_MIN,
 			maximum: MANA_MAX,
-			color: 0x3571C5, // for lack of a better color
+			color: 0x5591E5, // for lack of a better color
 			name: "Mana"
 		});
 
@@ -103,18 +103,6 @@ Player.prototype = {
             this.sprite.body.position.y += this.speed;
             this.direction = 3;
         }
-
-	    // make this editable constants
-	    // if (this.shift.isDown && this.manatimer > 15){
-	    // 	this.manatimer = (this.manatimer - this.manacost).clamp(0, 25);
-	    // 	this.doMagic();
-	    // }
-	    // else {
-	    // 	this.manatimer = (this.manatimer + 0.05).clamp(0, 25);
-	    // }
-
-	    // if (this.manatimer.in(0, this.manacost-0.1)) this.manabarcolor = "FF0000";
-	    // else this.manabarcolor = "FFFFFF";
 
 	    // handle mana charging and firing
 	    if (this.shift.isDown){
@@ -183,30 +171,9 @@ Player.prototype = {
 
 		this.game.level.map.fill(0, startx, starty, strength, strength, 0);
 
-		// unnecessary, new api
-		// // manually recalculate the faces - saves on the expensive operation
-		// // side 1
-		// for (var x = (startx - 1).clamp(0, GAME_WIDTH), y = starty, fy = Math.min(starty + strength, GAME_HEIGHT); y < fy; y++) {
-		// 	if (tilemapref[x][y].collides) tilemapref[x][y].faceRight = true;
-		// }
-
-		// // side 2
-		// for (var x = startx, y = (starty - 1).clamp(0, GAME_HEIGHT), fx = Math.min(startx + strength, GAME_WIDTH); x < fx; x++) {
-		// 	if (tilemapref[x][y].collides) tilemapref[x][y].faceBottom = true;
-		// }
-
-		// // side 3
-		// for (var x = (startx + strength).clamp(0, GAME_WIDTH), y = starty, fy = Math.min(starty + strength, GAME_HEIGHT); y < fy; y++) {
-		// 	if (tilemapref[x][y].collides) tilemapref[x][y].faceLeft = true;
-		// }
-
-		// // side 4
-		// for (var x = startx, y = (starty + strength).clamp(0, GAME_HEIGHT), fx = Math.min(startx + strength, GAME_WIDTH); y < fy; y++) {
-		// 	if (tilemapref[x][y].collides) tilemapref[x][y].faceRight = true;
-		// }
-
 		// some good tolerance on what to recalculate
 		this.game.level.map.recalculateArea((startx - 2).clamp(0, GAME_WIDTH), (starty - 2).clamp(0, GAME_HEIGHT), strength + 4, strength + 4, 0);
+
 		this.game.level.map.layers[0].dirty = true;
 	},
 

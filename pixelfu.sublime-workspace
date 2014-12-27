@@ -4,8 +4,36 @@
 		"selected_items":
 		[
 			[
+				"phys",
+				"physicsConfig"
+			],
+			[
+				"GAM",
+				"GAME_HEIGHT"
+			],
+			[
+				"MANA",
+				"MANA_THRESHOLD"
+			],
+			[
 				"DRAW",
-				"DRAW_MIN"
+				"DRAW_THRESHOLD"
+			],
+			[
+				"MA",
+				"MANA_MIN"
+			],
+			[
+				"fi",
+				"fi"
+			],
+			[
+				"mana",
+				"manatimer"
+			],
+			[
+				"Indic",
+				"IndicatorManager"
 			],
 			[
 				"GAME",
@@ -14,10 +42,6 @@
 			[
 				"G",
 				"GAME_HEIGHT"
-			],
-			[
-				"GAM",
-				"GAME_WIDTH"
 			],
 			[
 				"GAME_",
@@ -460,10 +484,6 @@
 				"R"
 			],
 			[
-				"mana",
-				"manabarcolor"
-			],
-			[
 				"shield",
 				"shieldon"
 			],
@@ -494,26 +514,6 @@
 			[
 				"CAV",
 				"CANVAS_HEIGHT"
-			],
-			[
-				"CA",
-				"CANVAS_WIDTH"
-			],
-			[
-				"backgroun",
-				"background-origin"
-			],
-			[
-				"background-",
-				"background-repeat"
-			],
-			[
-				"template",
-				"templateUrl"
-			],
-			[
-				"HEA",
-				"HEALTH_RADIUS"
 			]
 		]
 	},
@@ -523,7 +523,50 @@
 			"file": "js/player.js",
 			"settings":
 			{
-				"buffer_size": 3753,
+				"buffer_size": 5705,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "/*\n	Unfortunately, the Phaser API is a little limited in what it can do,\n	so I've extended a few of the objects here. Rationale is given\n*/\n\n/**\n* Recalculate the faces on a single tile\n*\n* @method Phaser.Tilemap#calculateFaces\n* @param {number} x - X position to get the tile from (given in tile units, not pixels)\n* @param {number} y - Y position to get the tile from (given in tile units, not pixels)\n* @param {number} layer - The index of the TilemapLayer to operate on.\n*/\n\nPhaser.Tilemap.prototype.recalculateTile = function(x, y, layer) {\n	var tile = this.layers[layer].data[y][x];\n\n	if (tile) {\n	    above = this.getTileAbove(layer, x, y);\n	    below = this.getTileBelow(layer, x, y);\n	    left = this.getTileLeft(layer, x, y);\n	    right = this.getTileRight(layer, x, y);\n\n	    if (tile.collides && tile.index) // this is a hack - check how to make this real\n	    {\n	        tile.faceTop = true;\n	        tile.faceBottom = true;\n	        tile.faceLeft = true;\n	        tile.faceRight = true;\n\n	        // added this to make sure that it works as expected\n	        tile.collideUp = true;\n	        tile.collideDown = true;\n	        tile.collideLeft = true;\n	        tile.collideRight = true;\n	    }\n	    else {\n	        tile.faceTop = false;\n	        tile.faceBottom = false;\n	        tile.faceLeft = false;\n	        tile.faceRight = false;\n\n	        // added this to make sure that it works as expected\n	        tile.collideUp = false;\n	        tile.collideDown = false;\n	        tile.collideLeft = false;\n	        tile.collideRight = false;\n	    }\n\n	    if (above && above.collides)\n	    {\n	        //  There is a tile above this one that also collides, so the top of this tile is no longer interesting\n	        tile.faceTop = false;\n	    }\n\n	    if (below && below.collides)\n	    {\n	        //  There is a tile below this one that also collides, so the bottom of this tile is no longer interesting\n	        tile.faceBottom = false;\n	    }\n\n	    if (left && left.collides)\n	    {\n	        //  There is a tile left this one that also collides, so the left of this tile is no longer interesting\n	        tile.faceLeft = false;\n	    }\n\n	    if (right && right.collides)\n	    {\n	        //  There is a tile right this one that also collides, so the right of this tile is no longer interesting\n	        tile.faceRight = false;\n	    }\n\n	    console.log(tile.faceRight, tile.faceTop, tile.faceLeft, tile.faceBottom);\n	}\n}\n\n/**\n* Recalculate the faces on tiles in a specified area - useful if changing a lot of tiles in a specific area\n*\n* @method Phaser.Tilemap#calculateFaces\n* @param {number} x - X position to get the tile from (given in tile units, not pixels)\n* @param {number} y - Y position to get the tile from (given in tile units, not pixels)\n* @param {number} [width] - The rendered width of the layer, should never be wider than Game.width. If not given it will be set to Game.width.\n* @param {number} [height] - The rendered height of the layer, should never be wider than Game.height. If not given it will be set to Game.height.\n* @param {number} layer - The index of the TilemapLayer to operate on.\n*/\n\nPhaser.Tilemap.prototype.recalculateArea = function(x, y, width, height, layer) {\n	if (typeof width === 'undefined') { width = this.game.width; }\n	if (typeof height === 'undefined') { height = this.game.height; }\n\n	var fx = Math.min(x + width, this.game.width);\n	var fy = Math.min(y + height, this.game.height);\n\n	for (var i = x; i < fx; i++) {\n		for (var j = y; j < fy; j++) {\n			this.recalculateTile(i, j, layer);\n		}\n	}\n}\n\n/**\n* Recalculate the faces on tiles in a specified area - useful if changing a lot of tiles in a specific area\n*\n* @method Phaser.Tilemap#calculateFaces\n* @param {number} x - X position to get the tile from (given in tile units, not pixels)\n* @param {number} y - Y position to get the tile from (given in tile units, not pixels)\n* @param {number} [width] - The rendered width of the layer, should never be wider than Game.width. If not given it will be set to Game.width.\n* @param {number} [height] - The rendered height of the layer, should never be wider than Game.height. If not given it will be set to Game.height.\n* @param {number} layer - The index of the TilemapLayer to operate on.\n*/\nPhaser.Tile.animate = function(start, stop, )",
+			"file": "js/tilemap.js",
+			"file_size": 3644,
+			"file_write_time": 130639649029486390,
+			"settings":
+			{
+				"buffer_size": 4285,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 617,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/entity.js",
+			"settings":
+			{
+				"buffer_size": 2859,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/indicator.js",
+			"settings":
+			{
+				"buffer_size": 2562,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/level.js",
+			"settings":
+			{
+				"buffer_size": 8045,
 				"line_ending": "Windows"
 			}
 		},
@@ -531,28 +574,29 @@
 			"file": "js/main.js",
 			"settings":
 			{
-				"buffer_size": 3496,
+				"buffer_size": 3617,
 				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "Level = function(game) {\n	/*\n	The level contains almost all of the objects that aren't under \n	the direct control of the player. This includes thngs like\n	- obstacles\n	- arrows\n	- monsters\n	- traps\n	- items\n	- magic (though the mana is under the player object)\n	*/\n\n	this.game = game;\n	this.monsters = [];\n\n	// for debug purposes\n	this.main_arrow = {};\n\n	/* constants */\n};\n\nLevel.prototype = {\n\n	preload: function() {\n		this.game.load.image('bullet', 'assets/bullet.png');\n		this.game.load.image('specialbullet', 'assets/specialbullet.png');\n		this.game.load.image('lrarrow', 'assets/arrow.png'); // a left-right arrow\n		this.game.load.image('udarrow', 'assets/arrow.png'); // an up-down arrow\n		this.game.load.image('tiles', 'assets/tiles.png');\n		this.game.load.image('baddie', 'assets/space-baddie.png');\n	},\n\n	create: function() {\n\n		// do magic!\n		// debug(randgen);\n\n		this.map = game.add.tilemap(null, 16, 16, GAME_WIDTH, GAME_HEIGHT);\n		this.map.addTilesetImage('tiles');\n\n		this.layer = this.map.create('base_layer', GAME_WIDTH, GAME_HEIGHT, TILE_WIDTH, TILE_WIDTH);\n\n		// this.layer.resizeWorld(); // this is an override, not necessary\n\n		// this.map.fill(1, 0, 0, 5, 5, this.layer);\n		generate_dungeon(this.map, this.layer);\n\n		this.map.setCollisionBetween(1, 108, true, this.layer. true);\n\n		this.baddie = game.add.sprite(TILE_WIDTH*3, TILE_WIDTH*3, 'baddie');\n		game.physics.arcade.enable(this.baddie);\n\n		this.baddie.body.mass = 100;\n\n		// this.map.setTileIndexCallback(4, bounce, this);\n\n		this.layer.dirty = true;\n\n		this.arrows = game.add.group();\n		this.arrows.enableBody = true;\n\n		this.boxes = game.add.group();\n		this.boxes.enableBody = true;\n\n		// just to access the space button\n		this.space = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);\n		this.ctrl = game.input.keyboard.addKey(Phaser.Keyboard.SHIFT);\n\n	},\n\n	update: function() {\n		// override updates - note that things in the physics scheme automaticall update\n	},\n\n	fireArrow: function(position, direction, velocity, type) {\n		// \n\n		arrow = this.arrows.create(position.x, position.y, type);\n		arrow.anchor.set(0.5, 0.5);\n\n		arrow.type = \"arrow\";\n\n		this.main_arrow = arrow;\n\n		// sensible default\n		arrow.direction = {\n			x: 1,\n			y: 0\n		};\n\n		// don't forget about switch y axis\n		switch (direction) {\n			case 0:\n				arrow.direction = {\n					x: 1,\n					y: 0\n				};\n				arrow.angle = 0;\n				arrow.body.position.x += TILE_WIDTH;\n				arrow.body.position.y += TILE_WIDTH/2;\n				break;\n			case 1:\n				arrow.direction = {\n					x: 0,\n					y: -1\n				};\n				arrow.angle = 270;\n				arrow.body.position.x += TILE_WIDTH/2;\n				break;\n			case 2:\n				arrow.direction = {\n					x: -1,\n					y: 0\n				};\n				arrow.angle = 180;\n				arrow.body.position.y += TILE_WIDTH/2;\n				break;\n			case 3:\n				arrow.direction = {\n					x: 0,\n					y: 1\n				};\n				arrow.angle = 90;\n				arrow.body.position.x += TILE_WIDTH/2;\n				arrow.body.position.y += TILE_WIDTH;\n				break;\n		}\n		// let's give this a try\n		// arrow.body.bounce.x = direction.x * 0.5;\n		// arrow.body.bounce.y = direction.y * 0.5;\n\n		arrow.body.mass = 10;\n		arrow.body.velocity = {\n			x: arrow.direction.x * velocity,\n			y: arrow.direction.y * velocity\n		};\n		arrow.body.collideWorldBounds = true;\n\n		arrow.direction = direction; // so that it remembers its true direction\n		arrow.metadata = {\n			speed: velocity\n		};\n\n		// return a reference so that the player object can keep track of its arrows;\n		return arrow;\n	}\n};\n\n/*\n	The following is code for randomly generating the map\n	the goal is to use it to randomly generate new squares of the map as the player explores, \n	but currently we're using a fixed size world \n\n	the code is based on this, but modified:\n	https://github.com/munificent/hauberk/blob/db360d9efa714efb6d937c31953ef849c7394a39/lib/src/content/dungeon.dart\n*/\n\n// utility function for random generator\nrange = function(a, b) {\n	return Math.floor((b - a) * Math.random() + a);\n}\n\n// since we need odd numbers so often, an *odd* number between a and b\nodd_range = function(a, b) {\n	return (Math.floor((b - a) * Math.random() + a) / 2) * 2 + 1;\n}\n\ngenerate_dungeon = function(map, layer) {\n	// to visualize this correctly:\n\n	/* randgen[i][j] is the ith column, jth down\n	|[ a ]|[ a ]|[ a ]|[ a ]|\n	|[ b ]|[ b ]|[ b ]|[ b ]|\n	|[ c ]|[ c ]|[ c ]|[ c ]|\n	*/\n\n	var randgen = new Array(GAME_WIDTH);\n\n	// for (var i = 0; i < GAME_WIDTH; i++) {\n	// 	randgen[i] = new Array(GAME_HEIGHT);\n	// 	for (var j = 0; j < GAME_HEIGHT; j++) {\n	// 		randgen[i][j] = 1; // so we have to carve out of it\n	// 	}\n	// }\n	map.fill(1, 0, 0, GAME_WIDTH, GAME_HEIGHT, layer);\n\n	/*\n	0 - default = space\n	1 - wall\n	2 - door? \n	*/\n\n\n	// first, create some rooms\n	rooms = add_rooms(randgen);\n\n	// seems to be a bottleneck\n	for (var i = 0; i < rooms.length; i++) {\n		var room = rooms[i];\n		map.fill(0, room.x, room.y, room.width, room.height, layer);\n	}\n\n	// then, use a maze growing algorithm to fill in the rest of the spaces\n	// for (var x = 1; x < GAME_WIDTH; x += 2) {\n	// 	for (var y = 1; y < GAME_HEIGHT; y += 2) {\n	// 		if (randgen[x][y] != 0) continue;\n	// 		grow_maze(x, y);\n	// 	}\n	// }\n\n	// connect_regions(randgen);\n\n	// remove_dead_ends(randgen);\n\n	// postprocessing to make this reasonable\n	map.fill(4, 0, 0, GAME_WIDTH, 1, layer);\n	map.fill(4, 0, 0, 1, GAME_HEIGHT, layer);\n	map.fill(4, 0, GAME_HEIGHT-1, GAME_WIDTH, 1, layer);\n	map.fill(4, GAME_WIDTH - 1, 0, 1, GAME_HEIGHT, layer);\n\n	map.fill(0, 0, 0, 10, 10, layer);\n}\n\nintersect_rooms = function(a, b) {\n	// there's something wrong with this\n	// returns whether the two rooms intersect\n	return ((a.x <= b.x + b.width + 1) && (a.x + a.width + 1 >= b.x) && (a.y <= b.y + b.height - 1) && (a.y + a.height - 1 >= b.y));\n}\n\nadd_rooms = function(randgen) {\n	// this is different from the one linked above, I think (I haven't read that)\n\n	// constants\n	var MIN_SIZE = 3;\n	var MAX_SIZE = 10;\n	var FRUSTRATION_MAX = 15;\n\n	var rooms = [];\n\n	// number of times we've tried to add a new room and failed\n	frustration = 0;\n	it = 0;\n\n	while (frustration < FRUSTRATION_MAX && it < 100) {\n		it++;\n\n		// try to add a room - upperleft corner, width and height\n		var width = odd_range(MIN_SIZE, MAX_SIZE);\n		var height = odd_range(MIN_SIZE, MAX_SIZE);\n\n		var room = {\n			x: odd_range(0, GAME_WIDTH - width),\n			y: odd_range(0, GAME_HEIGHT - height),\n			width: width,\n			height: height\n		};\n\n		for (var i = 0; i < rooms.length; i++) {\n			if (intersect_rooms(rooms[i], room)) {\n				frustation++;\n				continue;\n			}\n		}\n\n		// we succeeded in finding a room\n\n		rooms.push(room);\n		frustation = 0;\n		continue;\n	}\n\n	// debug(randgen);\n\n	return rooms;\n}\n\ndebug = function(randgen) {\n	// print out the generated maze into the debug console\n\n	// here's the issue - I need to build it line by line\n	for (var y = 0; y < GAME_HEIGHT; y++) {\n		buffer = \"\";\n		for (var x = 0; x < GAME_WIDTH; x++) {\n			buffer += (randgen[x][y])\n				.toString();\n		}\n		console.log(buffer);\n	}\n\n	return;\n}\n\ngrow_maze = function(x, y) {\n\n}",
-			"file": "js/level.js",
-			"file_size": 6956,
-			"file_write_time": 130638459748477178,
-			"settings":
-			{
-				"buffer_size": 6963,
-				"line_ending": "Unix"
 			}
 		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 263.0,
+		"height": 400.0,
 		"selected_items":
 		[
+			[
+				"set Javasc",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"set Javas",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"set javascr",
+				"Set Syntax: JavaScript"
+			],
 			[
 				"form",
 				"Format: Javascript"
@@ -754,13 +798,14 @@
 				"Snippet: HTML5 Boilerplate"
 			]
 		],
-		"width": 480.0
+		"width": 313.0
 	},
 	"console":
 	{
 		"height": 732.0,
 		"history":
 		[
+			"import urllib.request,os; pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')",
 			"850/15",
 			"125/15",
 			"a.map",
@@ -887,8 +932,7 @@
 			"enumerate(a)",
 			"a = ['a', 'b']",
 			"a.replace('\\n', '')",
-			"a.replace",
-			"a"
+			"a.replace"
 		]
 	},
 	"distraction_free":
@@ -906,9 +950,11 @@
 	],
 	"file_history":
 	[
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/js/indicator.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/README.md",
+		"/C/Users/Rachit/Documents/GitHub/platformer/js/main.js",
 		"/C/Users/Rachit/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
 		"/C/Users/Rachit/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
-		"/C/Users/Rachit/Documents/GitHub/pixelfu/README.md",
 		"/C/Users/Rachit/Documents/GitHub/platformer/js/level.js",
 		"/C/Users/Rachit/Documents/GitHub/passgen.py",
 		"/C/Users/Rachit/Documents/GitHub/pixelfu/index.html",
@@ -991,7 +1037,6 @@
 		"/C/Users/Rachit/Documents/classes/main.cpp",
 		"/C/Users/Rachit/Documents/classes/cs/assignment_10/Random3SAT/Random3SAT/10.out",
 		"/C/Users/Rachit/Documents/classes/older/CPT_S 223/assignments/Gradebook/Gradebook/Debug/Gradebook.Build.CppClean.log",
-		"/C/Users/Rachit/Documents/GitHub/platformer/js/main.js",
 		"/C/Users/Rachit/Documents/classes/cs/assignment_10/Random3SAT/Random3SAT/6.out",
 		"/C/Users/Rachit/Documents/classes/older/CPT_S 223/notes/Lecture - 2014-02-19 BST/notes/BstNode.h",
 		"/C/Users/Rachit/Documents/classes/classes.sublime-project",
@@ -1032,8 +1077,7 @@
 		"/C/Users/Rachit/Documents/classes/math/assignment 2/math55.aux",
 		"/C/Users/Rachit/Documents/classes/math/assignment 10/math55.out",
 		"/C/Users/Rachit/Documents/classes/math/assignment 10/math55.log",
-		"/C/Users/Rachit/Documents/classes/math/assignment 10/math55.aux",
-		"/C/Users/Rachit/Documents/classes/math/assignment 1/math55.out"
+		"/C/Users/Rachit/Documents/classes/math/assignment 10/math55.aux"
 	],
 	"find":
 	{
@@ -1052,6 +1096,17 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"4",
+			"HP",
+			"false",
+			"true",
+			"function",
+			"startx",
+			"this.im",
+			"moveTime",
+			"players",
+			"player",
+			"player1",
 			"arrow",
 			"num",
 			"baddie",
@@ -1168,18 +1223,7 @@
 			"commu",
 			"_^",
 			"_",
-			"arrow",
-			"\\noindent{\\bf",
-			"#",
-			"\\noindent{\\bf",
-			"\\\\Ind",
-			"\\Ind",
-			"\\noindent{\\bf",
-			"\\\"",
-			" \\\"",
-			"\\\"",
-			"\\not",
-			"lambda"
+			"arrow"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1198,7 +1242,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -1207,15 +1251,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3753,
+						"buffer_size": 5705,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								61,
-								61
+								1226,
+								1226
 							]
 						],
 						"settings":
@@ -1224,27 +1268,175 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 662.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "js/main.js",
+					"file": "js/tilemap.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3496,
+						"buffer_size": 4285,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3338,
-								3338
+								3549,
+								3549
+							]
+						],
+						"settings":
+						{
+							"is_xml": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1872.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 617,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								282,
+								282
+							]
+						],
+						"settings":
+						{
+							"is_xml": false,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "js/entity.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2859,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2723,
+								2723
+							]
+						],
+						"settings":
+						{
+							"is_xml": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1504.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "js/indicator.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2562,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								744,
+								744
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 357.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "js/level.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8045,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6400,
+								6400
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 4536.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "js/main.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3617,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2530,
+								2530
 							]
 						],
 						"settings":
@@ -1252,39 +1444,10 @@
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 2121.0,
+						"translation.y": 1595.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "js/level.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6963,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2534,
-								2698
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2895.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
+					"stack_index": 4,
 					"type": "text"
 				}
 			]
@@ -1345,12 +1508,24 @@
 		"selected_items":
 		[
 			[
-				"phaser.",
-				"js\\phaser.js"
+				"player",
+				"js\\player.js"
+			],
+			[
+				"indic",
+				"js\\indicator.js"
+			],
+			[
+				"read",
+				"README.md"
 			],
 			[
 				"index.html",
 				"index.html"
+			],
+			[
+				"phaser.",
+				"js\\phaser.js"
 			],
 			[
 				"rad",
@@ -1843,18 +2018,6 @@
 			[
 				"dashboardapp.js",
 				"app\\static\\js\\dashboard\\app.js"
-			],
-			[
-				"services.html",
-				"app\\static\\partials\\dashboard\\getting_started\\services.html"
-			],
-			[
-				"controllers",
-				"app\\users\\controllers.py"
-			],
-			[
-				"profile.html",
-				"app\\static\\partials\\dashboard\\profile.html"
 			]
 		],
 		"width": 0.0

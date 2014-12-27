@@ -1,3 +1,17 @@
+/*
+	The IndicatorManager factory system (please excuse if I'm using the wrong jargon)
+	is intended to make the process of creating indicators for various things - 
+	like Mana, Health, Draw Strength, etc. - separated from the code for displaying it
+
+	There's definitely a better way to do this, since the syntax for modifying/accessing
+	the data is garbage right now, but I didn't know exactly how. Probably a way to use 
+	this: 
+	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
+
+	-Rachit
+*/
+
+
 INDICATOR_SIZE = 25; // in pixels
 
 IndicatorManager = function(game) {
@@ -18,9 +32,23 @@ IndicatorManager.prototype = {
 		}
 	},
 
+
+	/**
+	* Creates a new Indicator
+	*
+	* @method IndicatorManager#add_indicator
+	* @param {object} binding - an object that contains the configuration settings for the new indicator:
+		{
+			variable_name: the name of the newly created reference,
+			minimum: the minimum value for the variable,
+			maximum: the maximum value for the variable,
+			color: a HEX value containing the color for the indicator,
+		}
+	*/
+	
 	add_indicator: function(binding) {
 		// this feels clunky but not sure how to architect
-		var indicator = new Indicator(this, binding.variable_name, this.indicators.length, binding.minimum, binding.maximum, binding.color, binding.name);
+		var indicator = new Indicator(this, binding.variable_name, this.indicators.length, binding.minimum, binding.maximum, binding.color);
 		this.indicators.push(indicator);
 	}
 };
@@ -33,7 +61,6 @@ Indicator = function(im, variable_name, index, minimum, maximum, color, name) {
 		minimum: the_minimum, (optional)
 		maximum: the_maximum, (optional)
 		color: the_color, (optional)
-		name: the_name, (need to put this here somehow)		
 	*/
 	this.im = im;
 	this.variable_name = variable_name;
@@ -42,7 +69,6 @@ Indicator = function(im, variable_name, index, minimum, maximum, color, name) {
 	this.minimum = minimum || 0;
 	this.maximum = maximum || 100;
 	this.color = color || 0xFFFFFF;
-
 
 	this.box = game.add.graphics(0, 0);
 	this.box.fixedToCamera = true;

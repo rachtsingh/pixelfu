@@ -4,8 +4,8 @@ Number.prototype.clamp = function(min, max){
 }
 /*
  Usage: number = (number + 5).clamp(0, 20);
- number increments by 5 but isn't allowed to go outside the bounds of [0, 20];
-
+ number increments by 5 but isn't allowed to go outside the bounds of [0, 20);
+ (note that this a half-open interval)
 */
 
 Number.prototype.in = function(min, max){
@@ -13,8 +13,25 @@ Number.prototype.in = function(min, max){
 }
 /*
  Usage: if (number.in(0, 20))
- returns true if the number is in the range ([]), otherwise false
+ returns true if the number is in the range [min, max], otherwise false
+*/
 
+// First, checks if it isn't implemented yet.
+if (!String.prototype.format) {
+	String.prototype.format = function() {
+		var args = arguments;
+		return this.replace(/{(\d+)}/g, function(match, number) { 
+			return typeof args[number] != 'undefined'
+			? args[number]
+			: match
+			;
+		});
+	};
+}
+/*
+ Usage: "{0} is a goober, but {1} is a diamond in the {2}".format("Steven", "Jerry")
+ will output "Steven is a goober, but Jerry is a diamond in the {2}"
+ Note: arguments can be non strings, as long as they can be coerced via a .toString()
 */
 
 // the overall size of the game will be 40x40 tiles, or 640x640
@@ -56,7 +73,14 @@ function preload() {
     player.preload();
     game.player = player;
 
+    // should be a group of one object, but somehow necessary
     players = game.add.group();
+
+    // contains all the entities that are physics objects
+    physics_entities = game.add.group();
+
+    // this is just a group of all the entities - overlaps with above
+    entities = game.add.group();
 }
 
 function create() {
@@ -77,14 +101,14 @@ function create() {
 
 function update() {
 
-	resetText = function(){
+	var resetText = function(){
 		var tween = game.add.tween(this.scale).to({x:1, y:1}, 100, Phaser.Easing.Linear.In);
 		tween.start();
 		this.tweening = false;
 		this.fill = "white";
-	}
+	};
 
-	gameOver = function(winner){
+	var gameOver = function(winner){
 		// #! refine this, this is garbage
 		gameover = game.add.text(WIDTH/2, HEIGHT/2, "GAME OVER: " + winner + " Wins!", {
 	        font: "45px Arial",
@@ -93,7 +117,7 @@ function update() {
 	    });
 	};
 
-	stuck_arrow = function(arrow, obstacle) {
+	var stuck_arrow = function(arrow, obstacle) {
 		console.log(obstacle);
 		// console.log("arrow hit an obstacle");
 		arrow.body.velocity = {x: 0, y: 0};
@@ -103,18 +127,21 @@ function update() {
 		console.log(obstacle);
 	};
 
-	hit_wall = function(sprite, obstacle) {
+	var hit_wall = function(sprite, obstacle) {
 		console.log(sprite, obstacle);
-	}
+	};
 
     level.update();
     player.update();
     im.update();
 
+    // update all the entities
+    physics_entities.callAll("update");
+
     //  Collide objects
     game.physics.arcade.collide(level.layer, level.baddie);
     game.physics.arcade.collide(level.layer, level.arrows, stuck_arrow);
-    game.physics.arcade.collide(level.baddie, level.arrows);
+    game.physics.arcade.collide(level.baddie, level.arrows, stuck_arrow);
 
     game.physics.arcade.collide(level.layer, player.sprite, hit_wall);
     game.physics.arcade.collide(level.layer, players); // ok weird, this works but the above line is useless

@@ -240,7 +240,7 @@ generate_dungeon = function(map, layer) {
 
 	for (var i = 0; i < GAME_WIDTH; i++) {
 		for (var j = 0; j < GAME_HEIGHT; j++) {
-			if (j == 0 || i == 0 || j == GAME_HEIGHT - 1 || i == GAME_WIDTH - 1) randgen[i][j] = 4;
+			if (j == 0 || i == 0 || j == GAME_HEIGHT - 1 || i == GAME_WIDTH - 1) randgen[i][j] = 5;
 			if (j < 10 && i < 10) randgen[i][j] = -1;
 		}
 	}
