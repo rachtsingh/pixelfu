@@ -31,6 +31,10 @@ function preload() {
     im = new IndicatorManager(game);
     game.im = im;
 
+    // linkedin room_manager.js
+    rm = new RoomManager(game);
+    game.rm = rm;
+
 	// linked in level.js
 	level = new Level(game);
     level.preload();
@@ -56,6 +60,7 @@ function create() {
 	
 	game.physics.startSystem(Phaser.Physics.ARCADE);
 
+	rm.create();
 	level.create();
 	player.create();
     players.add(player.sprite);
@@ -125,4 +130,7 @@ function render(){
 	// game.debug.text(game.time.fps || '--', 2, 14, "#00ff00");   
 
 	// not sure if this goes here
+	for (var i = 0; i < player.breadcrumbs.length; i++) {
+		game.debug.geom(player.breadcrumbs[i]);
+	}
 }

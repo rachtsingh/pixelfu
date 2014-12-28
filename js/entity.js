@@ -34,11 +34,11 @@ function Entity(game, image, x, y, type, description, physics, physicsConfig, im
 			this.sprite.body[key] = physicsConfig[key];
 		}
 	}
-
-	this.update = function() {
-		// do nothing
-	};
 }
+
+Entity.prototype.update = function() {
+	// do nothing
+};
 
 /* 
 	A collection of 'useful' objects
@@ -51,6 +51,7 @@ function Gold(game, x, y, amount) {
 	this.base(game, "gold", x, y, "gold", "A glittering pile of dubloons\n{0} GP".format(amount), false, null, amount/100);
 	this.amount = amount;
 }
+
 Gold.prototype = new Entity;
 
 function Scroll(game, x, y, effect) {
@@ -61,6 +62,7 @@ function Scroll(game, x, y, effect) {
 	this.base(game, "scroll", x, y, "scroll", effect.description, false, null, 0);
 	this.effect = effect;
 }
+
 Scroll.prototype = new Entity;
 
 function Potion(game, x, y, HP) {
@@ -69,6 +71,7 @@ function Potion(game, x, y, HP) {
 	this.base(game, "potion", x, y, "potion", "A gleaming green potion that looks delicious\n{0} HP".format(HP), false, null, HP);
 	this.HP = HP;
 }
+
 Potion.prototype = new Entity;
 
 function Crate(game, x, y, value) {
@@ -78,6 +81,7 @@ function Crate(game, x, y, value) {
 	// the value gives the importance of the object inside
 	this.value = value;
 }
+
 Crate.prototype = new Entity;
 
 // Just a test of a rudimentary AI system
@@ -98,6 +102,7 @@ Crate.prototype = new Entity;
 
 	Slowdown is the number of frames to skip between - 1 is the lowest
 */
+
 function Actor(game, image, x, y, type, physicsConfig, sentience, greediness, slowdown) {
 	this.base = Entity;
 	this.base(game, image, x, y, type, true, physicsConfig, sentience * 100);
@@ -107,59 +112,59 @@ function Actor(game, image, x, y, type, physicsConfig, sentience, greediness, sl
 	this.slowdown = slowdown;
 
 	this.direction = 0; // same system, 0 - 3 based on standard rotation
-
-	this.update = function() {
-		/*
-			Though this is entirely up to debate, I'm currently implementing
-			actor movement as a sort of turn based discrete movement
-			- while the player is moving in realtime
-		*/
-
-		// make decisions before moving
-		// #! this line of code is wrong
-		if (!(this.game.frames % this.sentience)) {
-			this.think();
-		}
-
-		if (!(this.game.frames % this.slowdown)) {
-			this.stepcountdown = 0;
-			
-			// I'm not worry about accidently walking through walls because
-			// our wonderful physics libraries handles that even at this 
-			// resolution (at least in my tests)
-			switch(this.direction) {
-				case 0: 
-					this.sprite.body.position.x += TILE_WIDTH;
-					break;
-				case 1:
-					this.sprite.body.position.y -= TILE_WIDTH;
-					break;
-				case 2:
-					this.sprite.body.position.x -= TILE_WIDTH;
-					break;
-				case 3:
-					this.sprite.body.position.y += TILE_WIDTH;
-					break;
-			}
-		}
-
-		// depending on what we need, could move this outside 'if'
-		if (this.meets_action_condition()) {
-			this.act();
-		}
-	};
-
-	this.think = function (argument) {
-		// fill in via children
-	};
-
-	this.meets_action_condition = function(){
-		return false; // obviously override
-	};
-
-	this.act = function() {
-		// fill in
-	}
 }
 
 Actor.prototype = new Entity;
+
+Actor.prototype.update = function() {
+	/*
+		Though this is entirely up to debate, I'm currently implementing
+		actor movement as a sort of turn based discrete movement
+		- while the player is moving in realtime
+	*/
+
+	// make decisions before moving
+	// #! this line of code is wrong
+	if (!(this.game.frames % this.sentience)) {
+		this.think();
+	}
+
+	if (!(this.game.frames % this.slowdown)) {
+		this.stepcountdown = 0;
+		
+		// I'm not worry about accidently walking through walls because
+		// our wonderful physics libraries handles that even at this 
+		// resolution (at least in my tests)
+		switch(this.direction) {
+			case 0: 
+				this.sprite.body.position.x += TILE_WIDTH;
+				break;
+			case 1:
+				this.sprite.body.position.y -= TILE_WIDTH;
+				break;
+			case 2:
+				this.sprite.body.position.x -= TILE_WIDTH;
+				break;
+			case 3:
+				this.sprite.body.position.y += TILE_WIDTH;
+				break;
+		}
+	}
+
+	// depending on what we need, could move this outside 'if'
+	if (this.meets_action_condition()) {
+		this.act();
+	}
+};
+
+Actor.prototype.think = function (argument) {
+	// fill in via children
+};
+
+Actor.prototype.meets_action_condition = function(){
+	return false; // obviously override
+};
+
+Actor.prototype.act = function() {
+	// fill in
+};

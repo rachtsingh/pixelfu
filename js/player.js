@@ -8,6 +8,7 @@ MANA_THRESHOLD = 15;
 MANA_MAX = 25;
 
 NUM_BREADCRUMBS = 5;
+BREADCRUMB_FRAMES = 15;
 
 Player = function(game) {
 	this.game = game;
@@ -50,6 +51,7 @@ Player.prototype = {
 		game.physics.arcade.enable(this.sprite);
 	    
 	    this.sprite.body.collideWorldBounds = true;
+	    this.sprite.body.setSize(TILE_WIDTH * 0.8, TILE_WIDTH * 0.8);
 
 	    //  Our two animations, walking left and right.
 	    // this.sprite.animations.add('left', [0, 1, 2, 3], 10, true);
@@ -92,7 +94,7 @@ Player.prototype = {
 		this.game.im.values["health"] = 100;
 
 		for (var i = 0; i < NUM_BREADCRUMBS; i++) {
-			this.breadcrumbs.push(this.sprite.body.position);
+		    this.breadcrumbs.push(new Phaser.Point(this.sprite.body.position.x, this.sprite.body.position.y));
 		}
 	},
 
@@ -151,7 +153,10 @@ Player.prototype = {
 	    } 
 
 	    // now handle updating the breadcrumb positions
-	    
+	    if (!(this.game.frames % BREADCRUMB_FRAMES)) {
+		    this.breadcrumbs.shift();
+		    this.breadcrumbs.push(new Phaser.Point(this.sprite.body.position.x, this.sprite.body.position.y));
+	    }
 	},
 
 	castMagic: function(strength){

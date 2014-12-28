@@ -43,10 +43,11 @@ Level.prototype = {
 		// this.layer.resizeWorld(); // this is an override, not necessary
 
 		// this.map.fill(1, 0, 0, 5, 5, this.layer);
-		var randgen = generate_dungeon(this.map, this.layer);
+		// var randgen = generate_dungeon(this.map, this.layer);
+		
 		for (var x = 0; x < GAME_WIDTH; x++) {
 			for (var y = 0; y < GAME_HEIGHT; y++) {
-				this.map.layers[0].data[x][y].index = randgen[x][y];
+				this.map.layers[0].data[x][y].index = this.game.rm.tilearray[x][y];
 			}
 		}
 

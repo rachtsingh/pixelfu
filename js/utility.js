@@ -6,7 +6,7 @@
 // crazy javascript global stuff
 Number.prototype.clamp = function(min, max){
 	return Math.max(Math.min(max - 1, this), min)
-}
+}	
 /*
  Usage: number = (number + 5).clamp(0, 20);
  number increments by 5 but isn't allowed to go outside the bounds of [0, 20);
