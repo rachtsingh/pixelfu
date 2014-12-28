@@ -82,8 +82,8 @@ dev
 *.pyc
 
 # karma
-app/node_modules/
-app/bower_components/
+node_modules/
+bower_components/
 
 # New Server
 redis-stable.tar.gz

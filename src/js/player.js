@@ -42,7 +42,7 @@ Player.prototype = {
 
 	preload: function () {
 		// this.game.load.spritesheet('dude', 'assets/cube.png', 32, 32);
-		this.game.load.image('box', 'assets/box.png');
+		this.game.load.image('box', 'dist/assets/box.png');
 	},
 
 	create: function () {
@@ -51,7 +51,9 @@ Player.prototype = {
 		game.physics.arcade.enable(this.sprite);
 	    
 	    this.sprite.body.collideWorldBounds = true;
-	    this.sprite.body.setSize(TILE_WIDTH * 0.8, TILE_WIDTH * 0.8);
+
+	    // no longer necessary
+	    // this.sprite.body.setSize(TILE_WIDTH * 0.8, TILE_WIDTH * 0.8);
 
 	    //  Our two animations, walking left and right.
 	    // this.sprite.animations.add('left', [0, 1, 2, 3], 10, true);
@@ -73,7 +75,6 @@ Player.prototype = {
 			color: 0x41C535 , // green
 			name: "Health Points"
 		});
-		// access via this.game.im.values["health"] (kludgy I know)
 
 		this.game.im.add_indicator({
 			variable_name: "draw",
@@ -91,7 +92,10 @@ Player.prototype = {
 			name: "Mana"
 		});
 
-		this.game.im.values["health"] = 100;
+		// just an alias for easier to read code
+		this.indicators = this.game.im.values; 
+
+		this.indicators.health = 100;
 
 		for (var i = 0; i < NUM_BREADCRUMBS; i++) {
 		    this.breadcrumbs.push(new Phaser.Point(this.sprite.body.position.x, this.sprite.body.position.y));
@@ -117,12 +121,12 @@ Player.prototype = {
 	    // handle mana charging and firing
 	    if (this.shift.isDown){
 	    	this.charging = true;
-	    	this.game.im.values["mana"] = (this.game.im.values["mana"] + 1).clamp(MANA_MIN, MANA_MAX);
+	    	this.indicators.mana = (this.indicators.mana + 1).clamp(MANA_MIN, MANA_MAX);
 	    }
 	    else {
-		    if (this.manatimer > this.mana_gen_time && this.charging && this.game.im.values["mana"] > MANA_THRESHOLD) {
+		    if (this.manatimer > this.mana_gen_time && this.charging && this.indicators.mana > MANA_THRESHOLD) {
 		    	// fire the arrow
-		    	this.castMagic((this.game.im.values["mana"]/ 2) | 0);
+		    	this.castMagic((this.indicators.mana/ 2) | 0);
 		    	this.manatimer = 0;
 		    }
 		    else {
@@ -130,18 +134,18 @@ Player.prototype = {
 		    }
 		    // this feels expensive
 	    	this.charging = false;
-	    	this.game.im.values["mana"] = 0;
+	    	this.indicators.mana = 0;
 	    } 
 
 	    // handle the arrow nocking and firing
 	    if (this.space.isDown){
 	    	this.nocked = true;
-	    	this.game.im.values["draw"] = (this.game.im.values["draw"] + 1).clamp(DRAW_MIN, DRAW_MAX);
+	    	this.indicators.draw = (this.indicators.draw + 1).clamp(DRAW_MIN, DRAW_MAX);
 	    }
 	    else {
-		    if (this.arrowtimer > this.arrow_gen_time && this.nocked && this.game.im.values["draw"] > DRAW_THRESHOLD) {
+		    if (this.arrowtimer > this.arrow_gen_time && this.nocked && this.indicators.draw > DRAW_THRESHOLD) {
 		    	// fire the arrow, only if there's a sufficient draw
-		    	this.fireArrow(this.game.im.values["draw"] * 15);
+		    	this.fireArrow(this.indicators.draw * 15);
 		    	this.arrowtimer = 0;		    		
 		    }
 		    else {
@@ -149,11 +153,11 @@ Player.prototype = {
 		    }
 		    // this feels expensive
 	    	this.nocked = false;
-	    	this.game.im.values["draw"] = 0; 
+	    	this.indicators.draw = 0; 
 	    } 
 
 	    // now handle updating the breadcrumb positions
-	    if (!(this.game.frames % BREADCRUMB_FRAMES)) {
+	    if (this.game.frames % BREADCRUMB_FRAMES === 0) {
 		    this.breadcrumbs.shift();
 		    this.breadcrumbs.push(new Phaser.Point(this.sprite.body.position.x, this.sprite.body.position.y));
 	    }
@@ -169,8 +173,8 @@ Player.prototype = {
 		var tilex = Math.floor(this.sprite.body.position.x / TILE_WIDTH);
 		var tiley = Math.floor(this.sprite.body.position.y / TILE_WIDTH);
 
-		var startx = Math.floor((tilex - (strength/2)).clamp(0, GAME_WIDTH));
-		var starty = Math.floor((tiley - (strength/2)).clamp(0, GAME_HEIGHT))
+		var startx = Math.max(tilex - (strength/2 |0), 0);
+		var starty = Math.max(tiley - (strength/2 |0), 0);
 
 		/*
 				startx      2           | startx + strength

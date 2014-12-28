@@ -20,7 +20,7 @@ IndicatorManager = function(game) {
 	this.game = game;
 	this.indicators = [];
 	this.values = {}; // simple dict for holding the values that we're talking about
-}
+};
 
 IndicatorManager.prototype = {
 	// not sure if I'll ever use this setter
@@ -76,7 +76,7 @@ Indicator = function(im, variable_name, index, minimum, maximum, color, name) {
 	this.box.fixedToCamera = true;
 	this.box.beginFill(this.color);
 	this.box.drawRect(this.position * INDICATOR_SIZE, 0, INDICATOR_SIZE, INDICATOR_SIZE);
-}
+};
 
 Indicator.prototype = {
 	update: function() {

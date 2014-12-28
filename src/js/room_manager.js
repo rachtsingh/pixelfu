@@ -20,7 +20,7 @@
 
 // constants
 var ROOM_DISTANCE_THRESHOLD = 15;
-var CONNECT_SPACES_THRESHOLD = 0.8
+var CONNECT_SPACES_THRESHOLD = 0.8;
 
 // utilities
 
@@ -30,19 +30,19 @@ var intersect_rooms = function(a, b) {
 	// returns whether the two rooms intersect
 	return ((a.x < b.x + b.width + 3) && (a.x + a.width + 3 > b.x) && 
 		(a.y < b.y + b.height + 3) && (a.y + a.height + 3 > b.y));
-}
+};
 
 // determine whether a point is inside a room
 var in_room = function(point, room) {
 	return (point.x < room.x + room.width) && (point.x >= room.x) && 
 		(point.y < room.y + room.height) && (point.y >= room.y);
-}
+};
 
 // this is very sketchy
 var sketchy_room_distance = function(a, b) {
 	return Math.min(Math.abs(a.x - b.x) + Math.abs(a.y - b.y), 
 		Math.abs(a.x + a.width - b.x - b.width) + Math.abs(a.y + a.height - b.y - b.height));
-}
+};
 
 // for debugging only
 debug = function(randgen) {
@@ -58,7 +58,7 @@ debug = function(randgen) {
 	}
 
 	return;
-}
+};
 
 
 /*
@@ -190,7 +190,7 @@ RoomManager.prototype.carve_rooms = function() {
 			}
 		}
 	}
-}
+};
 
 // deprecated
 /*
@@ -208,26 +208,26 @@ RoomManager.prototype.find_edges = function() {
 // the number of adjacent spaces that are 1s
 // doesn't add 1 for 
 RoomManager.prototype.num_adjacent_spaces = function(x, y) {
-	return (y + 1 < GAME_HEIGHT && this.tilearray[x][y + 1])
-	+ (y > 0 && this.tilearray[x][y - 1])
-	+ (x + 1 < GAME_WIDTH && this.tilearray[x + 1][y])
-	+ (x > 0 && this.tilearray[x - 1][y]);
-}
+	return (y + 1 < GAME_HEIGHT && this.tilearray[x][y + 1]) + 
+	(y > 0 && this.tilearray[x][y - 1]) + 
+	(x + 1 < GAME_WIDTH && this.tilearray[x + 1][y]) + 
+	(x > 0 && this.tilearray[x - 1][y]);
+};
 
 
 RoomManager.prototype.can_carve_edge = function(x, y) {
 	// basically, we can carve an edge iff there is only max 1 open space 
 	// next to the cell, from the previous edge cell
 	return (this.num_adjacent_spaces(x, y) > 2) && !this.adjacent_to_wall(x, y);
-}
+};
 
 RoomManager.prototype.adjacent_to_wall = function(x, y) {
 	// each clause individually checks whether we're too close to a wall
-	return ((y + 1 < GAME_HEIGHT && this.tilearray_metadata[x][y + 1] == 1)
-	|| (y > 0 && this.tilearray_metadata[x][y - 1] == 1)
-	|| (x + 1 < GAME_WIDTH && this.tilearray_metadata[x + 1][y] == 1)
-	|| (x > 0 && this.tilearray_metadata[x - 1][y] == 1));
-}
+	return ((y + 1 < GAME_HEIGHT && this.tilearray_metadata[x][y + 1] == 1) ||
+	(y > 0 && this.tilearray_metadata[x][y - 1] == 1) ||
+	(x + 1 < GAME_WIDTH && this.tilearray_metadata[x + 1][y] == 1) ||
+	(x > 0 && this.tilearray_metadata[x - 1][y] == 1));
+};
 
 RoomManager.prototype.carve_edges = function() {
 	for (var x = 0; x < GAME_WIDTH; x += 2) {
@@ -235,7 +235,7 @@ RoomManager.prototype.carve_edges = function() {
 			if (this.tilearray[x][y] && this.can_carve_edge(x, y)) this.recursive_carve(x, y);
 		}
 	}
-}
+};
 
 RoomManager.prototype.recursive_carve = function(x, y) {
 	this.tilearray[x][y] = 0;
@@ -260,38 +260,12 @@ RoomManager.prototype.connect_spaces = function() {
 	// let's believe in randomized functions
 	for (var x = 0; x < GAME_WIDTH; x += 1) {
 		for (var y = 0; y < GAME_HEIGHT; y += 1) {
-			if (this.tilearray[x][y] 
-				&& Math.random() > CONNECT_SPACES_THRESHOLD 
-				&& this.adjacent_to_wall(x, y) 
-				&& this.num_adjacent_spaces(x,y) == 2) {
+			if (this.tilearray[x][y] && 
+				Math.random() > CONNECT_SPACES_THRESHOLD && 
+				this.adjacent_to_wall(x, y) && 
+				this.num_adjacent_spaces(x,y) == 2) {
 				this.tilearray[x][y] = 0;
 			}
 		}
 	}
 };
-
-generate_dungeon = function(map, layer) {
-	// to visualize this correctly:
-
-	/* randgen[i][j] is the ith column, jth down
-	|[ a ]|[ a ]|[ a ]|[ a ]|
-	|[ b ]|[ b ]|[ b ]|[ b ]|
-	|[ c ]|[ c ]|[ c ]|[ c ]|
-	*/
-
-	// first, create some rooms
-	rooms = add_rooms(randgen);
-
-	// seems to be a bottleneck
-	
-
-
-	for (var i = 0; i < GAME_WIDTH; i++) {
-		for (var j = 0; j < GAME_HEIGHT; j++) {
-			if (j == 0 || i == 0 || j == GAME_HEIGHT - 1 || i == GAME_WIDTH - 1) randgen[i][j] = 5;
-			if (j < 10 && i < 10) randgen[i][j] = -1;
-		}
-	}
-
-	return randgen;
-}

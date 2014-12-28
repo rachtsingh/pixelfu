@@ -22,12 +22,12 @@ Level = function(game) {
 Level.prototype = {
 
 	preload: function() {
-		this.game.load.image('bullet', 'assets/bullet.png');
-		this.game.load.image('specialbullet', 'assets/specialbullet.png');
-		this.game.load.image('lrarrow', 'assets/lrarrow.png'); // a left-right arrow
-		this.game.load.image('udarrow', 'assets/udarrow.png'); // an up-down arrow
-		this.game.load.image('tiles', 'assets/tiles.png');
-		this.game.load.image('baddie', 'assets/space-baddie.png');
+		this.game.load.image('bullet', 'dist/assets/bullet.png');
+		this.game.load.image('specialbullet', 'dist/assets/specialbullet.png');
+		this.game.load.image('lrarrow', 'dist/assets/lrarrow.png'); // a left-right arrow
+		this.game.load.image('udarrow', 'dist/assets/udarrow.png'); // an up-down arrow
+		this.game.load.image('tiles', 'dist/assets/tiles.png');
+		this.game.load.image('baddie', 'dist/assets/space-baddie.png');
 	},
 
 	create: function() {

@@ -4,6 +4,46 @@
 		"selected_items":
 		[
 			[
+				"adj",
+				"adjacent_to_wall"
+			],
+			[
+				"tile",
+				"tilearray"
+			],
+			[
+				"can",
+				"can_carve_edge"
+			],
+			[
+				"MAX",
+				"MAX_ITERATIONS"
+			],
+			[
+				"proto",
+				"prototype"
+			],
+			[
+				"GAME",
+				"GAME_WIDTH"
+			],
+			[
+				"num",
+				"num_adjacent_spaces"
+			],
+			[
+				"carve",
+				"carve_rooms"
+			],
+			[
+				"TILE",
+				"TILE_WIDTH"
+			],
+			[
+				"step",
+				"stepcountdown"
+			],
+			[
 				"phys",
 				"physicsConfig"
 			],
@@ -34,10 +74,6 @@
 			[
 				"Indic",
 				"IndicatorManager"
-			],
-			[
-				"GAME",
-				"GAME_HEIGHT"
 			],
 			[
 				"G",
@@ -134,10 +170,6 @@
 			[
 				"random_",
 				"random_2d_mst"
-			],
-			[
-				"num",
-				"numtrials"
 			],
 			[
 				"xo",
@@ -482,38 +514,6 @@
 			[
 				"R",
 				"R"
-			],
-			[
-				"shield",
-				"shieldon"
-			],
-			[
-				"bullet",
-				"bullettimer2"
-			],
-			[
-				"x",
-				"x_vel"
-			],
-			[
-				"last",
-				"last_frame"
-			],
-			[
-				"air",
-				"air_accel"
-			],
-			[
-				"wall",
-				"wall_pos"
-			],
-			[
-				"can",
-				"canglide"
-			],
-			[
-				"CAV",
-				"CANVAS_HEIGHT"
 			]
 		]
 	},
@@ -523,26 +523,15 @@
 			"file": "js/player.js",
 			"settings":
 			{
-				"buffer_size": 5705,
+				"buffer_size": 6306,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "/*\n	Unfortunately, the Phaser API is a little limited in what it can do,\n	so I've extended a few of the objects here. Rationale is given\n*/\n\n/**\n* Recalculate the faces on a single tile\n*\n* @method Phaser.Tilemap#calculateFaces\n* @param {number} x - X position to get the tile from (given in tile units, not pixels)\n* @param {number} y - Y position to get the tile from (given in tile units, not pixels)\n* @param {number} layer - The index of the TilemapLayer to operate on.\n*/\n\nPhaser.Tilemap.prototype.recalculateTile = function(x, y, layer) {\n	var tile = this.layers[layer].data[y][x];\n\n	if (tile) {\n	    above = this.getTileAbove(layer, x, y);\n	    below = this.getTileBelow(layer, x, y);\n	    left = this.getTileLeft(layer, x, y);\n	    right = this.getTileRight(layer, x, y);\n\n	    if (tile.collides && tile.index) // this is a hack - check how to make this real\n	    {\n	        tile.faceTop = true;\n	        tile.faceBottom = true;\n	        tile.faceLeft = true;\n	        tile.faceRight = true;\n\n	        // added this to make sure that it works as expected\n	        tile.collideUp = true;\n	        tile.collideDown = true;\n	        tile.collideLeft = true;\n	        tile.collideRight = true;\n	    }\n	    else {\n	        tile.faceTop = false;\n	        tile.faceBottom = false;\n	        tile.faceLeft = false;\n	        tile.faceRight = false;\n\n	        // added this to make sure that it works as expected\n	        tile.collideUp = false;\n	        tile.collideDown = false;\n	        tile.collideLeft = false;\n	        tile.collideRight = false;\n	    }\n\n	    if (above && above.collides)\n	    {\n	        //  There is a tile above this one that also collides, so the top of this tile is no longer interesting\n	        tile.faceTop = false;\n	    }\n\n	    if (below && below.collides)\n	    {\n	        //  There is a tile below this one that also collides, so the bottom of this tile is no longer interesting\n	        tile.faceBottom = false;\n	    }\n\n	    if (left && left.collides)\n	    {\n	        //  There is a tile left this one that also collides, so the left of this tile is no longer interesting\n	        tile.faceLeft = false;\n	    }\n\n	    if (right && right.collides)\n	    {\n	        //  There is a tile right this one that also collides, so the right of this tile is no longer interesting\n	        tile.faceRight = false;\n	    }\n\n	    console.log(tile.faceRight, tile.faceTop, tile.faceLeft, tile.faceBottom);\n	}\n}\n\n/**\n* Recalculate the faces on tiles in a specified area - useful if changing a lot of tiles in a specific area\n*\n* @method Phaser.Tilemap#calculateFaces\n* @param {number} x - X position to get the tile from (given in tile units, not pixels)\n* @param {number} y - Y position to get the tile from (given in tile units, not pixels)\n* @param {number} [width] - The rendered width of the layer, should never be wider than Game.width. If not given it will be set to Game.width.\n* @param {number} [height] - The rendered height of the layer, should never be wider than Game.height. If not given it will be set to Game.height.\n* @param {number} layer - The index of the TilemapLayer to operate on.\n*/\n\nPhaser.Tilemap.prototype.recalculateArea = function(x, y, width, height, layer) {\n	if (typeof width === 'undefined') { width = this.game.width; }\n	if (typeof height === 'undefined') { height = this.game.height; }\n\n	var fx = Math.min(x + width, this.game.width);\n	var fy = Math.min(y + height, this.game.height);\n\n	for (var i = x; i < fx; i++) {\n		for (var j = y; j < fy; j++) {\n			this.recalculateTile(i, j, layer);\n		}\n	}\n}\n\n/**\n* Recalculate the faces on tiles in a specified area - useful if changing a lot of tiles in a specific area\n*\n* @method Phaser.Tilemap#calculateFaces\n* @param {number} x - X position to get the tile from (given in tile units, not pixels)\n* @param {number} y - Y position to get the tile from (given in tile units, not pixels)\n* @param {number} [width] - The rendered width of the layer, should never be wider than Game.width. If not given it will be set to Game.width.\n* @param {number} [height] - The rendered height of the layer, should never be wider than Game.height. If not given it will be set to Game.height.\n* @param {number} layer - The index of the TilemapLayer to operate on.\n*/\nPhaser.Tile.animate = function(start, stop, )",
 			"file": "js/tilemap.js",
-			"file_size": 3644,
-			"file_write_time": 130639649029486390,
 			"settings":
 			{
-				"buffer_size": 4285,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "index.html",
-			"settings":
-			{
-				"buffer_size": 617,
+				"buffer_size": 3684,
 				"line_ending": "Windows"
 			}
 		},
@@ -550,7 +539,31 @@
 			"file": "js/entity.js",
 			"settings":
 			{
-				"buffer_size": 2859,
+				"buffer_size": 5065,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/room_manager.js",
+			"settings":
+			{
+				"buffer_size": 8353,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 743,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "README.md",
+			"settings":
+			{
+				"buffer_size": 794,
 				"line_ending": "Windows"
 			}
 		},
@@ -558,7 +571,15 @@
 			"file": "js/indicator.js",
 			"settings":
 			{
-				"buffer_size": 2562,
+				"buffer_size": 2684,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/utility.js",
+			"settings":
+			{
+				"buffer_size": 1401,
 				"line_ending": "Windows"
 			}
 		},
@@ -566,7 +587,7 @@
 			"file": "js/level.js",
 			"settings":
 			{
-				"buffer_size": 8045,
+				"buffer_size": 3625,
 				"line_ending": "Windows"
 			}
 		},
@@ -574,7 +595,7 @@
 			"file": "js/main.js",
 			"settings":
 			{
-				"buffer_size": 3617,
+				"buffer_size": 3728,
 				"line_ending": "Windows"
 			}
 		}
@@ -582,9 +603,21 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 400.0,
+		"height": 226.0,
 		"selected_items":
 		[
+			[
+				"javas",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"javascr",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"javascrip",
+				"Set Syntax: JavaScript"
+			],
 			[
 				"set Javasc",
 				"Set Syntax: JavaScript"
@@ -798,7 +831,7 @@
 				"Snippet: HTML5 Boilerplate"
 			]
 		],
-		"width": 313.0
+		"width": 480.0
 	},
 	"console":
 	{
@@ -950,6 +983,11 @@
 	],
 	"file_history":
 	[
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/js/level.js",
+		"/C/Users/Rachit/Desktop/javascript_tests.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/changes.incase.txt",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/index.html",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/convert.py",
 		"/C/Users/Rachit/Documents/GitHub/pixelfu/js/indicator.js",
 		"/C/Users/Rachit/Documents/GitHub/pixelfu/README.md",
 		"/C/Users/Rachit/Documents/GitHub/platformer/js/main.js",
@@ -957,7 +995,6 @@
 		"/C/Users/Rachit/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
 		"/C/Users/Rachit/Documents/GitHub/platformer/js/level.js",
 		"/C/Users/Rachit/Documents/GitHub/passgen.py",
-		"/C/Users/Rachit/Documents/GitHub/pixelfu/index.html",
 		"/C/Users/Rachit/Documents/GitHub/pixelfu/js/phaser.js",
 		"/C/Users/Rachit/Documents/GitHub/pixelfu/.gitignore",
 		"/C/Users/Rachit/Documents/GitHub/justiserv/.gitignore",
@@ -1073,11 +1110,7 @@
 		"/C/Users/Rachit/Documents/classes/math/assignment 5/math55.tex",
 		"/C/Users/Rachit/Documents/classes/math/assignment 4/math55.tex",
 		"/C/Users/Rachit/Documents/classes/math/assignment 3/math55.tex",
-		"/C/Users/Rachit/Documents/classes/math/assignment 2/math55.tex",
-		"/C/Users/Rachit/Documents/classes/math/assignment 2/math55.aux",
-		"/C/Users/Rachit/Documents/classes/math/assignment 10/math55.out",
-		"/C/Users/Rachit/Documents/classes/math/assignment 10/math55.log",
-		"/C/Users/Rachit/Documents/classes/math/assignment 10/math55.aux"
+		"/C/Users/Rachit/Documents/classes/math/assignment 2/math55.tex"
 	],
 	"find":
 	{
@@ -1096,6 +1129,30 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"9",
+			"other_too_close",
+			"recursive_carve",
+			"too_close",
+			"tilearray",
+			"add_rooms",
+			"function",
+			"indicator",
+			"this",
+			"||",
+			"+ (",
+			"+",
+			"\n		if",
+			"\n		",
+			"if",
+			"tilearray",
+			"point.y",
+			"point.x",
+			"point.x ",
+			"point.x",
+			"randgen",
+			"add_rooms",
+			"breadcrumb",
+			"Sentient",
 			"4",
 			"HP",
 			"false",
@@ -1199,31 +1256,7 @@
 			"alpha",
 			"C ",
 			"G",
-			"\\on{Id}_{\\rho_1}",
-			"d",
-			"2\\ln 2n",
-			"\\ln(2)",
-			"\\ln{2}",
-			"\\sqrt{2\\ln{2}}",
-			"lemma",
-			" \\to",
-			"\\noindent{\\bf",
-			"VARIABLES",
-			"CLAUSES",
-			"clause_sign",
-			"xorint() % 2",
-			"xorint(CLAUSES)",
-			"100",
-			"1000",
-			"printf",
-			"i",
-			"xorint",
-			"\\noindent{\\bf",
-			"e_k",
-			"commu",
-			"_^",
-			"_",
-			"arrow"
+			"\\on{Id}_{\\rho_1}"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1242,7 +1275,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 8,
 			"sheets":
 			[
 				{
@@ -1251,15 +1284,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5705,
+						"buffer_size": 6306,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1226,
-								1226
+								206,
+								206
 							]
 						],
 						"settings":
@@ -1268,10 +1301,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 662.0,
+						"translation.y": 3.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -1280,15 +1313,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4285,
+						"buffer_size": 3684,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3549,
-								3549
+								3647,
+								3647
 							]
 						],
 						"settings":
@@ -1298,7 +1331,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1872.0,
+						"translation.y": 1563.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -1306,19 +1339,78 @@
 				},
 				{
 					"buffer": 2,
-					"file": "index.html",
+					"file": "js/entity.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 617,
+						"buffer_size": 5065,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								282,
-								282
+								1343,
+								1343
+							]
+						],
+						"settings":
+						{
+							"is_xml": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 372.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "js/room_manager.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8353,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7420,
+								7420
+							]
+						],
+						"settings":
+						{
+							"is_xml": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 4652.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 743,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								400,
+								400
 							]
 						],
 						"settings":
@@ -1332,53 +1424,53 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "js/entity.js",
+					"buffer": 5,
+					"file": "README.md",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2859,
+						"buffer_size": 794,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2723,
-								2723
+								684,
+								684
 							]
 						],
 						"settings":
 						{
 							"is_xml": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1504.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 6,
 					"file": "js/indicator.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2562,
+						"buffer_size": 2684,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								744,
-								744
+								665,
+								665
 							]
 						],
 						"settings":
@@ -1387,27 +1479,57 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 357.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "js/utility.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1401,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								209,
+								209
+							]
+						],
+						"settings":
+						{
+							"is_xml": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 8,
 					"file": "js/level.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8045,
+						"buffer_size": 3625,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6400,
-								6400
+								1461,
+								1461
 							]
 						],
 						"settings":
@@ -1416,27 +1538,27 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 4536.0,
+						"translation.y": 688.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 9,
 					"file": "js/main.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3617,
+						"buffer_size": 3728,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2530,
-								2530
+								3721,
+								3721
 							]
 						],
 						"settings":
@@ -1444,10 +1566,10 @@
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1595.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -1512,6 +1634,38 @@
 				"js\\player.js"
 			],
 			[
+				"levle",
+				"js\\level.js"
+			],
+			[
+				"inde",
+				"index.html"
+			],
+			[
+				"readm",
+				"README.md"
+			],
+			[
+				"main.",
+				"js\\main.js"
+			],
+			[
+				"indicat",
+				"js\\indicator.js"
+			],
+			[
+				"index",
+				"index.html"
+			],
+			[
+				"changes",
+				"changes.incase.txt"
+			],
+			[
+				"main",
+				"js\\main.js"
+			],
+			[
 				"indic",
 				"js\\indicator.js"
 			],
@@ -1550,10 +1704,6 @@
 			[
 				"level.js",
 				"js\\level.js"
-			],
-			[
-				"main.",
-				"js\\main.js"
 			],
 			[
 				"palyer",
@@ -1932,10 +2082,6 @@
 				"cs\\assignment_1\\pset1.tex"
 			],
 			[
-				"index",
-				"www\\index.html"
-			],
-			[
 				"getting",
 				"www\\js\\getting_started.js"
 			],
@@ -1994,30 +2140,6 @@
 			[
 				"service.html",
 				"app\\static\\partials\\dashboard\\getting_started\\services.html"
-			],
-			[
-				"profileadd",
-				"app\\static\\partials\\dashboard\\profile\\add_service.html"
-			],
-			[
-				"profile.js",
-				"app\\static\\js\\dashboard\\profile.js"
-			],
-			[
-				"getting_started.js",
-				"app\\static\\js\\dashboard\\getting_started.js"
-			],
-			[
-				"gettingstartedcategory",
-				"app\\static\\partials\\dashboard\\getting_started\\category.html"
-			],
-			[
-				"controlers",
-				"app\\users\\controllers.py"
-			],
-			[
-				"dashboardapp.js",
-				"app\\static\\js\\dashboard\\app.js"
 			]
 		],
 		"width": 0.0
@@ -2029,7 +2151,7 @@
 		[
 			[
 				"",
-				"C:\\Users\\Rachit\\Documents\\GitHub\\justiserv\\justiserv.sublime-project"
+				"C:\\Users\\Rachit\\Documents\\Classes\\classes.sublime-project"
 			],
 			[
 				"justiser",

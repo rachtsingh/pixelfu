@@ -7,6 +7,8 @@
 *
 *
 * Entity
+*
+* init parameters
 * @param {object} game - the game object to bind to
 * @param {string} image - the Cache key to use to create the object  
 * @param {number} x - X position in tile units
@@ -19,7 +21,11 @@
 * @param {bool} actor - whether the entity is an actor (for AI calculations)
 */
 
-function Entity(game, image, x, y, type, description, physics, physicsConfig, importance, actor) {
+function Entity (){
+	// I'm not sure how this works
+}
+
+Entity.prototype.init = function(game, image, x, y, type, description, physics, physicsConfig, importance, actor) {
 	this.game = game;
 
 	this.sprite = game.add.sprite(TILE_WIDTH * x, TILE_WIDTH * y, image); 
@@ -30,14 +36,15 @@ function Entity(game, image, x, y, type, description, physics, physicsConfig, im
 		game.physics.arcade.enable(this.sprite);
 
 		// dangerous, but I'm assuming you're not being dumb
-		for (key in physicsConfig) {
+		for (var key in physicsConfig) {
 			this.sprite.body[key] = physicsConfig[key];
 		}
 	}
-}
+};
 
 Entity.prototype.update = function() {
 	// do nothing
+
 };
 
 /* 
@@ -48,41 +55,45 @@ Entity.prototype.update = function() {
 function Gold(game, x, y, amount) {
 	this.base = Entity;
 	// tweak how importance is calculated to give good AI
-	this.base(game, "gold", x, y, "gold", "A glittering pile of dubloons\n{0} GP".format(amount), false, null, amount/100);
+	this.base.init(game, "gold", x, y, "gold", "A glittering pile of dubloons\n{0} GP".format(amount), false, null, amount/100);
 	this.amount = amount;
 }
 
-Gold.prototype = new Entity;
+// there's something wrong with passing nothing on, but I 
+// can't quite figure it out - should I change Entity to have a 
+// separate constructor
+
+Gold.prototype = new Entity();
 
 function Scroll(game, x, y, effect) {
 	// Here we must be careful - effect is an object with variable attributes, but
 	// we must guarantee that one of the attributes is named description
 	this.base = Entity;
 	// figure out how to calculate the value of a scroll
-	this.base(game, "scroll", x, y, "scroll", effect.description, false, null, 0);
+	this.base.init(game, "scroll", x, y, "scroll", effect.description, false, null, 0);
 	this.effect = effect;
 }
 
-Scroll.prototype = new Entity;
+Scroll.prototype = new Entity();
 
 function Potion(game, x, y, HP) {
 	this.base = Entity;
 	// again tweak
-	this.base(game, "potion", x, y, "potion", "A gleaming green potion that looks delicious\n{0} HP".format(HP), false, null, HP);
+	this.base.init(game, "potion", x, y, "potion", "A gleaming green potion that looks delicious\n{0} HP".format(HP), false, null, HP);
 	this.HP = HP;
 }
 
-Potion.prototype = new Entity;
+Potion.prototype = new Entity();
 
 function Crate(game, x, y, value) {
 	this.base = Entity;
 	// maybe make the importance random/0? Since the AI shouldn't be able to tell
-	this.base(game, "crate", x, y, "potion", "A crate\nWho knows what mysteries lie inside?", true, {mass: 100}, value*10);
+	this.base.init(game, "crate", x, y, "potion", "A crate\nWho knows what mysteries lie inside?", true, {mass: 100}, value*10);
 	// the value gives the importance of the object inside
 	this.value = value;
 }
 
-Crate.prototype = new Entity;
+Crate.prototype = new Entity();
 
 // Just a test of a rudimentary AI system
 
@@ -105,7 +116,7 @@ Crate.prototype = new Entity;
 
 function Actor(game, image, x, y, type, physicsConfig, sentience, greediness, slowdown) {
 	this.base = Entity;
-	this.base(game, image, x, y, type, true, physicsConfig, sentience * 100);
+	this.base.init(game, image, x, y, type, true, physicsConfig, sentience * 100);
 	
 	this.sentience = sentience;
 	this.greediness = greediness;
@@ -114,7 +125,7 @@ function Actor(game, image, x, y, type, physicsConfig, sentience, greediness, sl
 	this.direction = 0; // same system, 0 - 3 based on standard rotation
 }
 
-Actor.prototype = new Entity;
+Actor.prototype = new Entity();
 
 Actor.prototype.update = function() {
 	/*
@@ -125,11 +136,11 @@ Actor.prototype.update = function() {
 
 	// make decisions before moving
 	// #! this line of code is wrong
-	if (!(this.game.frames % this.sentience)) {
+	if (this.game.frames % this.sentience === 0) {
 		this.think();
 	}
 
-	if (!(this.game.frames % this.slowdown)) {
+	if (this.game.frames % this.slowdown === 0) {
 		this.stepcountdown = 0;
 		
 		// I'm not worry about accidently walking through walls because

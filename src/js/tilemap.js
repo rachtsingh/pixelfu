@@ -73,7 +73,7 @@ Phaser.Tilemap.prototype.recalculateTile = function(x, y, layer) {
 
 	    console.log(tile.faceRight, tile.faceTop, tile.faceLeft, tile.faceBottom);
 	}
-}
+};
 
 /**
 * Recalculate the faces on tiles in a specified area - useful if changing a lot of tiles in a specific area
@@ -98,7 +98,7 @@ Phaser.Tilemap.prototype.recalculateArea = function(x, y, width, height, layer) 
 			this.recalculateTile(i, j, layer);
 		}
 	}
-}
+};
 
 /*
 	This class is an extension on the Tilemap allowing for animated adding and clearing of tiles
