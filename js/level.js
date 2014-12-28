@@ -45,9 +45,10 @@ Level.prototype = {
 		// this.map.fill(1, 0, 0, 5, 5, this.layer);
 		// var randgen = generate_dungeon(this.map, this.layer);
 		
+		// here's a trick that makes things roomier
 		for (var x = 0; x < GAME_WIDTH; x++) {
 			for (var y = 0; y < GAME_HEIGHT; y++) {
-				this.map.layers[0].data[x][y].index = this.game.rm.tilearray[x][y];
+				this.map.layers[0].data[x][y].index = this.game.rm.tilearray[x/2 |0][y/2 |0];
 			}
 		}
 
