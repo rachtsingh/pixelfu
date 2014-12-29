@@ -1,20 +1,15 @@
 // the overall size of the game will be 40x40 tiles, or 640x640
-TILE_WIDTH = 16; // in pixels
-GAME_WIDTH = 101; // MUST BE ODD!
-GAME_HEIGHT = 101; // MUST BE ODD!
-CAMERA_WIDTH = 25;
-CAMERA_HEIGHT = 25;
+var TILE_WIDTH = 16; // in pixels
+var GAME_WIDTH = 101; // MUST BE ODD!
+var GAME_HEIGHT = 101; // MUST BE ODD!
+var CAMERA_WIDTH = 25;
+var CAMERA_HEIGHT = 25;
 
-// the values that are actually used by Phaser
-WIDTH = TILE_WIDTH * CAMERA_WIDTH; 
-HEIGHT = TILE_WIDTH * CAMERA_HEIGHT;
+var MOBILE = false;
 
-AI = false; // not being used right now
-
-// player defaults
-MOVEDURATION = 60; // experiment
-
-// 
+// the values that are actually used by Phaser for the webGL/Canvas object
+var WIDTH = TILE_WIDTH * CAMERA_WIDTH; 
+var HEIGHT = TILE_WIDTH * CAMERA_HEIGHT;
 
 // set up the game object - width and height here are of the canvas/WebGL object
 var game = new Phaser.Game(WIDTH, HEIGHT, Phaser.AUTO, '', { preload: preload, create: create, update: update, render: render });
@@ -53,6 +48,7 @@ function preload() {
 
     // this is just a group of all the entities - overlaps with above
     entities = game.add.group();
+
 }
 
 function create() {
@@ -69,6 +65,79 @@ function create() {
 
     // if you need to debug the FPS
     // game.time.advancedTiming = true;	
+	
+	// literally just need the following to enable mobile support 
+	if (MOBILE) {
+
+	}
+		GameController.init({
+	        left: {
+	            type: 'dpad',
+	            dpad: {
+	            	up: {
+	            		touchStart: function() {
+	            			player.touchcontrols.up = true;
+	            		},
+	            		touchEnd: function() {
+	            			player.touchcontrols.up = false;
+	            		}
+	            	},
+	            	down: {
+	            		touchStart: function() {
+	            			player.touchcontrols.down = true;
+	            		},
+	            		touchEnd: function() {
+	            			player.touchcontrols.down = false;
+	            		}
+	            	},
+	            	left: {
+	            		touchStart: function() {
+	            			player.touchcontrols.left = true;
+	            		},
+	            		touchEnd: function() {
+	            			player.touchcontrols.left = false;
+	            		}
+	            	},
+	            	right: {
+	            		touchStart: function() {
+	            			player.touchcontrols.right = true;
+	            		},
+	            		touchEnd: function() {
+	            			player.touchcontrols.right = false;
+	            		}
+	            	}
+	            }
+	        },
+	        right: {
+	            // We're not using anything on the right for this demo, but you can add buttons, etc.
+	            // See https://github.com/austinhallock/html5-virtual-game-controller/ for examples.
+	            type: 'buttons',
+	            buttons: [
+	            	{
+	            		label: "B",
+	            		touchStart: function() {
+	            			player.touchcontrols.shift = true;
+	            		},
+	            		touchEnd: function() {
+	            			player.touchcontrols.shift = false;
+	            		}
+	            	},
+	            	{
+	            		label: "A",
+	            		touchStart: function() {
+	            			player.touchcontrols.space = true;
+	            		},
+	            		touchEnd: function() {
+	            			player.touchcontrols.space = false;
+	            		}
+
+	            	},
+	            	false,
+	            	false
+	            ]
+	        }
+	    });
+	}
 }
 
 

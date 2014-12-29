@@ -1,6 +1,8 @@
 /*
 	Utility functions that should be kept separate from the rest of the code
 
+	need to add this: https://github.com/jcd-as/nadion/blob/master/src/controls.js
+
 */
 
 // crazy javascript global stuff

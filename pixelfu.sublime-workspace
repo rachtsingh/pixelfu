@@ -519,86 +519,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "js/player.js",
-			"settings":
-			{
-				"buffer_size": 6306,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "js/tilemap.js",
-			"settings":
-			{
-				"buffer_size": 3684,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "js/entity.js",
-			"settings":
-			{
-				"buffer_size": 5065,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "js/room_manager.js",
-			"settings":
-			{
-				"buffer_size": 8353,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "index.html",
-			"settings":
-			{
-				"buffer_size": 743,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "README.md",
-			"settings":
-			{
-				"buffer_size": 794,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "js/indicator.js",
-			"settings":
-			{
-				"buffer_size": 2684,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "js/utility.js",
-			"settings":
-			{
-				"buffer_size": 1401,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "js/level.js",
-			"settings":
-			{
-				"buffer_size": 3625,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "js/main.js",
-			"settings":
-			{
-				"buffer_size": 3728,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -983,27 +903,62 @@
 	],
 	"file_history":
 	[
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/README.md",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/src/js/utility.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/src/js/player.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/index.html",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/dev.html",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/src/js/bullet.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/dist/pixelfu.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/src/js/indicator.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/src/js/entity.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/src/js/main.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/src/js/level.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/Gruntfile.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/node_modules/grunt-contrib-uglify/node_modules/uglify-js/lib/mozilla-ast.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/package.json",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/node_modules/grunt-contrib-jshint/node_modules/jshint/node_modules/htmlparser2/test/Events/18-legacy_entities.json",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/node_modules/grunt/LICENSE-MIT",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/src/js/tilemap.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/src/js/room_manager.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/.gitignore",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/pixelfu.sublime-project",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/src/libs/phaser.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/node_modules/grunt-contrib-jshint/node_modules/jshint/node_modules/htmlparser2/lib/ProxyHandler.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/dist/pixelfu.min.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/node_modules/grunt-contrib-qunit/node_modules/grunt-lib-phantomjs/node_modules/phantomjs/node_modules/kew/test/externs_node.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/src/js/phaser.min.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/node_modules/grunt-contrib-uglify/node_modules/uglify-js/test/compress/issue-267.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/node_modules/grunt-contrib-jshint/node_modules/jshint/node_modules/htmlparser2/test/Events/20-xml_entities.json",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/node_modules/grunt-contrib-jshint/node_modules/jshint/node_modules/htmlparser2/test/Events/15-lt-whitespace.json",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/node_modules/grunt/node_modules/exit/test/fixtures/10-stderr.txt",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/node_modules/grunt-contrib-watch/node_modules/.bin/tiny-lr-fork",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/node_modules/grunt-contrib-uglify/node_modules/maxmin/node_modules/gzip-size/node_modules/browserify-zlib/test/test-zlib-invalid-input.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/node_modules/grunt-contrib-qunit/node_modules/grunt-lib-phantomjs/node_modules/phantomjs/node_modules/npmconf/node_modules/config-chain/node_modules/proto-list/proto-list.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/js/main.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/js/player.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/js/tilemap.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/js/entity.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/js/room_manager.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/js/indicator.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/js/utility.js",
 		"/C/Users/Rachit/Documents/GitHub/pixelfu/js/level.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/levels/game.csv",
 		"/C/Users/Rachit/Desktop/javascript_tests.js",
 		"/C/Users/Rachit/Documents/GitHub/pixelfu/changes.incase.txt",
-		"/C/Users/Rachit/Documents/GitHub/pixelfu/index.html",
 		"/C/Users/Rachit/Documents/GitHub/pixelfu/convert.py",
-		"/C/Users/Rachit/Documents/GitHub/pixelfu/js/indicator.js",
-		"/C/Users/Rachit/Documents/GitHub/pixelfu/README.md",
 		"/C/Users/Rachit/Documents/GitHub/platformer/js/main.js",
 		"/C/Users/Rachit/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
 		"/C/Users/Rachit/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
 		"/C/Users/Rachit/Documents/GitHub/platformer/js/level.js",
 		"/C/Users/Rachit/Documents/GitHub/passgen.py",
 		"/C/Users/Rachit/Documents/GitHub/pixelfu/js/phaser.js",
-		"/C/Users/Rachit/Documents/GitHub/pixelfu/.gitignore",
 		"/C/Users/Rachit/Documents/GitHub/justiserv/.gitignore",
 		"/C/Users/Rachit/Documents/GitHub/pixelfu/lextab.py",
 		"/C/Users/Rachit/Documents/GitHub/pixelfu/levels/temp.csv",
 		"/C/Users/Rachit/Documents/GitHub/pixelfu/yacctab.py",
 		"/C/Users/Rachit/Documents/GitHub/pixelfu/js/bullet.js",
 		"/C/Users/Rachit/Documents/GitHub/platformer/js/player.js",
-		"/C/Users/Rachit/Documents/GitHub/pixelfu/pixelfu.sublime-project",
 		"/C/Users/Rachit/Documents/haskell/test.hs",
 		"/C/Users/Rachit/Documents/GitHub/chatufu/src/index.html",
 		"/C/Users/Rachit/Documents/GitHub/chatufu/src/js/app.js",
@@ -1075,42 +1030,7 @@
 		"/C/Users/Rachit/Documents/classes/cs/assignment_10/Random3SAT/Random3SAT/10.out",
 		"/C/Users/Rachit/Documents/classes/older/CPT_S 223/assignments/Gradebook/Gradebook/Debug/Gradebook.Build.CppClean.log",
 		"/C/Users/Rachit/Documents/classes/cs/assignment_10/Random3SAT/Random3SAT/6.out",
-		"/C/Users/Rachit/Documents/classes/older/CPT_S 223/notes/Lecture - 2014-02-19 BST/notes/BstNode.h",
-		"/C/Users/Rachit/Documents/classes/classes.sublime-project",
-		"/C/Users/Rachit/Documents/classes/.gitignore",
-		"/C/Users/Rachit/Documents/classes/.gitattributes",
-		"/C/Users/Rachit/AppData/Roaming/Sublime Text 3/Packages/LaTeXTools/LaTeX.sublime-commands",
-		"/C/Users/Rachit/Documents/classes/physics/assignment_1/assignment_1.fdb_latexmk",
-		"/C/Users/Rachit/Documents/classes/cs50/ps3/sort.c",
-		"/C/Users/Rachit/Documents/classes/cs50/.vagrant/machines/default/virtualbox/action_set_name",
-		"/C/Users/Rachit/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
-		"/C/Users/Rachit/Documents/classes/math/assignment 11/math55.aux",
-		"/C/Users/Rachit/Documents/classes/physics/assignment_2/assignment_1.aux",
-		"/C/Users/Rachit/Documents/classes/physics/assignment_1/assignment_1.aux",
-		"/C/Users/Rachit/Documents/classes/cs/assignment_8/pset.tex",
-		"/C/Users/Rachit/Documents/classes/cs/assignment_9/pset.tex",
-		"/C/Users/Rachit/Documents/classes/cs/assignment_7/pset.tex",
-		"/C/Users/Rachit/Documents/classes/cs/assignment_6/pset.tex",
-		"/C/Users/Rachit/Documents/classes/cs/assignment_5/pset.tex",
-		"/C/Users/Rachit/Documents/classes/cs/assignment_4/pset.tex",
-		"/C/Users/Rachit/Documents/classes/cs/assignment_4/pset.aux",
-		"/C/Users/Rachit/Documents/classes/cs/assignment_2/CS125_PSET2/CS125_PSET2.cpp",
-		"/C/Users/Rachit/Documents/classes/cs/assignment_2/CS125_PSET2/CS125_PSET2.vcxproj.user",
-		"/C/Users/Rachit/Documents/classes/cs/assignment_3/pset3.tex",
-		"/C/Users/Rachit/Documents/classes/cs/cs50.c",
-		"/C/Users/Rachit/Documents/classes/cs50/ps3/src4m/Makefile",
-		"/C/Users/Rachit/Documents/classes/math/assignment 8/math55.tex",
-		"/C/Users/Rachit/Downloads/myanimation.txt",
-		"/C/Users/Rachit/Downloads/animations.txt",
-		"/C/Users/Rachit/Documents/classes/math/assignment 9/math55.tex",
-		"/C/Users/Rachit/Documents/classes/math/assignment 10/math55.tex",
-		"/C/Users/Rachit/Documents/classes/math/bonus pset 1/math55.tex",
-		"/C/Users/Rachit/Documents/classes/math/assignment 7/math55.tex",
-		"/C/Users/Rachit/Documents/classes/math/assignment 6/math55.tex",
-		"/C/Users/Rachit/Documents/classes/math/assignment 5/math55.tex",
-		"/C/Users/Rachit/Documents/classes/math/assignment 4/math55.tex",
-		"/C/Users/Rachit/Documents/classes/math/assignment 3/math55.tex",
-		"/C/Users/Rachit/Documents/classes/math/assignment 2/math55.tex"
+		"/C/Users/Rachit/Documents/classes/older/CPT_S 223/notes/Lecture - 2014-02-19 BST/notes/BstNode.h"
 	],
 	"find":
 	{
@@ -1129,6 +1049,12 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"asset",
+			"assets",
+			"Tilemap",
+			"Phaser.Tile",
+			"this.game.im.values[\"draw\"]",
+			"this.game.im.values[\"mana\"]",
 			"9",
 			"other_too_close",
 			"recursive_carve",
@@ -1250,13 +1176,7 @@
 			"problem",
 			"\\rho_2",
 			"\\rho_1",
-			"u_1",
-			"2",
-			"1",
-			"alpha",
-			"C ",
-			"G",
-			"\\on{Id}_{\\rho_1}"
+			"u_1"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1275,303 +1195,8 @@
 	"groups":
 	[
 		{
-			"selected": 8,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "js/player.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6306,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								206,
-								206
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 3.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "js/tilemap.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3684,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3647,
-								3647
-							]
-						],
-						"settings":
-						{
-							"is_xml": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1563.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "js/entity.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5065,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1343,
-								1343
-							]
-						],
-						"settings":
-						{
-							"is_xml": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 372.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "js/room_manager.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 8353,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								7420,
-								7420
-							]
-						],
-						"settings":
-						{
-							"is_xml": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 4652.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "index.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 743,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								400,
-								400
-							]
-						],
-						"settings":
-						{
-							"is_xml": false,
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "README.md",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 794,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								684,
-								684
-							]
-						],
-						"settings":
-						{
-							"is_xml": false,
-							"syntax": "Packages/Markdown/Markdown.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "js/indicator.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2684,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								665,
-								665
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "js/utility.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1401,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								209,
-								209
-							]
-						],
-						"settings":
-						{
-							"is_xml": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "js/level.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3625,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1461,
-								1461
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 688.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "js/main.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3728,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3721,
-								3721
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -1621,7 +1246,7 @@
 	"project": "pixelfu.sublime-project",
 	"replace":
 	{
-		"height": 50.0
+		"height": 112.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1630,8 +1255,80 @@
 		"selected_items":
 		[
 			[
+				"utility",
+				"src\\js\\utility.js"
+			],
+			[
+				"read",
+				"README.md"
+			],
+			[
+				"index.",
+				"index.html"
+			],
+			[
 				"player",
-				"js\\player.js"
+				"src\\js\\player.js"
+			],
+			[
+				"main",
+				"src\\js\\main.js"
+			],
+			[
+				"package",
+				"package.json"
+			],
+			[
+				"grunt",
+				"Gruntfile.js"
+			],
+			[
+				"level",
+				"src\\js\\level.js"
+			],
+			[
+				"readm",
+				"README.md"
+			],
+			[
+				"pixelfu.js",
+				"dist\\pixelfu.js"
+			],
+			[
+				"phaser.js",
+				"src\\libs\\phaser.js"
+			],
+			[
+				"entti",
+				"src\\js\\entity.js"
+			],
+			[
+				"pixel",
+				"dist\\pixelfu.js"
+			],
+			[
+				"index",
+				"index.html"
+			],
+			[
+				"indicator",
+				"src\\js\\indicator.js"
+			],
+			[
+				"phaser",
+				"src\\js\\phaser.min.js"
+			],
+			[
+				"room",
+				"src\\js\\room_manager.js"
+			],
+			[
+				"tilemap",
+				"src\\js\\tilemap.js"
+			],
+			[
+				".git",
+				".gitignore"
 			],
 			[
 				"levle",
@@ -1642,10 +1339,6 @@
 				"index.html"
 			],
 			[
-				"readm",
-				"README.md"
-			],
-			[
 				"main.",
 				"js\\main.js"
 			],
@@ -1654,24 +1347,12 @@
 				"js\\indicator.js"
 			],
 			[
-				"index",
-				"index.html"
-			],
-			[
 				"changes",
 				"changes.incase.txt"
 			],
 			[
-				"main",
-				"js\\main.js"
-			],
-			[
 				"indic",
 				"js\\indicator.js"
-			],
-			[
-				"read",
-				"README.md"
 			],
 			[
 				"index.html",
@@ -2084,62 +1765,6 @@
 			[
 				"getting",
 				"www\\js\\getting_started.js"
-			],
-			[
-				"templates",
-				"www\\templates\\signup\\index.html"
-			],
-			[
-				"controller",
-				"www\\js\\controllers.js"
-			],
-			[
-				"pages",
-				"pages.md"
-			],
-			[
-				"app.js",
-				"www\\js\\app.js"
-			],
-			[
-				"create_lawyers",
-				"app\\database\\create_lawyers.py"
-			],
-			[
-				"setup",
-				"app\\database\\setup_user.py"
-			],
-			[
-				"secret",
-				"secret.py"
-			],
-			[
-				"config.py",
-				"config.py"
-			],
-			[
-				"usercontrollers",
-				"app\\users\\controllers.py"
-			],
-			[
-				"getting_started",
-				"app\\static\\js\\dashboard\\getting_started.js"
-			],
-			[
-				"getting_startedcategory.html",
-				"app\\static\\partials\\dashboard\\getting_started\\category.html"
-			],
-			[
-				"add_service",
-				"app\\static\\partials\\dashboard\\profile\\add_service.html"
-			],
-			[
-				"profileservices.html",
-				"app\\static\\partials\\dashboard\\profile\\services.html"
-			],
-			[
-				"service.html",
-				"app\\static\\partials\\dashboard\\getting_started\\services.html"
 			]
 		],
 		"width": 0.0

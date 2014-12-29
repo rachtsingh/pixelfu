@@ -36,6 +36,17 @@ Player = function(game) {
 
 	// breadcrumbs are an AI technique adapted from TinyKeep
 	this.breadcrumbs = [];
+
+	this.use_touch_controls = !this.game.device.desktop;
+
+	this.touchcontrols = {
+		left: false,
+		right: false,
+		up: false,
+		down: false,
+		shift: false,
+		space: false	
+	};
 };
 
 Player.prototype = {
@@ -104,22 +115,34 @@ Player.prototype = {
 
 	update: function() {
 
-        if (this.cursors.left.isDown) {
+        if (this.cursors.left.isDown || this.touchcontrols.left) {
             this.sprite.body.position.x -= this.speed;
             this.direction = 2;
-        } else if (this.cursors.right.isDown) {
+        } else if (this.cursors.right.isDown || this.touchcontrols.right) {
             this.sprite.body.position.x += this.speed;
             this.direction = 0;
-        } else if (this.cursors.up.isDown) {
+        } else if (this.cursors.up.isDown || this.touchcontrols.up) {
             this.sprite.body.position.y -= this.speed;
             this.direction = 1;
-        } else if (this.cursors.down.isDown) {
+        } else if (this.cursors.down.isDown || this.touchcontrols.down) {
             this.sprite.body.position.y += this.speed;
             this.direction = 3;
         }
 
+        // make the handoff between touch and desktop controls
+	    var shift = false;
+	    var space = false;
+	    if (game.desktop) {
+	    	shift = this.shift.isDown;
+	    	space = this.space.isDown;
+	    }
+	    else {
+	    	shift = this.touchcontrols.shift;
+	    	space = this.touchcontrols.space;
+	    }
+
 	    // handle mana charging and firing
-	    if (this.shift.isDown){
+	    if (shift){
 	    	this.charging = true;
 	    	this.indicators.mana = (this.indicators.mana + 1).clamp(MANA_MIN, MANA_MAX);
 	    }
@@ -138,7 +161,7 @@ Player.prototype = {
 	    } 
 
 	    // handle the arrow nocking and firing
-	    if (this.space.isDown){
+	    if (space){
 	    	this.nocked = true;
 	    	this.indicators.draw = (this.indicators.draw + 1).clamp(DRAW_MIN, DRAW_MAX);
 	    }

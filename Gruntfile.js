@@ -7,6 +7,7 @@ module.exports = function(grunt) {
         files: [
           // includes files within path
           {expand: true, flatten: true, src: ['src/assets/*'], dest: 'dist/assets/', filter: 'isFile'},
+          {expand: true, flatten: true, src: ['src/lib/*.js'], dest: 'dist/lib/', filter: 'isFile'}
         ],
       },
     },
@@ -16,7 +17,7 @@ module.exports = function(grunt) {
       },
       dist: {
         // this includes lib
-        src: ['src/lib/phaser.js', 'src/js/*.js'],
+        src: ['src/js/*.js'],
         dest: 'dist/<%= pkg.name %>.js'
       }
     },

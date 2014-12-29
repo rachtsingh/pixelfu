@@ -70,8 +70,6 @@ Phaser.Tilemap.prototype.recalculateTile = function(x, y, layer) {
 	        //  There is a tile right this one that also collides, so the right of this tile is no longer interesting
 	        tile.faceRight = false;
 	    }
-
-	    console.log(tile.faceRight, tile.faceTop, tile.faceLeft, tile.faceBottom);
 	}
 };
 

@@ -28,6 +28,12 @@ Level.prototype = {
 		this.game.load.image('udarrow', 'dist/assets/udarrow.png'); // an up-down arrow
 		this.game.load.image('tiles', 'dist/assets/tiles.png');
 		this.game.load.image('baddie', 'dist/assets/space-baddie.png');
+
+		// // load the images for the touch screen library
+		// this.game.load.image('button-left', 'dist/assets/button_left.png');
+		// this.game.load.image('button-right', 'dist/assets/button_right.png');
+		// this.game.load.image('button-circle', 'dist/assets/button_square.png');
+		// this.game.load.image('button-square', 'dist/assets/button_circle.png');
 	},
 
 	create: function() {
