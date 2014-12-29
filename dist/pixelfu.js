@@ -936,7 +936,7 @@ Player.prototype = {
         // make the handoff between touch and desktop controls
 	    var shift = false;
 	    var space = false;
-	    if (game.desktop) {
+	    if (game.device.desktop) {
 	    	shift = this.shift.isDown;
 	    	space = this.space.isDown;
 	    }
