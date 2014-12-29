@@ -68,8 +68,6 @@ function create() {
 	
 	// literally just need the following to enable mobile support 
 	if (MOBILE) {
-
-	}
 		GameController.init({
 	        left: {
 	            type: 'dpad',
