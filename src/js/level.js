@@ -132,7 +132,7 @@ Level.prototype = {
 				};
 				arrow.angle = 0;
 				arrow.body.position.x += TILE_WIDTH/2;
-				arrow.body.position.y += TILE_WIDTH;
+				arrow.body.position.y += 2*TILE_WIDTH;
 				break;
 		}
 		// let's give this a try

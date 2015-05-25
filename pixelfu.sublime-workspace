@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"touch",
+				"touchcontrols"
+			],
+			[
 				"adj",
 				"adjacent_to_wall"
 			],
@@ -510,20 +514,69 @@
 			[
 				"B",
 				"B"
-			],
-			[
-				"R",
-				"R"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "Gruntfile.js",
+			"settings":
+			{
+				"buffer_size": 1573,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "package.json",
+			"settings":
+			{
+				"buffer_size": 249,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/js/main.js",
+			"settings":
+			{
+				"buffer_size": 5813,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 526,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": ".gitignore",
+			"settings":
+			{
+				"buffer_size": 778,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/js/player.js",
+			"settings":
+			{
+				"buffer_size": 6859,
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
 	"command_palette":
 	{
 		"height": 226.0,
+		"last_filter": "",
 		"selected_items":
 		[
 			[
@@ -899,32 +952,42 @@
 	},
 	"expanded_folders":
 	[
-		"/C/Users/Rachit/Documents/GitHub/pixelfu"
+		"/C/Users/Rachit/Documents/GitHub/pixelfu",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/src",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/src/lib"
 	],
 	"file_history":
 	[
-		"/C/Users/Rachit/Documents/GitHub/pixelfu/README.md",
-		"/C/Users/Rachit/Documents/GitHub/pixelfu/src/js/utility.js",
-		"/C/Users/Rachit/Documents/GitHub/pixelfu/src/js/player.js",
-		"/C/Users/Rachit/Documents/GitHub/pixelfu/index.html",
-		"/C/Users/Rachit/Documents/GitHub/pixelfu/dev.html",
-		"/C/Users/Rachit/Documents/GitHub/pixelfu/src/js/bullet.js",
-		"/C/Users/Rachit/Documents/GitHub/pixelfu/dist/pixelfu.js",
-		"/C/Users/Rachit/Documents/GitHub/pixelfu/src/js/indicator.js",
-		"/C/Users/Rachit/Documents/GitHub/pixelfu/src/js/entity.js",
-		"/C/Users/Rachit/Documents/GitHub/pixelfu/src/js/main.js",
 		"/C/Users/Rachit/Documents/GitHub/pixelfu/src/js/level.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/dist/lib/phaser.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/dist/pixelfu.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/src/js/main.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/node_modules/grunt/node_modules/minimatch/minimatch.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/src/js/utility.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/src/js/entity.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/dist/lib/phaser.min.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/dev.html",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/src/js/tilemap.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/src/js/player.js",
 		"/C/Users/Rachit/Documents/GitHub/pixelfu/Gruntfile.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/index.html",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/.gitignore",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/node_modules/grunt-contrib-jshint/node_modules/jshint/node_modules/htmlparser2/lib/ProxyHandler.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/src/lib/gamecontroller.min.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/node_modules/grunt/node_modules/grunt-legacy-util/test/fixtures/Gruntfile-execArgv.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/src/js/indicator.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/node_modules/grunt-contrib-jshint/node_modules/jshint/node_modules/htmlparser2/test/Events/17-numeric_entities.json",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/pixelfu.sublime-project",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/node_modules/grunt/internal-tasks/subgrunt.js",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/node_modules/grunt-contrib-concat/node_modules/source-map/build/suffix-utils.jsm",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/README.md",
+		"/C/Users/Rachit/Documents/GitHub/pixelfu/src/js/bullet.js",
 		"/C/Users/Rachit/Documents/GitHub/pixelfu/node_modules/grunt-contrib-uglify/node_modules/uglify-js/lib/mozilla-ast.js",
 		"/C/Users/Rachit/Documents/GitHub/pixelfu/package.json",
 		"/C/Users/Rachit/Documents/GitHub/pixelfu/node_modules/grunt-contrib-jshint/node_modules/jshint/node_modules/htmlparser2/test/Events/18-legacy_entities.json",
 		"/C/Users/Rachit/Documents/GitHub/pixelfu/node_modules/grunt/LICENSE-MIT",
-		"/C/Users/Rachit/Documents/GitHub/pixelfu/src/js/tilemap.js",
 		"/C/Users/Rachit/Documents/GitHub/pixelfu/src/js/room_manager.js",
-		"/C/Users/Rachit/Documents/GitHub/pixelfu/.gitignore",
-		"/C/Users/Rachit/Documents/GitHub/pixelfu/pixelfu.sublime-project",
 		"/C/Users/Rachit/Documents/GitHub/pixelfu/src/libs/phaser.js",
-		"/C/Users/Rachit/Documents/GitHub/pixelfu/node_modules/grunt-contrib-jshint/node_modules/jshint/node_modules/htmlparser2/lib/ProxyHandler.js",
 		"/C/Users/Rachit/Documents/GitHub/pixelfu/dist/pixelfu.min.js",
 		"/C/Users/Rachit/Documents/GitHub/pixelfu/node_modules/grunt-contrib-qunit/node_modules/grunt-lib-phantomjs/node_modules/phantomjs/node_modules/kew/test/externs_node.js",
 		"/C/Users/Rachit/Documents/GitHub/pixelfu/src/js/phaser.min.js",
@@ -1022,15 +1085,7 @@
 		"/C/Users/Rachit/Documents/classes/older/CPT_S 223/test/Stack/Stack/ArrayStack.cpp",
 		"/C/Users/Rachit/Documents/classes/cs/assignment_2/final/report.tex",
 		"/C/Users/Rachit/Documents/classes/cs/assignment_10/test125.py",
-		"/C/Users/Rachit/Documents/classes/cs/assignment_7/pset.log",
-		"/C/Users/Rachit/Documents/classes/cs/assignment_1/pset1.tex",
-		"/C/Users/Rachit/Documents/classes/cs/assignment_10/Random3SAT/Random3SAT/stdafx.cpp",
-		"/C/Users/Rachit/Documents/classes/cs/assignment_2/main.cpp",
-		"/C/Users/Rachit/Documents/classes/main.cpp",
-		"/C/Users/Rachit/Documents/classes/cs/assignment_10/Random3SAT/Random3SAT/10.out",
-		"/C/Users/Rachit/Documents/classes/older/CPT_S 223/assignments/Gradebook/Gradebook/Debug/Gradebook.Build.CppClean.log",
-		"/C/Users/Rachit/Documents/classes/cs/assignment_10/Random3SAT/Random3SAT/6.out",
-		"/C/Users/Rachit/Documents/classes/older/CPT_S 223/notes/Lecture - 2014-02-19 BST/notes/BstNode.h"
+		"/C/Users/Rachit/Documents/classes/cs/assignment_7/pset.log"
 	],
 	"find":
 	{
@@ -1049,6 +1104,16 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"TILE_WIDTH",
+			".isDown",
+			"this.cursors.left.isDown",
+			"up",
+			"shift",
+			"this",
+			"game",
+			"Nadion",
+			"buttonPressed",
+			"MOVEDURATION",
 			"asset",
 			"assets",
 			"Tilemap",
@@ -1166,17 +1231,7 @@
 			"overline",
 			" \n",
 			"c",
-			"otimes",
-			" \n",
-			"1",
-			" 1",
-			"1",
-			"sum",
-			"underline",
-			"problem",
-			"\\rho_2",
-			"\\rho_1",
-			"u_1"
+			"otimes"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1195,8 +1250,195 @@
 	"groups":
 	[
 		{
+			"selected": 2,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "Gruntfile.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1573,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								74,
+								74
+							]
+						],
+						"settings":
+						{
+							"git_savvy.file_path": "C:\\Users\\Rachit\\Documents\\GitHub\\pixelfu\\Gruntfile.js",
+							"git_savvy.repo_path": "C:/Users/Rachit/Documents/GitHub/pixelfu",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 732.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "package.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 249,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								64,
+								64
+							]
+						],
+						"settings":
+						{
+							"git_savvy.file_path": "C:\\Users\\Rachit\\Documents\\GitHub\\pixelfu\\package.json",
+							"git_savvy.repo_path": "C:/Users/Rachit/Documents/GitHub/pixelfu",
+							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/js/main.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5813,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5297,
+								5297
+							]
+						],
+						"settings":
+						{
+							"git_savvy.file_path": "C:\\Users\\Rachit\\Documents\\GitHub\\pixelfu\\src\\js\\main.js",
+							"git_savvy.repo_path": "C:/Users/Rachit/Documents/GitHub/pixelfu",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 3960.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 526,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"git_savvy.file_path": "C:\\Users\\Rachit\\Documents\\GitHub\\pixelfu\\index.html",
+							"git_savvy.repo_path": "C:/Users/Rachit/Documents/GitHub/pixelfu",
+							"is_xml": false,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": ".gitignore",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 778,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								506,
+								506
+							]
+						],
+						"settings":
+						{
+							"git_savvy.file_path": "C:\\Users\\Rachit\\Documents\\GitHub\\pixelfu\\.gitignore",
+							"git_savvy.repo_path": "C:/Users/Rachit/Documents/GitHub/pixelfu",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 182.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "src/js/player.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6859,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5292,
+								5292
+							]
+						],
+						"settings":
+						{
+							"git_savvy.file_path": "C:\\Users\\Rachit\\Documents\\GitHub\\pixelfu\\src\\js\\player.js",
+							"git_savvy.repo_path": "C:/Users/Rachit/Documents/GitHub/pixelfu",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3832.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -1231,6 +1473,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.autopep8":
+	{
+		"height": 122.0
+	},
 	"output.csslint_result_view":
 	{
 		"height": 661.0
@@ -1243,6 +1489,7 @@
 	{
 		"height": 0.0
 	},
+	"pinned_build_system": "",
 	"project": "pixelfu.sublime-project",
 	"replace":
 	{
@@ -1252,11 +1499,88 @@
 	"select_file":
 	{
 		"height": 0.0,
+		"last_filter": "",
 		"selected_items":
 		[
 			[
+				"paher",
+				"dist\\lib\\phaser.js"
+			],
+			[
+				"package",
+				"package.json"
+			],
+			[
+				"gruntfile",
+				"Gruntfile.js"
+			],
+			[
+				"src/",
+				"src\\js\\level.js"
+			],
+			[
+				"index.html",
+				"index.html"
+			],
+			[
+				"player",
+				"src\\js\\player.js"
+			],
+			[
+				".ign",
+				".gitignore"
+			],
+			[
+				"main.j",
+				"src\\js\\main.js"
+			],
+			[
+				"grunt",
+				"Gruntfile.js"
+			],
+			[
+				".git",
+				".gitignore"
+			],
+			[
+				"phaser.min.",
+				"dist\\lib\\phaser.min.js"
+			],
+			[
+				"dev",
+				"dev.html"
+			],
+			[
+				"index",
+				"index.html"
+			],
+			[
+				"tile",
+				"src\\js\\tilemap.js"
+			],
+			[
 				"utility",
 				"src\\js\\utility.js"
+			],
+			[
+				"entity",
+				"src\\js\\entity.js"
+			],
+			[
+				"main",
+				"src\\js\\main.js"
+			],
+			[
+				"level",
+				"src\\js\\level.js"
+			],
+			[
+				"sublime-",
+				"pixelfu.sublime-project"
+			],
+			[
+				"indicator",
+				"src\\js\\indicator.js"
 			],
 			[
 				"read",
@@ -1265,26 +1589,6 @@
 			[
 				"index.",
 				"index.html"
-			],
-			[
-				"player",
-				"src\\js\\player.js"
-			],
-			[
-				"main",
-				"src\\js\\main.js"
-			],
-			[
-				"package",
-				"package.json"
-			],
-			[
-				"grunt",
-				"Gruntfile.js"
-			],
-			[
-				"level",
-				"src\\js\\level.js"
 			],
 			[
 				"readm",
@@ -1307,14 +1611,6 @@
 				"dist\\pixelfu.js"
 			],
 			[
-				"index",
-				"index.html"
-			],
-			[
-				"indicator",
-				"src\\js\\indicator.js"
-			],
-			[
 				"phaser",
 				"src\\js\\phaser.min.js"
 			],
@@ -1325,10 +1621,6 @@
 			[
 				"tilemap",
 				"src\\js\\tilemap.js"
-			],
-			[
-				".git",
-				".gitignore"
 			],
 			[
 				"levle",
@@ -1353,10 +1645,6 @@
 			[
 				"indic",
 				"js\\indicator.js"
-			],
-			[
-				"index.html",
-				"index.html"
 			],
 			[
 				"phaser.",
@@ -1725,46 +2013,6 @@
 			[
 				".",
 				".gitignore"
-			],
-			[
-				"heap",
-				"cs\\assignment_2\\heap.cpp"
-			],
-			[
-				"ps2.tex",
-				"math\\assignment 2\\ps2.tex"
-			],
-			[
-				"assign",
-				"physics\\assignment_1\\assignment_1.tex"
-			],
-			[
-				"pset1",
-				"cs\\assignment_1\\pset1.tex"
-			],
-			[
-				"math55",
-				"math\\assignment 1\\math55.tex"
-			],
-			[
-				"assignment_1.tex",
-				"physics\\assignment_1\\assignment_1.tex"
-			],
-			[
-				"hwto",
-				"cs\\assignment_1\\hw1topost.tex"
-			],
-			[
-				"pset.tex",
-				"cs\\assignment_1\\pset1.tex"
-			],
-			[
-				"pset1.tex",
-				"cs\\assignment_1\\pset1.tex"
-			],
-			[
-				"getting",
-				"www\\js\\getting_started.js"
 			]
 		],
 		"width": 0.0
@@ -1772,10 +2020,15 @@
 	"select_project":
 	{
 		"height": 500.0,
+		"last_filter": "",
 		"selected_items":
 		[
 			[
 				"",
+				"C:\\Users\\Rachit\\Documents\\Classes\\classes.sublime-project"
+			],
+			[
+				"class",
 				"C:\\Users\\Rachit\\Documents\\Classes\\classes.sublime-project"
 			],
 			[
@@ -1796,6 +2049,7 @@
 	"select_symbol":
 	{
 		"height": 0.0,
+		"last_filter": "",
 		"selected_items":
 		[
 		],
@@ -1808,7 +2062,7 @@
 	"show_minimap": true,
 	"show_open_files": true,
 	"show_tabs": true,
-	"side_bar_visible": false,
+	"side_bar_visible": true,
 	"side_bar_width": 142.0,
 	"status_bar_visible": true,
 	"template_settings":

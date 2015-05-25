@@ -8,7 +8,7 @@ MANA_THRESHOLD = 15;
 MANA_MAX = 25;
 
 NUM_BREADCRUMBS = 5;
-BREADCRUMB_FRAMES = 15;
+BREADCRUMB_FRAMES = 25;
 
 Player = function(game) {
 	this.game = game;
@@ -182,7 +182,7 @@ Player.prototype = {
 	    // now handle updating the breadcrumb positions
 	    if (this.game.frames % BREADCRUMB_FRAMES === 0) {
 		    this.breadcrumbs.shift();
-		    this.breadcrumbs.push(new Phaser.Point(this.sprite.body.position.x, this.sprite.body.position.y));
+		    this.breadcrumbs.push(new Phaser.Point(this.sprite.body.position.x + TILE_WIDTH/2, this.sprite.body.position.y + TILE_WIDTH/2));
 	    }
 	},
 
